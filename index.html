@@ -13,6 +13,9 @@
             margin: 0;
             padding: 0;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* 画面の高さ分を最低確保 */
         }
 
         /* --- ヘッダー（メニュー） --- */
@@ -51,9 +54,10 @@
 
         /* --- コンテンツの枠組み --- */
         .container {
-            max-width: 1000px; /* 少し広くしました */
+            max-width: 1000px;
             margin: 0 auto;
             padding: 80px 20px;
+            flex: 1; /* フッターを下に押しやる魔法 */
         }
 
         /* --- 共通のタイトルデザイン --- */
@@ -61,7 +65,7 @@
             text-align: center;
             font-size: 28px;
             letter-spacing: 2px;
-            margin-bottom: 50px; /* 余白を少し広げました */
+            margin-bottom: 50px;
             position: relative;
         }
         .section-title::after {
@@ -88,9 +92,9 @@
             font-size: 18px;
         }
 
-        /* --- ★新規：事業内容（Service）のデザイン --- */
+        /* --- 事業内容（Service） --- */
         .service-section {
-            margin-bottom: 120px; /* 会社概要との間を空ける */
+            margin-bottom: 120px;
         }
         .service-intro {
             text-align: center;
@@ -101,16 +105,16 @@
             margin-right: auto;
         }
         .service-grid {
-            display: flex; /* 3つを横並びにする魔法 */
-            gap: 30px; /* 箱同士の隙間 */
+            display: flex;
+            gap: 30px;
             justify-content: center;
         }
         .service-card {
-            background-color: #1a1a1a; /* 箱の背景色を少し変える */
+            background-color: #1a1a1a;
             padding: 30px;
-            border-radius: 8px; /* 角を少し丸くする */
-            width: 30%; /* 3等分に近い幅 */
-            border: 1px solid #333333; /* うっすら枠線 */
+            border-radius: 8px;
+            width: 30%;
+            border: 1px solid #333333;
         }
         .service-card h3 {
             font-size: 18px;
@@ -125,14 +129,13 @@
             font-size: 14px;
         }
 
-        /* スマホ対応（Serviceの3つを縦並びにする） */
         @media (max-width: 768px) {
             .service-grid {
-                flex-direction: column; /* 縦並びに変更 */
+                flex-direction: column;
             }
             .service-card {
-                width: 100%; /* 横幅いっぱいに */
-                box-sizing: border-box; /* はみ出し防止 */
+                width: 100%;
+                box-sizing: border-box;
             }
         }
 
@@ -167,6 +170,38 @@
                 border-bottom: none;
                 color: #888888;
             }
+        }
+
+        /* --- ★新規：フッター（Footer）のデザイン --- */
+        footer {
+            background-color: #0a0a0a; /* 背景を一番暗い黒に */
+            padding: 40px 20px 20px 20px;
+            text-align: center;
+            border-top: 1px solid #222222;
+        }
+        .footer-logo {
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+        .footer-links {
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: #888888;
+            text-decoration: none;
+            font-size: 12px;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+        .copyright {
+            color: #555555;
+            font-size: 12px;
         }
     </style>
 </head>
@@ -241,12 +276,20 @@
                 </tbody>
             </table>
         </section>
+        
+        <br><br><br>
 
-        <p style="text-align: center; color: #666; margin-top: 100px;">
-            ※現在、ホームページ開設に向けて準備中です（2026年4月公開予定）
-        </p>
-
-    </div>
+    </div> <footer>
+        <div class="footer-logo">zeroONE</div>
+        <div class="footer-links">
+            <a href="#">会社概要</a>
+            <a href="#">お問い合わせ</a>
+            <a href="#">個人情報保護方針</a>
+        </div>
+        <div class="copyright">
+            &copy; 2026 zeroONE Inc. All Rights Reserved.
+        </div>
+    </footer>
 
 </body>
 </html>
