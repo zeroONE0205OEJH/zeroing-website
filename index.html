@@ -5,11 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社zeroONE | Amazon DSP 2.0 オフィシャルパートナー</title>
     <style>
-        /* ここはデザイン（黒背景・白文字）の設定です */
+        /* サイト全体の基本設定 */
         body {
-            background-color: #111111; /* 高級感のあるダークグレーに近い黒 */
-            color: #ffffff; /* 白文字 */
+            background-color: #111111;
+            color: #ffffff;
             font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0; /* 画面端の余白をなくす */
+            padding: 0;
+        }
+
+        /* --- ここからメニュー（ヘッダー）のデザイン --- */
+        header {
+            display: flex; /* 横並びにする設定 */
+            justify-content: space-between; /* 左右に振り分ける */
+            align-items: center; /* 縦の真ん中に揃える */
+            padding: 20px 40px; /* 上下左右の余白 */
+            background-color: #1a1a1a; /* 背景より少し明るい黒にして区別する */
+            border-bottom: 1px solid #333333; /* 下にうっすらと線を引く */
+        }
+
+        /* 左側のロゴ部分 */
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        /* 右側のメニュー部分 */
+        nav ul {
+            list-style: none; /* 箇条書きの点々を消す */
+            margin: 0;
+            padding: 0;
+            display: flex; /* 横並びにする */
+            gap: 30px; /* メニュー同士の隙間 */
+        }
+
+        nav a {
+            color: #cccccc;
+            text-decoration: none; /* リンクの下線を消す */
+            font-size: 14px;
+            transition: color 0.3s; /* ふわっと色が変わるアニメーション */
+        }
+
+        nav a:hover {
+            color: #ffffff; /* マウスを乗せた時に真っ白にする */
+        }
+        /* --- メニューのデザインここまで --- */
+
+        /* 中央のメッセージ部分 */
+        .main-content {
             text-align: center;
             margin-top: 100px;
         }
@@ -17,16 +61,30 @@
             letter-spacing: 2px;
         }
         p {
-            color: #cccccc; /* 少し落ち着いた白 */
+            color: #cccccc;
         }
     </style>
 </head>
 <body>
 
-    <h1>zeroONE</h1>
-    <p>データと確実な運用体制で、ECビジネスを次のステージへ。</p>
-    <br>
-    <p>※現在、ホームページ開設に向けて準備中です（2026年4月公開予定）</p>
+    <header>
+        <div class="logo">zeroONE</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">Company</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="main-content">
+        <h1>zeroONE</h1>
+        <p>データと確実な運用体制で、ECビジネスを次のステージへ。</p>
+        <br>
+        <p>※現在、ホームページ開設に向けて準備中です（2026年4月公開予定）</p>
+    </div>
 
 </body>
 </html>
