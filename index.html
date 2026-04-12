@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社zeroONE | Amazon DSP 2.0 オフィシャルパートナー</title>
     <style>
-        /* サイト全体の基本設定 */
+        /* --- サイト全体の基本設定 --- */
         body {
             background-color: #111111;
             color: #ffffff;
@@ -15,7 +15,7 @@
             line-height: 1.6;
         }
 
-        /* メニュー（ヘッダー）のデザイン */
+        /* --- ヘッダー（メニュー） --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -49,17 +49,34 @@
             color: #ffffff;
         }
 
-        /* メインコンテンツの外枠 */
+        /* --- コンテンツの枠組み --- */
         .container {
-            max-width: 900px;
+            max-width: 1000px; /* 少し広くしました */
             margin: 0 auto;
             padding: 80px 20px;
         }
 
-        /* 中央のメッセージ部分 */
+        /* --- 共通のタイトルデザイン --- */
+        .section-title {
+            text-align: center;
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 50px; /* 余白を少し広げました */
+            position: relative;
+        }
+        .section-title::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 2px;
+            background: #ffffff;
+            margin: 15px auto 0;
+        }
+
+        /* --- メインメッセージ（Hero） --- */
         .hero {
             text-align: center;
-            margin-bottom: 100px;
+            margin-bottom: 120px;
         }
         .hero h1 {
             letter-spacing: 2px;
@@ -71,29 +88,60 @@
             font-size: 18px;
         }
 
-        /* 会社概要セクション */
-        .company-section {
-            margin-top: 60px;
+        /* --- ★新規：事業内容（Service）のデザイン --- */
+        .service-section {
+            margin-bottom: 120px; /* 会社概要との間を空ける */
         }
-        .section-title {
+        .service-intro {
             text-align: center;
-            font-size: 28px;
-            letter-spacing: 2px;
-            margin-bottom: 40px;
-            position: relative;
+            color: #cccccc;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .section-title::after {
-            content: "";
-            display: block;
-            width: 50px;
-            height: 2px;
-            background: #ffffff;
-            margin: 15px auto 0;
+        .service-grid {
+            display: flex; /* 3つを横並びにする魔法 */
+            gap: 30px; /* 箱同士の隙間 */
+            justify-content: center;
         }
+        .service-card {
+            background-color: #1a1a1a; /* 箱の背景色を少し変える */
+            padding: 30px;
+            border-radius: 8px; /* 角を少し丸くする */
+            width: 30%; /* 3等分に近い幅 */
+            border: 1px solid #333333; /* うっすら枠線 */
+        }
+        .service-card h3 {
+            font-size: 18px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            color: #ffffff;
+        }
+        .service-card p {
+            color: #aaaaaa;
+            font-size: 14px;
+        }
+
+        /* スマホ対応（Serviceの3つを縦並びにする） */
+        @media (max-width: 768px) {
+            .service-grid {
+                flex-direction: column; /* 縦並びに変更 */
+            }
+            .service-card {
+                width: 100%; /* 横幅いっぱいに */
+                box-sizing: border-box; /* はみ出し防止 */
+            }
+        }
+
+        /* --- 会社概要（Company） --- */
         .company-table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            max-width: 800px;
+            margin: 0 auto;
         }
         .company-table th, .company-table td {
             padding: 20px;
@@ -109,7 +157,6 @@
         .company-table td {
             color: #ffffff;
         }
-
         @media (max-width: 600px) {
             .company-table th, .company-table td {
                 display: block;
@@ -138,9 +185,33 @@
     </header>
 
     <div class="container">
+        
         <section class="hero">
             <h1>zeroONE</h1>
             <p class="catchphrase">データと確実な運用体制で、ECビジネスを次のステージへ。</p>
+        </section>
+
+        <section class="service-section">
+            <h2 class="section-title">Service</h2>
+            <p class="service-intro">
+                データと確かな運用体制で、Amazon広告の最適解を導き出します。<br>
+                オフィシャルパートナーとしての知見を活かし、お客様に「確実な成果」をお約束します。
+            </p>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <h3>DSP 2.0 運用代行</h3>
+                    <p>最新のAmazon DSPを活用し、フルファネルでの広告運用を代行。ターゲット層へ的確にアプローチし、投資対効果（ROAS）を最大化します。</p>
+                </div>
+                <div class="service-card">
+                    <h3>データ分析・戦略立案</h3>
+                    <p>膨大な配信データを多角的に分析し、勘に頼らない緻密な戦略を立案。現状の課題を可視化し、次の一手となる改善策をスピーディにご提案します。</p>
+                </div>
+                <div class="service-card">
+                    <h3>運用管理・最適化</h3>
+                    <p>独自のテクノロジーを活用した徹底的な「管理体制」。細かな入札調整におけるエラーを防ぎ、常に最適化された状態で広告を稼働させます。</p>
+                </div>
+            </div>
         </section>
 
         <section class="company-section">
@@ -153,7 +224,7 @@
                     </tr>
                     <tr>
                         <th>設立</th>
-                        <td>【202X年〇月〇日】</td> 
+                        <td>【202X年〇月〇日】</td>
                     </tr>
                     <tr>
                         <th>代表取締役</th>
@@ -174,6 +245,7 @@
         <p style="text-align: center; color: #666; margin-top: 100px;">
             ※現在、ホームページ開設に向けて準備中です（2026年4月公開予定）
         </p>
+
     </div>
 
 </body>
