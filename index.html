@@ -6,6 +6,9 @@
     <title>株式会社zeroONE | Amazon DSP 2.0 オフィシャルパートナー</title>
     <style>
         /* --- サイト全体の基本設定 --- */
+        html {
+            scroll-behavior: smooth; /* ★クリックした時にスルスル動く魔法 */
+        }
         body {
             background-color: #111111;
             color: #ffffff;
@@ -15,7 +18,7 @@
             line-height: 1.6;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* 画面の高さ分を最低確保 */
+            min-height: 100vh;
         }
 
         /* --- ヘッダー（メニュー） --- */
@@ -24,7 +27,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 20px 40px;
-            background-color: #1a1a1a;
+            background-color: rgba(26, 26, 26, 0.95); /* 少し透けさせて高級感を出す */
             border-bottom: 1px solid #333333;
             position: sticky;
             top: 0;
@@ -57,7 +60,7 @@
             max-width: 1000px;
             margin: 0 auto;
             padding: 80px 20px;
-            flex: 1; /* フッターを下に押しやる魔法 */
+            flex: 1;
         }
 
         /* --- 共通のタイトルデザイン --- */
@@ -80,29 +83,21 @@
         /* --- メインメッセージ（Hero） --- */
         .hero {
             text-align: center;
-            margin-bottom: 120px;
+            padding: 100px 0 150px 0;
         }
         .hero h1 {
             letter-spacing: 2px;
-            font-size: 42px;
+            font-size: 48px;
             margin-bottom: 20px;
         }
         .hero .catchphrase {
             color: #cccccc;
-            font-size: 18px;
+            font-size: 20px;
         }
 
         /* --- 事業内容（Service） --- */
         .service-section {
-            margin-bottom: 120px;
-        }
-        .service-intro {
-            text-align: center;
-            color: #cccccc;
-            margin-bottom: 50px;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
+            padding: 100px 0;
         }
         .service-grid {
             display: flex;
@@ -118,28 +113,15 @@
         }
         .service-card h3 {
             font-size: 18px;
-            margin-top: 0;
             margin-bottom: 15px;
             border-bottom: 1px solid #444;
             padding-bottom: 10px;
-            color: #ffffff;
-        }
-        .service-card p {
-            color: #aaaaaa;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .service-grid {
-                flex-direction: column;
-            }
-            .service-card {
-                width: 100%;
-                box-sizing: border-box;
-            }
         }
 
         /* --- 会社概要（Company） --- */
+        .company-section {
+            padding: 100px 0;
+        }
         .company-table {
             width: 100%;
             border-collapse: collapse;
@@ -153,55 +135,56 @@
         .company-table th {
             width: 30%;
             color: #aaaaaa;
-            font-weight: normal;
             text-align: left;
-            vertical-align: top;
-        }
-        .company-table td {
-            color: #ffffff;
-        }
-        @media (max-width: 600px) {
-            .company-table th, .company-table td {
-                display: block;
-                width: 100%;
-                padding: 10px 0;
-            }
-            .company-table th {
-                border-bottom: none;
-                color: #888888;
-            }
         }
 
-        /* --- ★新規：フッター（Footer）のデザイン --- */
+        /* --- ★新規：お問い合わせ（Contact）のデザイン --- */
+        .contact-section {
+            padding: 100px 0;
+            text-align: center;
+        }
+        .contact-button {
+            display: inline-block;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 20px 60px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: transform 0.3s, background-color 0.3s;
+            margin-top: 20px;
+        }
+        .contact-button:hover {
+            background-color: #cccccc;
+            transform: translateY(-3px); /* 少し浮き上がる演出 */
+        }
+
+        /* --- フッター --- */
         footer {
-            background-color: #0a0a0a; /* 背景を一番暗い黒に */
-            padding: 40px 20px 20px 20px;
+            background-color: #0a0a0a;
+            padding: 60px 20px 20px 20px;
             text-align: center;
             border-top: 1px solid #222222;
         }
-        .footer-logo {
-            font-size: 20px;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            color: #ffffff;
-        }
         .footer-links {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         .footer-links a {
-            color: #888888;
+            color: #888;
             text-decoration: none;
-            font-size: 12px;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        .footer-links a:hover {
-            color: #ffffff;
+            font-size: 13px;
+            margin: 0 15px;
         }
         .copyright {
-            color: #555555;
+            color: #555;
             font-size: 12px;
+        }
+
+        /* スマホ対応 */
+        @media (max-width: 768px) {
+            .service-grid { flex-direction: column; }
+            .service-card { width: 100%; box-sizing: border-box; }
+            .hero h1 { font-size: 32px; }
         }
     </style>
 </head>
@@ -212,9 +195,9 @@
         <nav>
             <ul>
                 <li><a href="#">Home</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">Company</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="#service">Service</a></li>
+                <li><a href="#company">Company</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -226,64 +209,48 @@
             <p class="catchphrase">データと確実な運用体制で、ECビジネスを次のステージへ。</p>
         </section>
 
-        <section class="service-section">
+        <section id="service" class="service-section">
             <h2 class="section-title">Service</h2>
-            <p class="service-intro">
-                データと確かな運用体制で、Amazon広告の最適解を導き出します。<br>
-                オフィシャルパートナーとしての知見を活かし、お客様に「確実な成果」をお約束します。
-            </p>
-            
             <div class="service-grid">
                 <div class="service-card">
                     <h3>DSP 2.0 運用代行</h3>
-                    <p>最新のAmazon DSPを活用し、フルファネルでの広告運用を代行。ターゲット層へ的確にアプローチし、投資対効果（ROAS）を最大化します。</p>
+                    <p>最新のAmazon DSPを活用し、フルファネルでの広告運用を代行。</p>
                 </div>
                 <div class="service-card">
                     <h3>データ分析・戦略立案</h3>
-                    <p>膨大な配信データを多角的に分析し、勘に頼らない緻密な戦略を立案。現状の課題を可視化し、次の一手となる改善策をスピーディにご提案します。</p>
+                    <p>膨大な配信データを多角的に分析し、次の一手をご提案します。</p>
                 </div>
                 <div class="service-card">
                     <h3>運用管理・最適化</h3>
-                    <p>独自のテクノロジーを活用した徹底的な「管理体制」。細かな入札調整におけるエラーを防ぎ、常に最適化された状態で広告を稼働させます。</p>
+                    <p>独自のテクノロジーを活用し、常に最適化された状態で広告を稼働させます。</p>
                 </div>
             </div>
         </section>
 
-        <section class="company-section">
+        <section id="company" class="company-section">
             <h2 class="section-title">Company</h2>
             <table class="company-table">
                 <tbody>
-                    <tr>
-                        <th>会社名</th>
-                        <td>株式会社zeroONE</td>
-                    </tr>
-                    <tr>
-                        <th>設立</th>
-                        <td>【202X年〇月〇日】</td>
-                    </tr>
-                    <tr>
-                        <th>代表取締役</th>
-                        <td>【〇〇 〇〇】</td>
-                    </tr>
-                    <tr>
-                        <th>所在地</th>
-                        <td>〒000-0000<br>【東京都〇〇区〇〇...】</td>
-                    </tr>
-                    <tr>
-                        <th>事業内容</th>
-                        <td>Amazon DSP 2.0 運用代行<br>データ分析・戦略立案</td>
-                    </tr>
+                    <tr><th>会社名</th><td>株式会社zeroONE</td></tr>
+                    <tr><th>設立</th><td>【202X年〇月〇日】</td></tr>
+                    <tr><th>所在地</th><td>〒000-0000<br>【東京都〇〇区〇〇...】</td></tr>
                 </tbody>
             </table>
         </section>
-        
-        <br><br><br>
 
-    </div> <footer>
-        <div class="footer-logo">zeroONE</div>
+        <section id="contact" class="contact-section">
+            <h2 class="section-title">Contact</h2>
+            <p>サービスに関するご相談・お問い合わせは、<br>以下のボタンより受け付けております。</p>
+            <a href="mailto:info@example.com" class="contact-button">お問い合わせフォームへ</a>
+            <p style="font-size: 12px; color: #666; margin-top: 20px;">※現在は準備中のためメールソフトが起動します</p>
+        </section>
+
+    </div>
+
+    <footer>
         <div class="footer-links">
-            <a href="#">会社概要</a>
-            <a href="#">お問い合わせ</a>
+            <a href="#company">会社概要</a>
+            <a href="#contact">お問い合わせ</a>
             <a href="privacy.html">個人情報保護方針</a>
         </div>
         <div class="copyright">
