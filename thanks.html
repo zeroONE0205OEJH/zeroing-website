@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>送信完了 | 株式会社zeroONE</title>
+    <style>
+        /* --- 全体設定 --- */
+        body {
+            background-color: #111111;
+            color: #ffffff;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* --- ヘッダー --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: rgba(26, 26, 26, 0.95);
+            border-bottom: 1px solid #333333;
+        }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
+        .logo a { color: #ffffff; text-decoration: none; }
+
+        /* --- メインコンテンツ --- */
+        .container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .thanks-box {
+            background-color: #1a1a1a;
+            padding: 60px 40px;
+            border-radius: 8px;
+            border: 1px solid #333333;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+        .thanks-box h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+        .thanks-box p {
+            color: #cccccc;
+            margin-bottom: 40px;
+            font-size: 15px;
+        }
+        .back-btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: #ffffff;
+            color: #000000;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: 0.3s;
+        }
+        .back-btn:hover { background-color: #cccccc; }
+
+        /* --- フッター --- */
+        footer { padding: 40px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
+        .copyright { color: #555; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo"><a href="index.html">zeroONE</a></div>
+    </header>
+
+    <div class="container">
+        <div class="thanks-box">
+            <h1>お問い合わせ<br>ありがとうございました</h1>
+            <p>送信が完了いたしました。<br>内容を確認のうえ、担当者より通常3営業日以内にご連絡させていただきます。</p>
+            <a href="index.html" class="back-btn">トップページへ戻る</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="copyright">
+            &copy; 2026 zeroONE Inc. All Rights Reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
