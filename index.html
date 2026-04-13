@@ -19,10 +19,21 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
         .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 50px; position: relative; }
         .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
-        .hero { text-align: center; padding: 120px 0 60px 0; }
-        .hero h1 { font-size: 48px; letter-spacing: 4px; margin-bottom: 20px; }
-        .hero p { color: #cccccc; font-size: 18px; }
-        .news-section { max-width: 700px; margin: 0 auto 100px auto; background: #1a1a1a; padding: 15px 25px; border-radius: 4px; border: 1px solid #333; }
+        
+        /* ▼変更：Hero（メインビジュアル）に背景画像を追加！ */
+        .hero { 
+            text-align: center; 
+            padding: 180px 20px 140px 20px; /* 画像がよく見えるように少し上下の余白を広げました */
+            background-image: linear-gradient(rgba(17, 17, 17, 0.6), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover; /* 画面いっぱいに広げる */
+            background-position: center; /* 画像の中心を軸にする */
+            background-attachment: fixed; /* スクロールした時に背景が残るリッチな演出（パララックス） */
+        }
+        .hero h1 { font-size: 56px; letter-spacing: 6px; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero p { color: #eeeeee; font-size: 20px; text-shadow: 1px 1px 3px rgba(0,0,0,0.8); }
+        /* ▲ここまで */
+
+        .news-section { max-width: 700px; margin: -50px auto 100px auto; background: #1a1a1a; padding: 15px 25px; border-radius: 4px; border: 1px solid #333; position: relative; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .news-item { display: flex; gap: 20px; font-size: 14px; border-bottom: 1px solid #222; padding: 10px 0; }
         .news-item:last-child { border-bottom: none; }
         .news-date { color: #888; }
@@ -34,7 +45,8 @@
         .feature-tag { display: inline-block; padding: 5px 15px; border: 1px solid #555; font-size: 12px; border-radius: 20px; margin-right: 10px; color: #888; }
         .service-section { padding: 100px 0; }
         .service-grid { display: flex; gap: 20px; }
-        .service-card { flex: 1; background: #1a1a1a; padding: 30px; border-radius: 8px; border: 1px solid #333; }
+        .service-card { flex: 1; background: #1a1a1a; padding: 30px; border-radius: 8px; border: 1px solid #333; transition: transform 0.3s; }
+        .service-card:hover { transform: translateY(-5px); } /* 少しだけカードが浮き上がるアニメーション */
         .service-card h3 { font-size: 18px; margin-bottom: 15px; border-bottom: 1px solid #444; padding-bottom: 10px; }
         .company-section { padding: 100px 0; }
         .company-table { width: 100%; border-collapse: collapse; max-width: 800px; margin: 0 auto; }
@@ -57,7 +69,7 @@
         .footer-links { margin-bottom: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0 15px; }
         .copyright { color: #555; font-size: 12px; }
-        @media (max-width: 768px) { .about-grid, .service-grid { flex-direction: column; } .hero h1 { font-size: 32px; } }
+        @media (max-width: 768px) { .about-grid, .service-grid { flex-direction: column; } .hero h1 { font-size: 36px; } .hero { background-attachment: scroll; } }
     </style>
 </head>
 <body>
@@ -75,12 +87,14 @@
         </nav>
     </header>
 
-    <div class="container">
-        <section class="hero">
+    <section class="hero">
+        <div class="container">
             <h1>zeroONE</h1>
             <p>データと確実な運用体制で、ECビジネスを次のステージへ。</p>
-        </section>
+        </div>
+    </section>
 
+    <div class="container">
         <div class="news-section">
             <div class="news-item"><span class="news-date">2026.04.01</span><span class="news-title">ホームページを公開いたしました。</span></div>
             <div class="news-item"><span class="news-date">2026.04.01</span><span class="news-title">Amazon DSP 2.0 オフィシャルパートナーに認定されました。</span></div>
