@@ -4,37 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>株式会社zeroONE | Amazon DSP 2.0 オフィシャルパートナー</title>
     <style>
-        /* デザイン統一 */
+        /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; }
-        .logo a { color: #fff; text-decoration: none; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        nav a { color: #cccccc; text-decoration: none; font-size: 14px; }
         
-        /* Hero */
-        .hero { text-align: center; padding: 180px 20px; background-image: linear-gradient(rgba(17, 17, 17, 0.6), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070'); background-size: cover; background-position: center; }
+        /* --- ヘッダー（メニュー） --- */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
+        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; z-index: 1100; }
+        .logo a { color: #fff; text-decoration: none; }
+        
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
+        nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        nav a:hover { color: #ffffff; }
+
+        /* スマホ用3本線ボタン */
+        .menu-btn { display: none; cursor: pointer; z-index: 1100; padding: 10px; }
+        .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
+
+        /* --- コンテンツ --- */
+        .hero { text-align: center; padding: 180px 20px; background-image: linear-gradient(rgba(17, 17, 17, 0.6), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed; }
         .hero h1 { font-size: 56px; letter-spacing: 6px; margin-bottom: 20px; }
+        .hero p { color: #eeeeee; font-size: 20px; }
         
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
-        .section-title { text-align: center; font-size: 28px; margin-bottom: 40px; }
+        .section-title { text-align: center; font-size: 28px; margin-bottom: 40px; letter-spacing: 2px; }
         
-        /* 各セクションの紹介用 */
-        .teaser-box { text-align: center; margin-bottom: 100px; }
-        .more-btn { display: inline-block; margin-top: 20px; padding: 12px 30px; border: 1px solid #fff; color: #fff; text-decoration: none; transition: 0.3s; }
-        .more-btn:hover { background: #fff; color: #000; }
+        /* 各セクションへの誘導ボタン */
+        .teaser-box { text-align: center; margin-bottom: 100px; background: #1a1a1a; padding: 50px 20px; border-radius: 8px; border: 1px solid #333; }
+        .teaser-box p { color: #aaa; margin-bottom: 30px; }
+        .more-btn { display: inline-block; padding: 15px 40px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; transition: 0.3s; }
+        .more-btn:hover { background: #ccc; }
 
+        /* フッター */
         footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
+        .footer-links { margin-bottom: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0 15px; }
         .copyright { color: #555; font-size: 12px; }
+
+        /* --- スマホ対応 --- */
+        @media (max-width: 768px) {
+            header { padding: 15px 20px; }
+            .hero h1 { font-size: 36px; }
+            .hero { background-attachment: scroll; }
+            .menu-btn { display: block; }
+            nav { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: #1a1a1a; transition: 0.4s; z-index: 1050; padding-top: 80px; }
+            nav.open { right: 0; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
+            nav ul { flex-direction: column; align-items: center; gap: 40px; }
+            nav a { font-size: 20px; }
+            .menu-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-btn.open span:nth-child(2) { opacity: 0; }
+            .menu-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        }
     </style>
 </head>
 <body>
+
     <header>
         <div class="logo"><a href="index.html">zeroONE</a></div>
+        <div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
+        <nav id="navMenu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>zeroONE</h1>
+        <p>データと確実な運用体制で、ECビジネスを次のステージへ。</p>
+    </section>
+
+    <div class="container">
+        <div class="teaser-box">
+            <h2 class="section-title">Service</h2>
+            <p>Amazon DSP 2.0 運用代行をはじめとした、データ駆動型のEC成長支援。</p>
+            <a href="service.html" class="more-btn">事業内容を詳しく見る</a>
+        </div>
+
+        <div class="teaser-box">
+            <h2 class="section-title">Company</h2>
+            <p>株式会社zeroONEの会社概要・代表メッセージ。</p>
+            <a href="company.html" class="more-btn">会社概要を見る</a>
+        </div>
+
+        <div class="teaser-box">
+            <h2 class="section-title">Contact</h2>
+            <p>サービスに関するご相談・お見積りはこちらから受け付けております。</p>
+            <a href="contact.html" class="more-btn">お問い合わせフォームへ</a>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">事業内容</a>
+            <a href="company.html">会社概要</a>
+            <a href="privacy.html">個人情報保護方針</a>
+        </div>
+        <div class="copyright">&copy; 2026 zeroONE Inc. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
+    </script>
+</body>
+</html>        <div class="logo"><a href="index.html">zeroONE</a></div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
