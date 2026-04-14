@@ -8,9 +8,11 @@
     <meta http-equiv="Expires" content="0">
     <title>事業内容 | 株式会社zeroONE</title>
     <style>
-        /* index.htmlと同じデザイン（CSS）をここに貼ります */
+        /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* --- ヘッダー（メニュー） --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; z-index: 1100; }
         .logo a { color: #fff; text-decoration: none; }
@@ -19,9 +21,11 @@
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
 
+        /* スマホ用3本線ボタン */
         .menu-btn { display: none; cursor: pointer; z-index: 1100; padding: 10px; }
         .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
 
+        /* --- コンテンツ --- */
         .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
         .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 50px; position: relative; }
         .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
@@ -32,17 +36,20 @@
         .service-detail p { color: #aaaaaa; font-size: 16px; margin-bottom: 20px; }
         .service-detail img { width: 100%; height: 300px; background: #222; object-fit: cover; border-radius: 8px; margin-bottom: 20px; }
 
+        /* --- ★フッター（スマホで綺麗に折り返すように修正） --- */
         footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
-        .footer-links { margin-bottom: 30px; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0 15px; }
+        .footer-links { margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; } /* white-space: nowrap;で文字の途中での改行を防ぐ */
         .copyright { color: #555; font-size: 12px; }
 
-        /* スマホ対応 */
+        /* --- スマホ対応 --- */
         @media (max-width: 768px) {
+            header { padding: 15px 20px; }
             .menu-btn { display: block; }
             nav { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: #1a1a1a; transition: 0.4s; z-index: 1050; padding-top: 80px; }
-            nav.open { right: 0; }
+            nav.open { right: 0; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
             nav ul { flex-direction: column; align-items: center; gap: 40px; }
+            nav a { font-size: 20px; }
             .menu-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .menu-btn.open span:nth-child(2) { opacity: 0; }
             .menu-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
