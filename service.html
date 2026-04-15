@@ -6,7 +6,7 @@
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title>お問い合わせ | 株式会社zeroONE</title>
+    <title>事業内容 | 株式会社zeroONE</title>
     <style>
         /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
@@ -25,21 +25,13 @@
         .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
 
         /* --- コンテンツ --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
+        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
         .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 50px; position: relative; }
         .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
-        .contact-form { max-width: 650px; margin: 0 auto; text-align: left; background: #1a1a1a; padding: 40px; border-radius: 8px; border: 1px solid #333; }
-        .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #cccccc; }
-        .req-label { background: #aa3333; color: #fff; font-size: 11px; padding: 3px 6px; border-radius: 3px; margin-left: 10px; vertical-align: middle; }
-        .opt-label { background: #555555; color: #fff; font-size: 11px; padding: 3px 6px; border-radius: 3px; margin-left: 10px; vertical-align: middle; }
-        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background: #111111; border: 1px solid #444; color: #ffffff; border-radius: 4px; box-sizing: border-box; font-size: 15px; }
-        .form-group textarea { height: 150px; resize: vertical; }
-        .checkbox-group { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #aaa; margin-bottom: 30px; }
-        .checkbox-group input[type="checkbox"] { width: auto; margin-top: 5px; transform: scale(1.2); }
-        .checkbox-group a { color: #ffffff; text-decoration: underline; }
-        .submit-btn { width: 100%; padding: 18px; background: #ffffff; color: #000000; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; font-size: 16px; letter-spacing: 1px; }
-        .submit-btn:hover { background: #cccccc; }
+        .service-detail { margin-bottom: 80px; }
+        .service-detail h3 { font-size: 24px; color: #fff; border-left: 4px solid #fff; padding-left: 15px; margin-bottom: 20px; }
+        .service-detail p { color: #aaaaaa; font-size: 16px; margin-bottom: 20px; }
+        .image-placeholder { width: 100%; height: 300px; background: #222; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #444; }
 
         /* --- フッター --- */
         footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
@@ -59,7 +51,6 @@
             .menu-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .menu-btn.open span:nth-child(2) { opacity: 0; }
             .menu-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-            .contact-form { padding: 20px; }
         }
     </style>
 </head>
@@ -93,33 +84,18 @@
     </header>
 
     <div class="container">
-        <h2 class="section-title">Contact</h2>
-        <div class="contact-form">
-            <form action="https://formspree.io/f/xwvaejje" method="POST">
-                <input type="hidden" name="_next" value="https://zeroone0205oejh.github.io/zeroing-website/thanks.html">
-                <div class="form-group"><label>貴社名 <span class="opt-label">任意</span></label><input type="text" name="貴社名" placeholder="例：株式会社〇〇"></div>
-                <div class="form-group"><label>部署名 <span class="opt-label">任意</span></label><input type="text" name="部署名" placeholder="例：マーケティング部"></div>
-                <div class="form-group"><label>お名前 <span class="req-label">必須</span></label><input type="text" name="お名前" required placeholder="例：山田 太郎"></div>
-                <div class="form-group"><label>メールアドレス <span class="req-label">必須</span></label><input type="email" name="メールアドレス" required placeholder="example@zeroone.com"></div>
-                <div class="form-group"><label>電話番号 <span class="req-label">必須</span></label><input type="tel" name="電話番号" required placeholder="例：03-1234-5678"></div>
-                <div class="form-group">
-                    <label>お問い合わせ項目 <span class="req-label">必須</span></label>
-                    <select name="お問い合わせ項目" required>
-                        <option value="">選択してください</option>
-                        <option value="DSP運用代行について">DSP運用代行について</option>
-                        <option value="データ分析・戦略立案について">データ分析・戦略立案について</option>
-                        <option value="お見積りのご依頼">お見積りのご依頼</option>
-                        <option value="採用・求人について">採用・求人について</option>
-                        <option value="その他のお問い合わせ">その他のお問い合わせ</option>
-                    </select>
-                </div>
-                <div class="form-group"><label>お問い合わせ内容 <span class="req-label">必須</span></label><textarea name="お問い合わせ内容" required placeholder="ご相談内容を具体的にご記入ください"></textarea></div>
-                <div class="checkbox-group">
-                    <input type="checkbox" id="privacy-check" name="個人情報同意" required>
-                    <label for="privacy-check"><a href="privacy.html" target="_blank">個人情報の取り扱い</a>に同意する <span class="req-label">必須</span></label>
-                </div>
-                <button type="submit" class="submit-btn">内容を確認して送信する</button>
-            </form>
+        <h2 class="section-title">Service</h2>
+        <div class="service-detail">
+            <div class="image-placeholder">[Image: Amazon DSP 2.0 運用イメージ]</div>
+            <h3>DSP 2.0 運用代行</h3>
+            <p>最新のAmazon DSP 2.0を活用し、購買データに基づいた高精度なターゲティングを実施します。認知から獲得まで、フルファネルでの広告運用をプロフェッショナルが代行します。</p>
+            <p>当社独自の運用ロジックにより、広告費の無駄を徹底的に排除し、ROAS（広告費用対効果）の最大化を追求します。</p>
+        </div>
+        <div class="service-detail">
+            <div class="image-placeholder">[Image: データ分析グラフ]</div>
+            <h3>データ分析・戦略立案</h3>
+            <p>単なる運用に留まらず、Amazon内の膨大なデータを多角的に分析。竞合他社の動向や市場のトレンドを把握し、次の一手をご提案します。</p>
+            <p>週次・月次の詳細レポートに加え、改善アクションをセットで提示することで、お客様のEC事業全体の成長を支援します。</p>
         </div>
     </div>
 
