@@ -16,7 +16,8 @@
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo { z-index: 1100; display: flex; align-items: center; }
         .logo a { display: block; text-decoration: none; }
-        .logo svg { height: 60px; } /* ★ヘッダーのロゴサイズを大きくしました */
+        /* ★アップロードした画像用のサイズ設定 */
+        .logo img { height: 60px; width: auto; object-fit: contain; } 
         
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
@@ -25,9 +26,9 @@
         .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
 
         /* --- コンテンツ --- */
-        /* Heroエリア（ロゴを中央に、キャッチコピーをその下に） */
         .hero { text-align: center; padding: 180px 20px; background-image: linear-gradient(rgba(17, 17, 17, 0.6), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .hero svg { width: 300px; height: 225px; margin-bottom: 20px; } /* ★Heroのロゴサイズを大きくしました */
+        /* ★Heroエリアの画像用サイズ設定 */
+        .hero img { width: 300px; height: auto; margin-bottom: 20px; } 
         .hero p { color: #eeeeee; font-size: 20px; margin: 0; }
         
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
@@ -40,7 +41,8 @@
 
         /* --- フッター --- */
         footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .footer-logo svg { height: 45px; } /* ★フッターのロゴサイズを大きくしました */
+        /* ★フッターの画像用サイズ設定 */
+        .footer-logo img { height: 45px; width: auto; object-fit: contain; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; }
         .copyright { color: #555; font-size: 12px; }
@@ -48,7 +50,7 @@
         /* --- スマホ対応 --- */
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
-            .hero svg { width: 200px; height: 150px; }
+            .hero img { width: 220px; }
             .hero p { font-size: 16px; }
             .hero { background-attachment: scroll; }
             .menu-btn { display: block; }
@@ -67,17 +69,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="100" cy="50" rx="40" ry="60" fill="#ffffff"/>
-                  <path d="M100 0 A40 60 0 1 0 100 120" stroke="#000000" stroke-width="4" fill="none"/>
-                  <path d="M100 0 C125 0 135 30 135 50 C135 70 125 100 100 110 Z" fill="#000000" />
-                  <path d="M102 10 V100" stroke="#000000" stroke-width="4" />
-                  <path d="M102 10 L82 28" stroke="#000000" stroke-width="4" />
-                  <text x="100" y="130" font-family="Helvetica Neue, Arial, sans-serif" text-anchor="middle" font-size="20">
-                    <tspan font-weight="200" fill="#ffffff">zero</tspan>
-                    <tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
+                <img src="logo.png" alt="zeroONE Logo">
             </a>
         </div>
         <div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
@@ -92,17 +84,7 @@
     </header>
 
     <section class="hero">
-        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-          <ellipse cx="100" cy="50" rx="40" ry="60" fill="#ffffff"/>
-          <path d="M100 0 A40 60 0 1 0 100 120" stroke="#000000" stroke-width="4" fill="none"/>
-          <path d="M100 0 C125 0 135 30 135 50 C135 70 125 100 100 110 Z" fill="#000000" />
-          <path d="M102 10 V100" stroke="#000000" stroke-width="4" />
-          <path d="M102 10 L82 28" stroke="#000000" stroke-width="4" />
-          <text x="100" y="130" font-family="Helvetica Neue, Arial, sans-serif" text-anchor="middle" font-size="20">
-            <tspan font-weight="200" fill="#ffffff">zero</tspan>
-            <tspan font-weight="800" fill="#ffffff">ONE</tspan>
-          </text>
-        </svg>
+        <img src="logo.png" alt="zeroONE Logo">
         <p>データと確実な運用体制で、ECビジネスを次のステージへ。</p>
     </section>
 
@@ -127,17 +109,7 @@
     <footer>
         <div class="footer-logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="100" cy="50" rx="40" ry="60" fill="#ffffff"/>
-                  <path d="M100 0 A40 60 0 1 0 100 120" stroke="#000000" stroke-width="4" fill="none"/>
-                  <path d="M100 0 C125 0 135 30 135 50 C135 70 125 100 100 110 Z" fill="#000000" />
-                  <path d="M102 10 V100" stroke="#000000" stroke-width="4" />
-                  <path d="M102 10 L82 28" stroke="#000000" stroke-width="4" />
-                  <text x="100" y="130" font-family="Helvetica Neue, Arial, sans-serif" text-anchor="middle" font-size="20">
-                    <tspan font-weight="200" fill="#ffffff">zero</tspan>
-                    <tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
+                <img src="logo.png" alt="zeroONE Logo">
             </a>
         </div>
         <div class="footer-links">
