@@ -14,14 +14,13 @@
         
         /* --- ヘッダー（メニュー） --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; z-index: 1100; }
-        .logo a { color: #fff; text-decoration: none; }
+        .logo { z-index: 1100; display: flex; align-items: center; }
+        .logo a { display: block; text-decoration: none; }
+        .logo svg { height: 40px; } /* ヘッダーのロゴサイズ調整 */
         
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
-
-        /* スマホ用3本線ボタン */
         .menu-btn { display: none; cursor: pointer; z-index: 1100; padding: 10px; }
         .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
 
@@ -29,13 +28,10 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
         .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 50px; position: relative; }
         .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
-        
-        /* フォームデザイン */
         .contact-form { max-width: 650px; margin: 0 auto; text-align: left; background: #1a1a1a; padding: 40px; border-radius: 8px; border: 1px solid #333; }
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #cccccc; }
-        .req-label { background: #aa3333; color: #fff; font-size: 11px; padding: 3px 6px; border-radius: 3px; margin-left: 10px; }
-        .opt-label { background: #555555; color: #fff; font-size: 11px; padding: 3px 6px; border-radius: 3px; margin-left: 10px; }
+        .req-label { background: #aa3333; color: #fff; font-size: 11px; padding: 3px 6px; border-radius: 3px; margin-left: 10px; vertical-align: middle; }
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background: #111111; border: 1px solid #444; color: #ffffff; border-radius: 4px; box-sizing: border-box; font-size: 15px; }
         .form-group textarea { height: 150px; resize: vertical; }
         .checkbox-group { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #aaa; margin-bottom: 30px; }
@@ -45,8 +41,9 @@
         .submit-btn:hover { background: #cccccc; }
 
         /* --- フッター --- */
-        footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
-        .footer-links { margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+        .footer-logo svg { height: 30px; } /* フッターのロゴサイズ調整 */
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; }
         .copyright { color: #555; font-size: 12px; }
 
@@ -68,7 +65,20 @@
 <body>
 
     <header>
-        <div class="logo"><a href="index.html">zeroONE</a></div>
+        <div class="logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="100" cy="50" rx="40" ry="60" fill="#ffffff"/>
+                  <path d="M100 0 C125 0 135 30 135 50 C135 70 125 100 100 110 Z" fill="#000000" />
+                  <path d="M102 10 V100" stroke="#000000" stroke-width="4" />
+                  <path d="M102 10 L82 28" stroke="#000000" stroke-width="4" />
+                  <text x="100" y="130" font-family="Helvetica Neue, Arial, sans-serif" text-anchor="middle" font-size="20">
+                    <tspan font-weight="200" fill="#ffffff">zero</tspan>
+                    <tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
         <div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
         <nav id="navMenu">
             <ul>
@@ -85,13 +95,11 @@
         <div class="contact-form">
             <form action="https://formspree.io/f/xwvaejje" method="POST">
                 <input type="hidden" name="_next" value="https://zeroone0205oejh.github.io/zeroing-website/thanks.html">
-                
                 <div class="form-group"><label>貴社名 <span class="req-label">必須</span></label><input type="text" name="貴社名" required placeholder="例：株式会社〇〇"></div>
-                <div class="form-group"><label>部署名 <span class="opt-label">任意</span></label><input type="text" name="部署名" placeholder="例：マーケティング部"></div>
+                <div class="form-group"><label>部署名 <span class="req-label">任意</span></label><input type="text" name="部署名" placeholder="例：マーケティング部"></div>
                 <div class="form-group"><label>お名前 <span class="req-label">必須</span></label><input type="text" name="お名前" required placeholder="例：山田 太郎"></div>
                 <div class="form-group"><label>メールアドレス <span class="req-label">必須</span></label><input type="email" name="メールアドレス" required placeholder="example@zeroone.com"></div>
                 <div class="form-group"><label>電話番号 <span class="req-label">必須</span></label><input type="tel" name="電話番号" required placeholder="例：03-1234-5678"></div>
-                
                 <div class="form-group">
                     <label>お問い合わせ項目 <span class="req-label">必須</span></label>
                     <select name="お問い合わせ項目" required>
@@ -102,20 +110,31 @@
                         <option value="その他のお問い合わせ">その他のお問い合わせ</option>
                     </select>
                 </div>
-
                 <div class="form-group"><label>お問い合わせ内容 <span class="req-label">必須</span></label><textarea name="お問い合わせ内容" required placeholder="ご相談内容を具体的にご記入ください"></textarea></div>
-                
                 <div class="checkbox-group">
                     <input type="checkbox" id="privacy-check" name="個人情報同意" required>
                     <label for="privacy-check"><a href="privacy.html" target="_blank">個人情報の取り扱い</a>に同意する <span class="req-label">必須</span></label>
                 </div>
-
                 <button type="submit" class="submit-btn">内容を確認して送信する</button>
             </form>
         </div>
     </div>
 
     <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="100" cy="50" rx="40" ry="60" fill="#ffffff"/>
+                  <path d="M100 0 C125 0 135 30 135 50 C135 70 125 100 100 110 Z" fill="#000000" />
+                  <path d="M102 10 V100" stroke="#000000" stroke-width="4" />
+                  <path d="M102 10 L82 28" stroke="#000000" stroke-width="4" />
+                  <text x="100" y="130" font-family="Helvetica Neue, Arial, sans-serif" text-anchor="middle" font-size="20">
+                    <tspan font-weight="200" fill="#ffffff">zero</tspan>
+                    <tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="service.html">事業内容</a>
