@@ -16,7 +16,7 @@
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo { z-index: 1100; display: flex; align-items: center; }
         .logo a { display: block; text-decoration: none; }
-        .logo svg { height: 40px; } /* ヘッダーのロゴサイズ調整 */
+        .logo svg { height: 40px; } 
         
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
@@ -28,21 +28,28 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
         .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 50px; position: relative; }
         .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
+        
         .contact-form { max-width: 650px; margin: 0 auto; text-align: left; background: #1a1a1a; padding: 40px; border-radius: 8px; border: 1px solid #333; }
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 8px; font-size: 14px; color: #cccccc; }
+        
+        /* ★必須ラベルと任意ラベルの色を分けました */
         .req-label { background: #aa3333; color: #fff; font-size: 11px; padding: 3px 6px; border-radius: 3px; margin-left: 10px; vertical-align: middle; }
+        .opt-label { background: #555555; color: #fff; font-size: 11px; padding: 3px 6px; border-radius: 3px; margin-left: 10px; vertical-align: middle; }
+        
         .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px; background: #111111; border: 1px solid #444; color: #ffffff; border-radius: 4px; box-sizing: border-box; font-size: 15px; }
         .form-group textarea { height: 150px; resize: vertical; }
+        
         .checkbox-group { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #aaa; margin-bottom: 30px; }
         .checkbox-group input[type="checkbox"] { width: auto; margin-top: 5px; transform: scale(1.2); }
         .checkbox-group a { color: #ffffff; text-decoration: underline; }
+        
         .submit-btn { width: 100%; padding: 18px; background: #ffffff; color: #000000; border: none; font-weight: bold; border-radius: 4px; cursor: pointer; transition: 0.3s; font-size: 16px; letter-spacing: 1px; }
         .submit-btn:hover { background: #cccccc; }
 
         /* --- フッター --- */
         footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .footer-logo svg { height: 30px; } /* フッターのロゴサイズ調整 */
+        .footer-logo svg { height: 30px; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; }
         .copyright { color: #555; font-size: 12px; }
@@ -95,11 +102,15 @@
         <div class="contact-form">
             <form action="https://formspree.io/f/xwvaejje" method="POST">
                 <input type="hidden" name="_next" value="https://zeroone0205oejh.github.io/zeroing-website/thanks.html">
-                <div class="form-group"><label>貴社名 <span class="req-label">必須</span></label><input type="text" name="貴社名" required placeholder="例：株式会社〇〇"></div>
-                <div class="form-group"><label>部署名 <span class="req-label">任意</span></label><input type="text" name="部署名" placeholder="例：マーケティング部"></div>
+                
+                <div class="form-group"><label>貴社名 <span class="opt-label">任意</span></label><input type="text" name="貴社名" placeholder="例：株式会社〇〇"></div>
+                
+                <div class="form-group"><label>部署名 <span class="opt-label">任意</span></label><input type="text" name="部署名" placeholder="例：マーケティング部"></div>
+                
                 <div class="form-group"><label>お名前 <span class="req-label">必須</span></label><input type="text" name="お名前" required placeholder="例：山田 太郎"></div>
                 <div class="form-group"><label>メールアドレス <span class="req-label">必須</span></label><input type="email" name="メールアドレス" required placeholder="example@zeroone.com"></div>
                 <div class="form-group"><label>電話番号 <span class="req-label">必須</span></label><input type="tel" name="電話番号" required placeholder="例：03-1234-5678"></div>
+                
                 <div class="form-group">
                     <label>お問い合わせ項目 <span class="req-label">必須</span></label>
                     <select name="お問い合わせ項目" required>
@@ -107,14 +118,18 @@
                         <option value="DSP運用代行について">DSP運用代行について</option>
                         <option value="データ分析・戦略立案について">データ分析・戦略立案について</option>
                         <option value="お見積りのご依頼">お見積りのご依頼</option>
+                        <option value="採用・求人について">採用・求人について</option>
                         <option value="その他のお問い合わせ">その他のお問い合わせ</option>
                     </select>
                 </div>
+                
                 <div class="form-group"><label>お問い合わせ内容 <span class="req-label">必須</span></label><textarea name="お問い合わせ内容" required placeholder="ご相談内容を具体的にご記入ください"></textarea></div>
+                
                 <div class="checkbox-group">
                     <input type="checkbox" id="privacy-check" name="個人情報同意" required>
                     <label for="privacy-check"><a href="privacy.html" target="_blank">個人情報の取り扱い</a>に同意する <span class="req-label">必須</span></label>
                 </div>
+                
                 <button type="submit" class="submit-btn">内容を確認して送信する</button>
             </form>
         </div>
