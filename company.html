@@ -14,14 +14,13 @@
         
         /* --- ヘッダー（メニュー） --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
-        .logo { font-size: 24px; font-weight: bold; letter-spacing: 2px; z-index: 1100; }
-        .logo a { color: #fff; text-decoration: none; }
+        .logo { z-index: 1100; display: flex; align-items: center; }
+        .logo a { display: block; text-decoration: none; }
+        .logo svg { height: 40px; } /* ヘッダーのロゴサイズ調整 */
         
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
-
-        /* スマホ用3本線ボタン */
         .menu-btn { display: none; cursor: pointer; z-index: 1100; padding: 10px; }
         .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
 
@@ -29,15 +28,14 @@
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
         .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 50px; position: relative; }
         .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
-        
-        /* 会社概要テーブル */
         .company-table { width: 100%; border-collapse: collapse; max-width: 800px; margin: 0 auto; }
         .company-table th, .company-table td { padding: 25px; border-bottom: 1px solid #333333; }
         .company-table th { width: 30%; color: #aaaaaa; text-align: left; font-weight: normal; }
 
         /* --- フッター --- */
-        footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
-        .footer-links { margin-bottom: 30px; display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
+        .footer-logo svg { height: 30px; } /* フッターのロゴサイズ調整 */
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; }
         .copyright { color: #555; font-size: 12px; }
 
@@ -60,7 +58,20 @@
 <body>
 
     <header>
-        <div class="logo"><a href="index.html">zeroONE</a></div>
+        <div class="logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="100" cy="50" rx="40" ry="60" fill="#ffffff"/>
+                  <path d="M100 0 C125 0 135 30 135 50 C135 70 125 100 100 110 Z" fill="#000000" />
+                  <path d="M102 10 V100" stroke="#000000" stroke-width="4" />
+                  <path d="M102 10 L82 28" stroke="#000000" stroke-width="4" />
+                  <text x="100" y="130" font-family="Helvetica Neue, Arial, sans-serif" text-anchor="middle" font-size="20">
+                    <tspan font-weight="200" fill="#ffffff">zero</tspan>
+                    <tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
         <div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
         <nav id="navMenu">
             <ul>
@@ -86,6 +97,20 @@
     </div>
 
     <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="100" cy="50" rx="40" ry="60" fill="#ffffff"/>
+                  <path d="M100 0 C125 0 135 30 135 50 C135 70 125 100 100 110 Z" fill="#000000" />
+                  <path d="M102 10 V100" stroke="#000000" stroke-width="4" />
+                  <path d="M102 10 L82 28" stroke="#000000" stroke-width="4" />
+                  <text x="100" y="130" font-family="Helvetica Neue, Arial, sans-serif" text-anchor="middle" font-size="20">
+                    <tspan font-weight="200" fill="#ffffff">zero</tspan>
+                    <tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="service.html">事業内容</a>
