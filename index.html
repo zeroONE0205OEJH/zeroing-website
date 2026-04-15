@@ -25,9 +25,21 @@
         .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
 
         /* --- コンテンツ --- */
-        .hero { text-align: center; padding: 180px 20px; background-image: linear-gradient(rgba(17, 17, 17, 0.6), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .hero svg { width: 250px; height: auto; margin-bottom: 30px; } 
-        .hero p { color: #eeeeee; font-size: 20px; margin: 0; letter-spacing: 1px; }
+        /* ★背景画像を「軽バンと光の飛ぶ物流」のイメージに変更しました */
+        .hero { 
+            text-align: center; 
+            padding: 180px 20px; 
+            background-image: linear-gradient(rgba(17, 17, 17, 0.6), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1510521212584-59dd387f693b?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+        }
+        .hero svg { width: 300px; height: 225px; margin-bottom: 20px; } 
+        .hero p { color: #eeeeee; font-size: 20px; margin: 0; }
         
         .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
         .section-title { text-align: center; font-size: 28px; margin-bottom: 40px; letter-spacing: 2px; }
@@ -39,7 +51,7 @@
 
         /* --- フッター --- */
         footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .footer-logo svg { height: 45px; width: auto; } 
+        .footer-logo svg { height: 45px; width: auto; }
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; }
         .copyright { color: #555; font-size: 12px; }
@@ -47,7 +59,7 @@
         /* --- スマホ対応 --- */
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
-            .hero svg { width: 180px; }
+            .hero svg { width: 200px; height: 150px; }
             .hero p { font-size: 16px; }
             .hero { background-attachment: scroll; }
             .menu-btn { display: block; }
