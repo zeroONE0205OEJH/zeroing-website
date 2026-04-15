@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>事業内容 | 株式会社zeroONE</title>
     <style>
+        /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* --- ヘッダー（メニュー） --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo { z-index: 1100; display: flex; align-items: center; }
         .logo a { display: block; text-decoration: none; }
         .logo svg { height: 60px; width: auto; }
+        
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
         .menu-btn { display: none; cursor: pointer; z-index: 1100; padding: 10px; }
         .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
+
+        /* --- コンテンツ --- */
         .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
         .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 50px; position: relative; }
         .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
@@ -24,11 +32,15 @@
         .service-detail h3 { font-size: 24px; color: #fff; border-left: 4px solid #fff; padding-left: 15px; margin-bottom: 20px; }
         .service-detail p { color: #aaaaaa; font-size: 16px; margin-bottom: 20px; }
         .image-placeholder { width: 100%; height: 300px; background: #222; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #444; }
+
+        /* --- フッター --- */
         footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
         .footer-logo svg { height: 45px; width: auto; }
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; }
         .copyright { color: #555; font-size: 12px; }
+
+        /* --- スマホ対応 --- */
         @media (max-width: 768px) {
             header { padding: 15px 20px; }
             .menu-btn { display: block; }
@@ -43,18 +55,19 @@
     </style>
 </head>
 <body>
+
     <header>
         <div class="logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <mask id="cutout-header-s">
+                    <mask id="cutout-header">
                       <rect x="0" y="0" width="200" height="150" fill="white" />
                       <rect x="90" y="5" width="20" height="90" fill="black" />
                       <polygon points="65,30 90,5 90,30" fill="black" />
                     </mask>
                   </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header-s)" />
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
                   <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
                     <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
                   </text>
@@ -71,31 +84,35 @@
             </ul>
         </nav>
     </header>
+
     <div class="container">
         <h2 class="section-title">Service</h2>
         <div class="service-detail">
             <div class="image-placeholder">[Image: Amazon DSP 2.0 運用イメージ]</div>
             <h3>DSP 2.0 運用代行</h3>
             <p>最新のAmazon DSP 2.0を活用し、購買データに基づいた高精度なターゲティングを実施します。認知から獲得まで、フルファネルでの広告運用をプロフェッショナルが代行します。</p>
+            <p>当社独自の運用ロジックにより、広告費の無駄を徹底的に排除し、ROAS（広告費用対効果）の最大化を追求します。</p>
         </div>
         <div class="service-detail">
             <div class="image-placeholder">[Image: データ分析グラフ]</div>
             <h3>データ分析・戦略立案</h3>
-            <p>単なる運用に留まらず、Amazon内の膨大なデータを多角的に分析。次の一手をご提案します。</p>
+            <p>単なる運用に留まらず、Amazon内の膨大なデータを多角的に分析。競合他社の動向や市場のトレンドを把握し、次の一手をご提案します。</p>
+            <p>週次・月次の詳細レポートに加え、改善アクションをセットで提示することで、お客様のEC事業全体の成長を支援します。</p>
         </div>
     </div>
+
     <footer>
         <div class="footer-logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
                   <defs>
-                    <mask id="cutout-footer-s">
+                    <mask id="cutout-footer">
                       <rect x="0" y="0" width="200" height="150" fill="white" />
                       <rect x="90" y="5" width="20" height="90" fill="black" />
                       <polygon points="65,30 90,5 90,30" fill="black" />
                     </mask>
                   </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer-s)" />
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
                   <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
                     <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
                   </text>
@@ -103,14 +120,21 @@
             </a>
         </div>
         <div class="footer-links">
-            <a href="index.html">Home</a><a href="service.html">事業内容</a><a href="company.html">会社概要</a><a href="privacy.html">個人情報保護方針</a>
+            <a href="index.html">Home</a>
+            <a href="service.html">事業内容</a>
+            <a href="company.html">会社概要</a>
+            <a href="privacy.html">個人情報保護方針</a>
         </div>
         <div class="copyright">&copy; 2026 zeroONE Inc. All Rights Reserved.</div>
     </footer>
+
     <script>
         const menuBtn = document.getElementById('menuBtn');
         const navMenu = document.getElementById('navMenu');
-        menuBtn.addEventListener('click', () => { menuBtn.classList.toggle('open'); navMenu.classList.toggle('open'); });
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
     </script>
 </body>
 </html>
