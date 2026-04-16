@@ -3,140 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>事業内容 | 株式会社zeroONE</title>
     <style>
-        /* --- 全体設定 --- */
-        html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        
-        /* --- ヘッダー（メニュー） --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
-        .logo { z-index: 1100; display: flex; align-items: center; }
-        .logo a { display: block; text-decoration: none; }
         .logo svg { height: 60px; width: auto; }
-        
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
-        nav a:hover { color: #ffffff; }
-        .menu-btn { display: none; cursor: pointer; z-index: 1100; padding: 10px; }
-        .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
+        nav a { color: #cccccc; text-decoration: none; font-size: 14px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
+        .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
+        .service-detail { margin-bottom: 100px; display: flex; gap: 50px; align-items: center; }
+        .service-detail:nth-child(even) { flex-direction: row-reverse; }
+        .service-text { flex: 1; }
+        .service-text h3 { font-size: 28px; margin-bottom: 25px; border-left: 5px solid #fff; padding-left: 20px; }
+        .service-text p { color: #aaa; font-size: 16px; margin-bottom: 15px; }
+        .service-img { flex: 1; height: 350px; background: #1a1a1a; border-radius: 8px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #444; }
 
-        /* --- コンテンツ --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 60px 20px; }
-        .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 50px; position: relative; }
-        .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
-        .service-detail { margin-bottom: 80px; }
-        .service-detail h3 { font-size: 24px; color: #fff; border-left: 4px solid #fff; padding-left: 15px; margin-bottom: 20px; }
-        .service-detail p { color: #aaaaaa; font-size: 16px; margin-bottom: 20px; }
-        .image-placeholder { width: 100%; height: 300px; background: #222; border-radius: 8px; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; color: #444; }
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo svg { height: 80px; width: auto; }
+        .footer-links { display: flex; justify-content: center; gap: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 16px; }
+        .copyright { color: #555; font-size: 14px; }
 
-        /* --- フッター --- */
-        footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .footer-logo svg { height: 45px; width: auto; }
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; }
-        .copyright { color: #555; font-size: 12px; }
-
-        /* --- スマホ対応 --- */
-        @media (max-width: 768px) {
-            header { padding: 15px 20px; }
-            .menu-btn { display: block; }
-            nav { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: #1a1a1a; transition: 0.4s; z-index: 1050; padding-top: 80px; }
-            nav.open { right: 0; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
-            nav ul { flex-direction: column; align-items: center; gap: 40px; }
-            nav a { font-size: 20px; }
-            .menu-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .menu-btn.open span:nth-child(2) { opacity: 0; }
-            .menu-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+        @media (max-width: 900px) {
+            .service-detail { flex-direction: column !important; gap: 30px; }
+            .service-img { width: 100%; height: 250px; }
         }
     </style>
 </head>
 <body>
-
     <header>
-        <div class="logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-header">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
-            </a>
-        </div>
-        <div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
-        <nav id="navMenu">
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="service.html">Service</a></li>
-                <li><a href="company.html">Company</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+        <div class="logo"><a href="index.html"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><mask id="m1"><rect width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs><ellipse cx="100" cy="50" rx="35" ry="45" fill="#fff" mask="url(#m1)" /><text x="100" y="130" font-family="Arial" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#fff">zero</tspan><tspan font-weight="800" fill="#fff">ONE</tspan></text></svg></a></div>
+        <nav><ul><li><a href="index.html">Home</a></li><li><a href="service.html">Service</a></li><li><a href="company.html">Company</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
     </header>
 
     <div class="container">
-        <h2 class="section-title">Service</h2>
-        
+        <h2 class="section-title">SERVICE</h2>
+
         <div class="service-detail">
-            <div class="image-placeholder">[Image: 軽貨物配送のイメージ]</div>
-            <h3>軽貨物配送 / ラストワンマイル事業</h3>
-            <p>企業様から個人のお客様まで、大切なお荷物を迅速かつ安全にお届けします。徹底した品質管理と独自の配送ネットワークを活用し、多様化するニーズに柔軟に対応。</p>
-            <p>経験豊富なプロフェッショナルドライバーが、一つひとつの荷物に責任を持ち、お客様のビジネスと暮らしを支える、最も信頼される配送を実現します。</p>
+            <div class="service-text">
+                <h3>企業専属便</h3>
+                <p>貴社の専属パートナーとして、定期的な配送業務を代行します。単なる「運び手」ではなく、貴社のブランドを背負う自覚を持ち、最高水準の接客マナーと安全運転を徹底します。</p>
+                <p>「zeroONEに任せれば安心」と言っていただける、揺るぎない信頼をお届けします。</p>
+            </div>
+            <div class="service-img">Corporate Delivery Image</div>
         </div>
 
         <div class="service-detail">
-            <div class="image-placeholder">[Image: 企業向け配送・物流のイメージ]</div>
-            <h3>企業専属便 / チャーター・スポット便</h3>
-            <p>お客様のビジネスモデルや現場の状況に合わせた、オーダーメイドの配送プランをご提案します。急な配送トラブルや繁忙期の車両不足にも迅速に対応。</p>
-            <p>車両とルートの最適化により、コストの無駄を省きながら最高水準の配送品質を維持します。</p>
+            <div class="service-text">
+                <h3>ラストワンマイル配送</h3>
+                <p>急成長を続けるEC市場において、荷物をお客様の玄関先まで届ける「最後の1マイル」を担います。軽バンの機動力を活かし、狭い路地や入り組んだ住宅街でも迅速かつ正確にアプローチ。</p>
+                <p>一つひとつの荷物と真摯に向き合い、ビジネスと暮らしを加速させる配送ネットワークを実現します。</p>
+            </div>
+            <div class="service-img">Last Mile Image</div>
+        </div>
+
+        <div class="service-detail">
+            <div class="service-text">
+                <h3>スポット・チャーター便</h3>
+                <p>突発的な配送依頼、緊急を要するお荷物、繁忙期の車両不足など、物流の「今すぐ」に対応します。365日柔軟な体制を整え、お預かりした瞬間から最速ルートで確実に配送。</p>
+                <p>お客様のビジネスチャンスを逃さない、強靭な機動力でお応えします。</p>
+            </div>
+            <div class="service-img">Spot Delivery Image</div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-footer">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
-            </a>
-        </div>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="service.html">事業内容</a>
-            <a href="company.html">会社概要</a>
-            <a href="privacy.html">個人情報保護方針</a>
-        </div>
-        <div class="copyright">&copy; 2026 zeroONE Inc. All Rights Reserved.</div>
+        <div class="footer-logo"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><mask id="m3"><rect width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs><ellipse cx="100" cy="50" rx="35" ry="45" fill="#fff" mask="url(#m3)" /><text x="100" y="130" font-family="Arial" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#fff">zero</tspan><tspan font-weight="800" fill="#fff">ONE</tspan></text></svg></div>
+        <div class="footer-links"><a href="index.html">Home</a><a href="service.html">事業内容</a><a href="company.html">会社概要</a><a href="privacy.html">個人情報保護方針</a></div>
+        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
-
-    <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const navMenu = document.getElementById('navMenu');
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('open');
-            navMenu.classList.toggle('open');
-        });
-    </script>
 </body>
 </html>
