@@ -4,54 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>株式会社zeroONE | 新時代のロジスティクス</title>
     <style>
+        /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* --- ヘッダー（メニュー） --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
 
-        /* ★左右の余白を改善（1000px → 1200px） */
+        /* --- コンテナ設定 --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
         
-        .hero { text-align: center; padding: 180px 20px; background-image: linear-gradient(rgba(17, 17, 17, 0.6), rgba(17, 17, 17, 0.9)), url('https://images.unsplash.com/photo-1510521212584-59dd387f693b?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-        .hero svg { width: 300px; height: 225px; margin-bottom: 30px; } 
+        /* --- アニメーションHero --- */
+        .hero { 
+            text-align: center; 
+            padding: 180px 20px; 
+            background-color: #111111; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* SVGロゴアニメーション：0と1の融合 */
+        .animated-logo { width: 350px; height: 260px; margin-bottom: 40px; }
+        
+        @keyframes fusedTrace {
+            0%, 100% { stroke-dasharray: 0, 1000; stroke-opacity: 0; fill: transparent; }
+            10%, 90% { stroke-dasharray: 1000, 0; stroke-opacity: 1; fill: transparent; }
+            20% { fill: rgba(255, 255, 255, 0.1); }
+            10% { stroke-dasharray: 1000, 0; stroke-opacity: 1; fill: transparent; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1)) drop-shadow(0 0 10px rgba(255, 255, 255, 1)); }
+        }
+        
+        @keyframes textAppear {
+            0%, 80% { opacity: 0; transform: translateY(10px); }
+            90%, 100% { opacity: 1; transform: translateY(0); }
+        }
+
         .hero p { color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; }
 
-        /* 事業紹介エリア（3カラムに配置） */
+        /* --- 代表挨拶（GREETING） --- */
+        .greeting { background: #1a1a1a; padding: 100px 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; }
+        .greeting-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .greeting h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
+        .greeting p { color: #aaaaaa; font-size: 16px; line-height: 2.0; margin-bottom: 30px; text-align: left; width: 100%; } 
+        .greeting p:last-child { margin-bottom: 0; }
+        .greeting strong { color: #ffffff; }
+
+        /* --- SERVICE案内 --- */
         .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
         .teaser-box { text-align: center; background: #1a1a1a; padding: 40px 20px; border-radius: 8px; border: 1px solid #333; transition: 0.3s; }
         .teaser-box:hover { border-color: #555; transform: translateY(-5px); }
         .teaser-box h3 { font-size: 20px; margin-bottom: 20px; color: #fff; }
         .teaser-box p { color: #aaa; font-size: 14px; margin-bottom: 25px; text-align: left; }
-        .more-btn { display: inline-block; padding: 12px 30px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; }
+        .more-btn { display: inline-block; padding: 12px 30px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; transition: 0.3s; }
+        .more-btn:hover { background: #ccc; }
 
-        /* ★フッターを大きく調整 */
+        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo svg { height: 80px; width: auto; } /* ロゴを大きく */
+        .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } /* 文字を大きく */
+        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
 
+        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
+            .hero { padding: 120px 20px; }
+            .animated-logo { width: 250px; height: 185px; }
             .service-grid { grid-template-columns: 1fr; }
             .hero p { font-size: 15px; }
+            .greeting p { text-align: left; font-size: 15px; }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo"><a href="index.html"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><mask id="m1"><rect width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs><ellipse cx="100" cy="50" rx="35" ry="45" fill="#fff" mask="url(#m1)" /><text x="100" y="130" font-family="Arial" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#fff">zero</tspan><tspan font-weight="800" fill="#fff">ONE</tspan></text></svg></a></div>
-        <nav><ul><li><a href="index.html">Home</a></li><li><a href="service.html">Service</a></li><li><a href="company.html">Company</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+        <div class="logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <mask id="cutout-header">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
+                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <section class="hero">
-        <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><mask id="m2"><rect width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs><ellipse cx="100" cy="50" rx="35" ry="45" fill="#fff" mask="url(#m2)" /><text x="100" y="130" font-family="Arial" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#fff">zero</tspan><tspan font-weight="800" fill="#fff">ONE</tspan></text></svg>
+        <svg class="animated-logo" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="65" rx="35" ry="45" fill="none" stroke="#ffffff" stroke-width="3" style="animation: fusedTrace 8s infinite;" />
+          <text x="100" y="150" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5" style="animation: textAppear 8s infinite;">
+            <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+          </text>
+        </svg>
         <p>すべての荷物に「絶対の安全」と「確かな品質」を。<br>ゼロからイチへ、ビジネスと暮らしを加速させる新時代のロジスティクス。</p>
+    </section>
+
+    <section class="greeting">
+        <div class="greeting-content">
+            <h2>GREETING<br><span style="font-size: 16px; color: #888; letter-spacing: 1px;">代表挨拶</span></h2>
+            <p>私たちの使命は、目の前の一つの荷物に誠心誠意向き合い、お客様の期待を超える配送サービスを提供し続けることです。</p>
+            <p>止まらない物流という社会のインフラを支え、お客様の大切なお荷物をドライバー一人一人の手で「安心」「安全」にお届けすることを、私たちは何よりも大切にしています。</p>
+            <p>私たちは現状に満足することなく、常に「挑戦」の歩みを止めません。地域や業界を牽引する総合的な物流パートナーへと成長を続け、「新しいビジネスの形」や「豊かな社会」の実現に貢献していきます。</p>
+            <p>これからも一つひとつのご依頼に真摯に向き合い、皆様から長く信頼される企業を目指してまいります。</p>
+            <p style="text-align: right; margin-top: 50px; font-size: 18px; color: #ffffff;">株式会社zeroONE<br>代表取締役 <strong>大八木 航輝</strong></p>
+        </div>
     </section>
 
     <div class="container">
@@ -76,8 +159,29 @@
     </div>
 
     <footer>
-        <div class="footer-logo"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><mask id="m3"><rect width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs><ellipse cx="100" cy="50" rx="35" ry="45" fill="#fff" mask="url(#m3)" /><text x="100" y="130" font-family="Arial" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#fff">zero</tspan><tspan font-weight="800" fill="#fff">ONE</tspan></text></svg></div>
-        <div class="footer-links"><a href="index.html">Home</a><a href="service.html">事業内容</a><a href="company.html">会社概要</a><a href="privacy.html">個人情報保護方針</a></div>
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <mask id="cutout-footer">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
+                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">事業内容</a>
+            <a href="company.html">会社概要</a>
+            <a href="privacy.html">個人情報保護方針</a>
+        </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
 </body>
