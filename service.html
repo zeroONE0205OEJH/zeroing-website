@@ -3,74 +3,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>事業内容 | 株式会社zeroONE</title>
+    <title>Service | 株式会社zeroONE</title>
     <style>
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        nav a { color: #cccccc; text-decoration: none; font-size: 14px; }
+        nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        nav a:hover { color: #ffffff; }
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-        .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
-        .service-detail { margin-bottom: 100px; display: flex; gap: 50px; align-items: center; }
-        .service-detail:nth-child(even) { flex-direction: row-reverse; }
+        .page-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
+        .service-item { display: flex; gap: 50px; margin-bottom: 100px; align-items: center; }
+        .service-item:nth-child(even) { flex-direction: row-reverse; }
         .service-text { flex: 1; }
-        .service-text h3 { font-size: 28px; margin-bottom: 25px; border-left: 5px solid #fff; padding-left: 20px; }
-        .service-text p { color: #aaa; font-size: 16px; margin-bottom: 15px; }
-        .service-img { flex: 1; height: 350px; background: #1a1a1a; border-radius: 8px; border: 1px solid #333; display: flex; align-items: center; justify-content: center; color: #444; }
-
+        .service-text h3 { font-size: 24px; margin-bottom: 20px; border-left: 4px solid #fff; padding-left: 15px; }
+        .service-text p { color: #aaa; line-height: 1.8; }
+        .service-image { flex: 1; height: 300px; background: #222; border-radius: 8px; }
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo svg { height: 80px; width: auto; }
-        .footer-links { display: flex; justify-content: center; gap: 30px; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 16px; }
-        .copyright { color: #555; font-size: 14px; }
-
-        @media (max-width: 900px) {
-            .service-detail { flex-direction: column !important; gap: 30px; }
-            .service-img { width: 100%; height: 250px; }
-        }
+        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
+        .footer-links a:hover { color: #fff; }
+        .copyright { color: #555; font-size: 14px; margin-top: 20px; }
+        @media (max-width: 900px) { .service-item { flex-direction: column !important; } }
     </style>
 </head>
 <body>
     <header>
-        <div class="logo"><a href="index.html"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><mask id="m1"><rect width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs><ellipse cx="100" cy="50" rx="35" ry="45" fill="#fff" mask="url(#m1)" /><text x="100" y="130" font-family="Arial" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#fff">zero</tspan><tspan font-weight="800" fill="#fff">ONE</tspan></text></svg></a></div>
-        <nav><ul><li><a href="index.html">Home</a></li><li><a href="service.html">Service</a></li><li><a href="company.html">Company</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+        <div class="logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" />
+                  <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28" fill="#fff">zeroONE</text>
+                </svg>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <div class="container">
-        <h2 class="section-title">SERVICE</h2>
-
-        <div class="service-detail">
+        <h2 class="page-title">SERVICE</h2>
+        <div class="service-item">
             <div class="service-text">
                 <h3>企業専属便</h3>
-                <p>貴社の専属パートナーとして、定期的な配送業務を代行します。単なる「運び手」ではなく、貴社のブランドを背負う自覚を持ち、最高水準の接客マナーと安全運転を徹底します。</p>
-                <p>「zeroONEに任せれば安心」と言っていただける、揺るぎない信頼をお届けします。</p>
+                <p>貴社のロゴを背負い、専属の配送パートナーとして稼働します。定期的な配送ルートの構築から、細やかな接客対応まで、物流品質の向上を約束します。</p>
             </div>
-            <div class="service-img">Corporate Delivery Image</div>
+            <div class="service-image"></div>
         </div>
-
-        <div class="service-detail">
+        <div class="service-item">
             <div class="service-text">
                 <h3>ラストワンマイル配送</h3>
-                <p>急成長を続けるEC市場において、荷物をお客様の玄関先まで届ける「最後の1マイル」を担います。軽バンの機動力を活かし、狭い路地や入り組んだ住宅街でも迅速かつ正確にアプローチ。</p>
-                <p>一つひとつの荷物と真摯に向き合い、ビジネスと暮らしを加速させる配送ネットワークを実現します。</p>
+                <p>ネット通販の荷物を中心に、個人宅へ確実にお届けします。機動力のある軽貨物車両を活かし、不在再配送の低減と迅速な配送を実現します。</p>
             </div>
-            <div class="service-img">Last Mile Image</div>
-        </div>
-
-        <div class="service-detail">
-            <div class="service-text">
-                <h3>スポット・チャーター便</h3>
-                <p>突発的な配送依頼、緊急を要するお荷物、繁忙期の車両不足など、物流の「今すぐ」に対応します。365日柔軟な体制を整え、お預かりした瞬間から最速ルートで確実に配送。</p>
-                <p>お客様のビジネスチャンスを逃さない、強靭な機動力でお応えします。</p>
-            </div>
-            <div class="service-img">Spot Delivery Image</div>
+            <div class="service-image"></div>
         </div>
     </div>
 
     <footer>
-        <div class="footer-logo"><svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg"><defs><mask id="m3"><rect width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs><ellipse cx="100" cy="50" rx="35" ry="45" fill="#fff" mask="url(#m3)" /><text x="100" y="130" font-family="Arial" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#fff">zero</tspan><tspan font-weight="800" fill="#fff">ONE</tspan></text></svg></div>
-        <div class="footer-links"><a href="index.html">Home</a><a href="service.html">事業内容</a><a href="company.html">会社概要</a><a href="privacy.html">個人情報保護方針</a></div>
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" />
+                  <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28" fill="#fff">zeroONE</text>
+                </svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
 </body>
