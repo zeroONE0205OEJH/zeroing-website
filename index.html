@@ -22,7 +22,7 @@
         /* --- コンテナ設定 --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
         
-        /* --- アニメーションHero --- */
+        /* --- Heroエリア（背景動画対応） --- */
         .hero { 
             text-align: center; 
             padding: 180px 20px; 
@@ -31,19 +31,38 @@
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            position: relative;
+            position: relative; /* 背景動画を配置するためにrelativeに */
+            overflow: hidden;
+            z-index: 1; /* コンテンツを前面に */
+        }
+
+        /* ★背景コンテナ：動画または画像を配置 ★ */
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Heroコンテンツの背面に */
             overflow: hidden;
         }
 
-        /* ★新SVGロゴアニメーション：常時「0」と「1」が融合した形状を表示 ★ */
+        /* ★暫定背景画像（プレースホルダー）：動画ができるまでの間表示 ★ */
+        .hero-bg-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 0.3; /* 背景を少し暗くして文字を読みやすく */
+            background-image: url('placeholder.jpg'); /* 動画ができるまでの暫定画像 */
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* ★SVGロゴ（現状デザインを維持、アニメーションは文字のみ） ★ */
         .animated-logo { width: 350px; height: 260px; margin-bottom: 40px; }
         
-        /* アニメーション定義 */
-        @keyframes fusedTrace {
-            0%, 100% { stroke-dasharray: 0, 1000; stroke-opacity: 0; }
-            10%, 90% { stroke-dasharray: 1000, 0; stroke-opacity: 0.8; }
-            10% { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1)) drop-shadow(0 0 10px rgba(255, 255, 255, 1)); }
-        }
+        /* 枠線アニメーション（fusedTrace）は削除 */
         
         @keyframes textAppear {
             0% { opacity: 0; transform: translateY(10px); }
@@ -117,6 +136,10 @@
     </header>
 
     <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-bg-img"></div>
+            </div>
+
         <svg class="animated-logo" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <mask id="fusedMask">
@@ -124,11 +147,7 @@
               <polygon points="90,40 100,25 100,105 90,105" fill="black" />
             </mask>
           </defs>
-
           <ellipse cx="100" cy="65" rx="35" ry="45" fill="#ffffff" mask="url(#fusedMask)" />
-
-          <ellipse cx="100" cy="65" rx="35" ry="45" fill="none" stroke="#ffffff" stroke-width="2.5" style="animation: fusedTrace 8s infinite;" />
-
           <text x="100" y="150" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5" style="animation: textAppear 3s forwards;">
             <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
           </text>
