@@ -8,59 +8,24 @@
     <meta http-equiv="Expires" content="0">
     <title>株式会社zeroONE | 新時代のロジスティクス</title>
     <style>
-        /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        
-        /* --- ヘッダー（メニュー） --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
-
-        /* --- コンテナ設定 --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-        
-        /* --- アニメーションHero --- */
-        .hero { 
-            text-align: center; 
-            padding: 180px 20px; 
-            background-color: #111111; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* SVGロゴアニメーション：0と1の融合 */
+        .hero { text-align: center; padding: 180px 20px; background-color: #111111; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; }
         .animated-logo { width: 350px; height: 260px; margin-bottom: 40px; }
-        
-        @keyframes fusedTrace {
-            0%, 100% { stroke-dasharray: 0, 1000; stroke-opacity: 0; fill: transparent; }
-            10%, 90% { stroke-dasharray: 1000, 0; stroke-opacity: 1; fill: transparent; }
-            20% { fill: rgba(255, 255, 255, 0.1); }
-            10% { stroke-dasharray: 1000, 0; stroke-opacity: 1; fill: transparent; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1)) drop-shadow(0 0 10px rgba(255, 255, 255, 1)); }
-        }
-        
-        @keyframes textAppear {
-            0%, 80% { opacity: 0; transform: translateY(10px); }
-            90%, 100% { opacity: 1; transform: translateY(0); }
-        }
-
+        @keyframes fusedTrace { 0%, 100% { stroke-dasharray: 0, 1000; stroke-opacity: 0; fill: transparent; } 10%, 90% { stroke-dasharray: 1000, 0; stroke-opacity: 1; fill: transparent; } 20% { fill: rgba(255, 255, 255, 0.1); } 10% { stroke-dasharray: 1000, 0; stroke-opacity: 1; fill: transparent; filter: drop-shadow(0 0 5px rgba(255, 255, 255, 1)) drop-shadow(0 0 10px rgba(255, 255, 255, 1)); } }
+        @keyframes textAppear { 0%, 80% { opacity: 0; transform: translateY(10px); } 90%, 100% { opacity: 1; transform: translateY(0); } }
         .hero p { color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; }
-
-        /* --- 代表挨拶（GREETING） --- */
         .greeting { background: #1a1a1a; padding: 100px 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; }
         .greeting-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .greeting h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
         .greeting p { color: #aaaaaa; font-size: 16px; line-height: 2.0; margin-bottom: 30px; text-align: left; width: 100%; } 
         .greeting p:last-child { margin-bottom: 0; }
-        .greeting strong { color: #ffffff; }
-
-        /* --- SERVICE案内 --- */
         .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
         .teaser-box { text-align: center; background: #1a1a1a; padding: 40px 20px; border-radius: 8px; border: 1px solid #333; transition: 0.3s; }
         .teaser-box:hover { border-color: #555; transform: translateY(-5px); }
@@ -68,23 +33,13 @@
         .teaser-box p { color: #aaa; font-size: 14px; margin-bottom: 25px; text-align: left; }
         .more-btn { display: inline-block; padding: 12px 30px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; transition: 0.3s; }
         .more-btn:hover { background: #ccc; }
-
-        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
-
-        /* --- スマホ対応 --- */
-        @media (max-width: 900px) {
-            .hero { padding: 120px 20px; }
-            .animated-logo { width: 250px; height: 185px; }
-            .service-grid { grid-template-columns: 1fr; }
-            .hero p { font-size: 15px; }
-            .greeting p { text-align: left; font-size: 15px; }
-        }
+        @media (max-width: 900px) { .hero { padding: 120px 20px; } .animated-logo { width: 250px; height: 185px; } .service-grid { grid-template-columns: 1fr; } .hero p { font-size: 15px; } .greeting p { text-align: left; font-size: 15px; } }
     </style>
 </head>
 <body>
