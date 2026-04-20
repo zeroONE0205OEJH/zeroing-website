@@ -20,14 +20,14 @@
         nav a:hover { color: #ffffff; }
 
         /* --- コンテナ設定 --- */
-        .container { max-width: 900px; margin: 0 auto; padding: 80px 20px; min-height: 50vh; }
+        .container { max-width: 900px; margin: 0 auto; padding: 80px 20px; min-height: 60vh; }
         .page-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
         
-        /* --- テーブル --- */
+        /* --- 会社概要テーブル --- */
         .company-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
-        .company-table th, .company-table td { padding: 25px; border-bottom: 1px solid #333; text-align: left; }
-        .company-table th { width: 30%; color: #888; font-weight: normal; font-size: 14px; }
-        .company-table td { font-size: 16px; }
+        .company-table th, .company-table td { padding: 25px; border-bottom: 1px solid #333; text-align: left; vertical-align: top; }
+        .company-table th { width: 30%; color: #888; font-weight: normal; font-size: 14px; letter-spacing: 1px; }
+        .company-table td { font-size: 16px; line-height: 1.8; color: #eeeeee; }
 
         /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
@@ -40,8 +40,10 @@
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             .company-table th, .company-table td { padding: 15px; display: block; width: 100%; }
-            .company-table th { border-bottom: none; padding-bottom: 5px; }
+            .company-table th { border-bottom: none; padding-bottom: 5px; color: #666; }
             .company-table td { padding-top: 0; margin-bottom: 10px; }
+            header { padding: 15px 20px; }
+            .logo svg { height: 50px; }
         }
     </style>
 </head>
@@ -77,67 +79,39 @@
     <div class="container">
         <h2 class="page-title">COMPANY</h2>
         <table class="company-table">
-            <tr><th>会社名</th><td>株式会社zeroONE</td></tr>
-            <tr><th>代表者</th><td>代表取締役 大八木 航輝</td></tr>
-            <tr><th>所在地</th><td>神奈川県横浜市</td></tr>
-            <tr><th>事業内容</th><td>軽貨物運送事業 / 物流コンサルティング</td></tr>
-        </table>
-    </div>
-
-    <footer>
-        <div class="footer-logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-footer">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
-            </a>
-        </div>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="service.html">Service</a>
-            <a href="company.html">Company</a>
-            <a href="privacy.html">Privacy Policy</a>
-        </div>
-        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
-    </footer>
-</body>
-</html>                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
-            </a>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="service.html">Service</a></li>
-                <li><a href="company.html">Company</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h2 class="page-title">COMPANY</h2>
-        <table class="company-table">
-            <tr><th>会社名</th><td>株式会社zeroONE</td></tr>
-            <tr><th>代表者</th><td>代表取締役 大八木 航輝</td></tr>
-            <tr><th>所在地</th><td>神奈川県横浜市</td></tr>
-            <tr><th>事業内容</th><td>軽貨物運送事業 / 物流コンサルティング</td></tr>
+            <tr>
+                <th>会社名</th>
+                <td>株式会社zeroONE</td>
+            </tr>
+            <tr>
+                <th>代表者</th>
+                <td>代表取締役 大八木 航輝</td>
+            </tr>
+            <tr>
+                <th>所在地</th>
+                <td>〒252-0216<br>神奈川県相模原市中央区清新6-10-21-415</td>
+            </tr>
+            <tr>
+                <th>設立</th>
+                <td>2024年8月23日</td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td>070-1437-8545</td>
+            </tr>
+            <tr>
+                <th>メールアドレス</th>
+                <td>syk.zeroone@gmail.com</td>
+            </tr>
+            <tr>
+                <th>事業内容</th>
+                <td>
+                    軽貨物運送事業<br>
+                    AmazonDSP2.0オフィシャルパートナー<br>
+                    映像・コンテンツ制作事業<br>
+                    アパレル事業
+                </td>
+            </tr>
         </table>
     </div>
 
