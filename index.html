@@ -31,39 +31,34 @@
             flex-direction: column; 
             align-items: center; 
             justify-content: center; 
-            position: relative; /* 背景動画を配置するためにrelativeに */
+            position: relative;
             overflow: hidden;
-            z-index: 1; /* コンテンツを前面に */
+            z-index: 1;
         }
 
-        /* ★背景コンテナ：動画または画像を配置 ★ */
+        /* 背景コンテナ */
         .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Heroコンテンツの背面に */
+            z-index: -1;
             overflow: hidden;
         }
 
-        /* ★暫定背景画像（プレースホルダー）：動画ができるまでの間表示 ★ */
+        /* 暫定背景画像（後で動画に差し替えます） */
         .hero-bg-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0.3; /* 背景を少し暗くして文字を読みやすく */
-            background-image: url('placeholder.jpg'); /* 動画ができるまでの暫定画像 */
-            background-size: cover;
-            background-position: center;
+            opacity: 0.3;
+            background-color: #222; /* 画像がない場合のベースカラー */
         }
 
-        /* ★SVGロゴ（現状デザインを維持、アニメーションは文字のみ） ★ */
+        /* Heroロゴアニメーション（文字のフェードインのみ） */
         .animated-logo { width: 350px; height: 260px; margin-bottom: 40px; }
-        
-        /* 枠線アニメーション（fusedTrace）は削除 */
-        
         @keyframes textAppear {
             0% { opacity: 0; transform: translateY(10px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -138,17 +133,18 @@
     <section class="hero">
         <div class="hero-bg">
             <div class="hero-bg-img"></div>
-            </div>
+        </div>
 
         <svg class="animated-logo" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <mask id="fusedMask">
-              <ellipse cx="100" cy="65" rx="35" ry="45" fill="white" />
-              <polygon points="90,40 100,25 100,105 90,105" fill="black" />
+            <mask id="cutout-hero">
+              <rect x="0" y="0" width="200" height="170" fill="white" />
+              <rect x="90" y="20" width="20" height="90" fill="black" />
+              <polygon points="65,45 90,20 90,45" fill="black" />
             </mask>
           </defs>
-          <ellipse cx="100" cy="65" rx="35" ry="45" fill="#ffffff" mask="url(#fusedMask)" />
-          <text x="100" y="150" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5" style="animation: textAppear 3s forwards;">
+          <ellipse cx="100" cy="65" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-hero)" />
+          <text x="100" y="150" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5" style="animation: textAppear 2s forwards;">
             <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
           </text>
         </svg>
@@ -191,7 +187,14 @@
         <div class="footer-logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" />
+                  <defs>
+                    <mask id="cutout-footer">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
                   <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
                     <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
                   </text>
