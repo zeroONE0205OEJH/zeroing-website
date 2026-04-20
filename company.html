@@ -30,7 +30,14 @@
         <div class="logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" />
+                  <defs>
+                    <mask id="cutout-header">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
                   <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
                     <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
                   </text>
@@ -61,7 +68,14 @@
         <div class="footer-logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" />
+                  <defs>
+                    <mask id="cutout-footer">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
                   <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
                     <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
                   </text>
