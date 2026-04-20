@@ -3,83 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>会社概要 | 株式会社zeroONE</title>
+    <title>Company | 株式会社zeroONE</title>
     <style>
-        /* --- 全体設定 --- */
-        html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-        
-        /* --- ヘッダー（メニュー） --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
-        .logo { z-index: 1100; display: flex; align-items: center; }
-        .logo a { display: block; text-decoration: none; }
         .logo svg { height: 60px; width: auto; }
-        
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
-        .menu-btn { display: none; cursor: pointer; z-index: 1100; padding: 10px; }
-        .menu-btn span { display: block; width: 25px; height: 2px; background: #fff; margin-bottom: 6px; transition: 0.3s; }
-
-        /* --- コンテンツ --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
-        .section-title { text-align: center; font-size: 28px; letter-spacing: 2px; margin-bottom: 60px; position: relative; }
-        .section-title::after { content: ""; display: block; width: 40px; height: 2px; background: #ffffff; margin: 15px auto 0; }
-        
-        .company-table { width: 100%; border-collapse: collapse; max-width: 800px; margin: 0 auto; background: #1a1a1a; border-radius: 8px; overflow: hidden; }
-        .company-table th, .company-table td { padding: 25px; border-bottom: 1px solid #333333; }
-        .company-table th { width: 30%; color: #aaaaaa; text-align: left; font-weight: normal; background: #222; }
-        .company-table td { color: #ffffff; }
-        .company-table tr:last-child th, .company-table tr:last-child td { border-bottom: none; }
-
-        /* --- フッター --- */
-        footer { padding: 60px 20px 20px 20px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 30px; }
-        .footer-logo svg { height: 45px; width: auto; }
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 13px; margin: 0; white-space: nowrap; }
-        .copyright { color: #555; font-size: 12px; }
-
-        /* --- スマホ対応 --- */
-        @media (max-width: 768px) {
-            header { padding: 15px 20px; }
-            .menu-btn { display: block; }
-            nav { position: fixed; top: 0; right: -100%; width: 80%; height: 100vh; background: #1a1a1a; transition: 0.4s; z-index: 1050; padding-top: 80px; }
-            nav.open { right: 0; box-shadow: -10px 0 30px rgba(0,0,0,0.5); }
-            nav ul { flex-direction: column; align-items: center; gap: 40px; }
-            nav a { font-size: 20px; }
-            .menu-btn.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .menu-btn.open span:nth-child(2) { opacity: 0; }
-            .menu-btn.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-            .company-table th { width: 100%; display: block; padding: 15px 25px 5px; background: transparent; color: #888; font-size: 12px; }
-            .company-table td { width: 100%; display: block; padding: 5px 25px 15px; }
-        }
+        .container { max-width: 900px; margin: 0 auto; padding: 80px 20px; }
+        .page-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
+        .company-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .company-table th, .company-table td { padding: 25px; border-bottom: 1px solid #333; text-align: left; }
+        .company-table th { width: 30%; color: #888; font-weight: normal; font-size: 14px; }
+        .company-table td { font-size: 16px; }
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
+        .footer-links a:hover { color: #fff; }
+        .copyright { color: #555; font-size: 14px; margin-top: 20px; }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-header">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" />
+                  <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28" fill="#fff">zeroONE</text>
                 </svg>
             </a>
         </div>
-        <div class="menu-btn" id="menuBtn"><span></span><span></span><span></span></div>
-        <nav id="navMenu">
+        <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="service.html">Service</a></li>
@@ -90,39 +46,12 @@
     </header>
 
     <div class="container">
-        <h2 class="section-title">Company Profile<br><span style="font-size: 16px; color: #888; letter-spacing: 1px;">会社概要</span></h2>
-        
+        <h2 class="page-title">COMPANY</h2>
         <table class="company-table">
-            <tbody>
-                <tr>
-                    <th>会社名</th>
-                    <td>株式会社zeroONE</td>
-                </tr>
-                <tr>
-                    <th>所在地</th>
-                    <td>〒252-0216<br>神奈川県相模原市中央区清新6-10-21-415</td>
-                </tr>
-                <tr>
-                    <th>設立</th>
-                    <td>2024年8月23日</td>
-                </tr>
-                <tr>
-                    <th>代表取締役</th>
-                    <td>大八木 航輝</td>
-                </tr>
-                <tr>
-                    <th>電話番号</th>
-                    <td>070-1437-8545</td>
-                </tr>
-                <tr>
-                    <th>メールアドレス</th>
-                    <td>syk.zeroone@gmail.com</td>
-                </tr>
-                <tr>
-                    <th>事業内容</th>
-                    <td>・AmazonDSP2.0オフィシャルパートナー</td>
-                </tr>
-            </tbody>
+            <tr><th>会社名</th><td>株式会社zeroONE</td></tr>
+            <tr><th>代表者</th><td>代表取締役 大八木 航輝</td></tr>
+            <tr><th>所在地</th><td>神奈川県横浜市</td></tr>
+            <tr><th>事業内容</th><td>軽貨物運送事業 / 物流コンサルティング</td></tr>
         </table>
     </div>
 
@@ -130,21 +59,12 @@
         <div class="footer-logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-footer">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" />
+                  <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28" fill="#fff">zeroONE</text>
                 </svg>
             </a>
         </div>
-       <div class="footer-links">
+        <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="service.html">Service</a>
             <a href="company.html">Company</a>
@@ -152,14 +72,5 @@
         </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
-
-    <script>
-        const menuBtn = document.getElementById('menuBtn');
-        const navMenu = document.getElementById('navMenu');
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('open');
-            navMenu.classList.toggle('open');
-        });
-    </script>
 </body>
 </html>
