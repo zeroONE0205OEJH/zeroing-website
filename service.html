@@ -3,29 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Service | 株式会社zeroONE</title>
     <style>
+        /* --- 全体設定 --- */
+        html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
+
+        /* --- コンテナ設定 --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
         .page-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
-        .service-item { display: flex; gap: 50px; margin-bottom: 100px; align-items: center; }
-        .service-item:nth-child(even) { flex-direction: row-reverse; }
+        
+        /* --- サービスアイテム（交互レイアウト維持） --- */
+        .service-item { display: flex; gap: 60px; margin-bottom: 120px; align-items: center; }
+        .service-item:nth-child(even) { flex-direction: row-reverse; } /* 交互に反転 */
+        
         .service-text { flex: 1; }
-        .service-text h3 { font-size: 24px; margin-bottom: 20px; border-left: 4px solid #fff; padding-left: 15px; }
-        .service-text p { color: #aaa; line-height: 1.8; }
-        .service-image { flex: 1; height: 300px; background: #222; border-radius: 8px; }
+        .service-text h3 { font-size: 26px; margin-bottom: 25px; border-left: 5px solid #fff; padding-left: 20px; letter-spacing: 1px; }
+        .service-text p { color: #aaaaaa; line-height: 2.0; font-size: 16px; margin-bottom: 20px; text-align: left; }
+        .service-text p:last-child { margin-bottom: 0; }
+
+        /* --- 画像エリア --- */
+        .service-image { flex: 1; height: 350px; border-radius: 8px; overflow: hidden; border: 1px solid #333; }
+        .service-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: 0.5s; }
+        .service-item:hover .service-image img { transform: scale(1.05); } /* ホバー時のエフェクト */
+
+        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
-        @media (max-width: 900px) { .service-item { flex-direction: column !important; } }
+
+        /* --- スマホ対応 --- */
+        @media (max-width: 900px) {
+            .service-item { flex-direction: column !important; gap: 30px; margin-bottom: 80px; }
+            .service-image { width: 100%; height: 250px; }
+            .service-text h3 { font-size: 22px; }
+            .service-text p { font-size: 15px; }
+            header { padding: 15px 20px; }
+            .logo svg { height: 50px; }
+        }
     </style>
 </head>
 <body>
@@ -62,27 +90,37 @@
         
         <div class="service-item">
             <div class="service-text">
-                <h3>企業専属便</h3>
-                <p>貴社の専属ドライバーとして、ブランドと信頼をそのままお届けします。定期的な配送ルートの構築から、細やかな接客対応まで、ビジネスの成長を最前線で支えます。車両の維持費や人件費などの固定費削減にも直結するソリューションです。</p>
+                <h3>Logistics / ロジスティクス事業</h3>
+                <p>株式会社zeroONEは、軽貨物運送事業を核とし、AmazonDSP2.0オフィシャルパートナーとして、信頼とスピードを両立した配送サービスを提供しています。</p>
+                <p>企業専属便からラストワンマイル、スポット配送まで、お客様の大切なお荷物をドライバー一人ひとりの手で「安全」「安心」にお届けします。社会のインフラを支え、物流の未来を切り拓きます。</p>
             </div>
-            <div class="service-image"></div>
+            <div class="service-image">
+                <img src="image_7.png" alt="株式会社zeroONE ロジスティクス事業のイメージ">
+            </div>
         </div>
         
         <div class="service-item">
             <div class="service-text">
-                <h3>ラストワンマイル配送</h3>
-                <p>EC市場の急成長に応える、正確さと機動力。個人宅への配送を主軸に、不在再配送の低減や迅速な対応で、お客様の暮らしに「安心」を直接届けます。最新のシステムとドライバーの現場力を掛け合わせ、高い配達完了率を実現します。</p>
+                <h3>Creative / 映像・コンテンツ制作事業</h3>
+                <p>お客様のブランドの魅力を最大限に引き出す、高品質な映像を制作します。企業プロモーション、商品紹介、MV、SNS動画など、企画から撮影、編集まで一貫してサポート。</p>
+                <p>クリエイティブな発想で、人々の心に響くコンテンツを創り出し、ビジネスの成長を加速させます。</p>
             </div>
-            <div class="service-image"></div>
+            <div class="service-image">
+                <img src="image_8.png" alt="株式会社zeroONE 映像・コンテンツ制作事業のイメージ">
+            </div>
         </div>
         
         <div class="service-item">
             <div class="service-text">
-                <h3>スポット・チャーター便</h3>
-                <p>「今すぐ届けたい」に応える強靭な機動力。突発的な配送依頼や繁忙期の車両不足、特殊な荷物の運搬など、物流のあらゆる課題を即座に解決します。必要な時に必要なだけ車両を手配できる、柔軟な物流インフラをご提供します。</p>
+                <h3>Apparel / アパレル事業</h3>
+                <p>時代を捉えたファッション性と、ゼロからONEを創り出すブランドスピリットを体現するアパレル事業を展開しています。</p>
+                <p>商品の企画、製造、そして販売まで自社で行い、お客様のライフスタイルを豊かに彩る独自のスタイルをご提案。ファッションを通じて、新しい自分に出会う体験を。</p>
             </div>
-            <div class="service-image"></div>
+            <div class="service-image">
+                <img src="image_9.png" alt="株式会社zeroONE アパレル事業のイメージ">
+            </div>
         </div>
+        
     </div>
 
     <footer>
@@ -96,7 +134,7 @@
                       <polygon points="65,30 90,5 90,30" fill="black" />
                     </mask>
                   </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
                   <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
                     <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
                   </text>
