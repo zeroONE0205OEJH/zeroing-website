@@ -25,7 +25,7 @@
         
         /* --- サービスアイテム（交互レイアウト維持） --- */
         .service-item { display: flex; gap: 60px; margin-bottom: 120px; align-items: center; }
-        .service-item:nth-child(even) { flex-direction: row-reverse; } /* 交互に反転 */
+        .service-item:nth-child(even) { flex-direction: row-reverse; }
         
         .service-text { flex: 1; }
         .service-text h3 { font-size: 26px; margin-bottom: 25px; border-left: 5px solid #fff; padding-left: 20px; letter-spacing: 1px; }
@@ -35,7 +35,7 @@
         /* --- 画像エリア --- */
         .service-image { flex: 1; height: 350px; border-radius: 8px; overflow: hidden; border: 1px solid #333; background-color: #222; }
         .service-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; transition: 0.5s; display: block; }
-        .service-item:hover .service-image img { transform: scale(1.05); } /* ホバー時のエフェクト */
+        .service-item:hover .service-image img { transform: scale(1.05); }
 
         /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
