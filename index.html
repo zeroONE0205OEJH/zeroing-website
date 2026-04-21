@@ -74,10 +74,10 @@
 
         /* --- SERVICE案内 --- */
         .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 40px; }
-        .teaser-box { text-align: center; background: #1a1a1a; padding: 40px 20px; border-radius: 8px; border: 1px solid #333; transition: 0.3s; }
+        .teaser-box { text-align: center; background: #1a1a1a; padding: 40px 20px; border-radius: 8px; border: 1px solid #333; transition: 0.3s; display: flex; flex-direction: column; justify-content: space-between; }
         .teaser-box:hover { border-color: #555; transform: translateY(-5px); }
         .teaser-box h3 { font-size: 20px; margin-bottom: 20px; color: #fff; }
-        .teaser-box p { color: #aaa; font-size: 14px; margin-bottom: 25px; text-align: left; }
+        .teaser-box p { color: #aaa; font-size: 14px; margin-bottom: 25px; text-align: left; flex-grow: 1; }
         .more-btn { display: inline-block; padding: 12px 30px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; transition: 0.3s; }
         .more-btn:hover { background: #ccc; }
 
@@ -164,18 +164,18 @@
         <h2 style="text-align: center; font-size: 32px; margin-bottom: 50px; letter-spacing: 4px;">SERVICE</h2>
         <div class="service-grid">
             <div class="teaser-box">
-                <h3>企業専属便</h3>
-                <p>貴社の専属ドライバーとして、ブランドと信頼をそのままお届けします。最高水準の接客と安全運転で、ビジネスの成長を支えます。</p>
+                <h3>ロジスティクス事業</h3>
+                <p>軽貨物運送事業を核とし、AmazonDSP2.0オフィシャルパートナーとして、信頼とスピードを両立した配送サービスを提供。社会のインフラを最前線で支えます。</p>
                 <a href="service.html" class="more-btn">詳細を見る</a>
             </div>
             <div class="teaser-box">
-                <h3>ラストワンマイル配送</h3>
-                <p>EC市場の急成長に応える、正確さと機動力。個人宅への配送を主軸に、お客様の暮らしに「安心」を直接届けます。</p>
+                <h3>映像・コンテンツ制作</h3>
+                <p>企業プロモーションやSNS動画など、企画から撮影・編集まで一貫してサポート。クリエイティブな発想で、お客様のブランドの魅力を最大限に引き出します。</p>
                 <a href="service.html" class="more-btn">詳細を見る</a>
             </div>
             <div class="teaser-box">
-                <h3>スポット・チャーター便</h3>
-                <p>「今すぐ届けたい」に応える強靭な機動力。突発的な配送依頼や繁忙期の車両不足など、物流のあらゆる課題を解決します。</p>
+                <h3>アパレル事業</h3>
+                <p>時代を捉えたファッション性と、ゼロからONEを創り出すブランドスピリットを体現。企画から販売まで自社で行い、お客様に独自のスタイルをご提案します。</p>
                 <a href="service.html" class="more-btn">詳細を見る</a>
             </div>
         </div>
@@ -192,7 +192,7 @@
                       <polygon points="65,30 90,5 90,30" fill="black" />
                     </mask>
                   </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
                   <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
                     <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
                   </text>
