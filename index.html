@@ -13,7 +13,7 @@
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
         /* --- ヘッダー & ハンバーガーメニュー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; box-sizing: border-box; backdrop-filter: blur(5px); }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
@@ -34,22 +34,10 @@
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #111; }
         
-        /* ★背景動画：iPhoneなどの巨大再生ボタンを絶対に消すための最強設定 */
-        .hero-video { 
-            width: 100%; height: 100%; object-fit: cover; opacity: 0.4; 
-            pointer-events: none; /* タッチやクリックを完全に無効化 */
-            -webkit-touch-callout: none;
-            user-select: none;
-        }
-        /* ブラウザが勝手に出すコントロールパネルや再生ボタンを強制非表示 */
-        .hero-video::-webkit-media-controls,
-        .hero-video::-webkit-media-controls-enclosure,
-        .hero-video::-webkit-media-controls-panel,
-        .hero-video::-webkit-media-controls-start-playback-button,
-        .hero-video::-webkit-media-controls-play-button {
-            display: none !important;
-            -webkit-appearance: none !important;
-        }
+        /* ★背景動画用設定：クリック無効化を追加 */
+        .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; pointer-events: none; }
+        /* ★CSSで「どんなボタンも絶対に出さない」という強制非表示の呪文を追加 */
+        .hero-video::-webkit-media-controls { display: none !important; }
 
         .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; }
         @keyframes textAppear { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -147,7 +135,7 @@
 
     <section class="hero">
         <div class="hero-bg">
-            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback poster="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80">
+            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback preload="auto">
                 <source src="https://videos.pexels.com/video-files/3121459/3121459-hd_1920_1080_24fps.mp4" type="video/mp4">
             </video>
         </div>
@@ -250,18 +238,17 @@
     </footer>
 
     <script>
-        // ★ページが開かれた瞬間に裏側で動画を強制再生させるスクリプト
+        // ★JavaScriptで「ページを開いた瞬間に、有無を言わさず裏側で強制再生させる」プログラムを追加
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('bg-video');
             if(video) {
-                video.muted = true; // 強制ミュート（自動再生の絶対条件）
+                video.muted = true; // ミュート（自動再生の条件）
                 video.play().catch(function(error) {
                     console.log("自動再生がブロックされましたが、エラーは処理されました:", error);
                 });
             }
         });
 
-        // スマホ用ハンバーガーメニュー
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('nav ul');
         hamburger.addEventListener('click', () => {
@@ -269,7 +256,6 @@
             navUl.classList.toggle('active');
         });
 
-        // スクロール時のフワッと表示アニメーション
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
@@ -279,6 +265,7 @@
                 observer.unobserve(entry.target);
             });
         }, appearOptions);
+
         faders.forEach(fader => { appearOnScroll.observe(fader); });
     </script>
 </body>
