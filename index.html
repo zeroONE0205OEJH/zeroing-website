@@ -222,4 +222,64 @@
     </div>
 
     <footer>
-        <div class="footer-logo
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <mask id="cutout-footer">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
+                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        // ★ページが開かれた瞬間に裏側で動画を強制再生させるスクリプト
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('bg-video');
+            if(video) {
+                video.muted = true; // 強制ミュート（自動再生の絶対条件）
+                video.play().catch(function(error) {
+                    console.log("自動再生がブロックされましたが、エラーは処理されました:", error);
+                });
+            }
+        });
+
+        // スマホ用ハンバーガーメニュー
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navUl.classList.toggle('active');
+        });
+
+        // スクロール時のフワッと表示アニメーション
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
+</body>
+</html>
