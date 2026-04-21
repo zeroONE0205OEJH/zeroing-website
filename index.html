@@ -34,9 +34,22 @@
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #111; }
         
-        /* ★背景動画用設定：強制非表示とクリック無効化を追加 */
-        .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; pointer-events: none; }
-        .hero-video::-webkit-media-controls { display: none !important; }
+        /* ★背景動画：iPhoneなどの巨大再生ボタンを絶対に消すための最強設定 */
+        .hero-video { 
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.4; 
+            pointer-events: none; /* タッチやクリックを完全に無効化 */
+            -webkit-touch-callout: none;
+            user-select: none;
+        }
+        /* ブラウザが勝手に出すコントロールパネルや再生ボタンを強制非表示 */
+        .hero-video::-webkit-media-controls,
+        .hero-video::-webkit-media-controls-enclosure,
+        .hero-video::-webkit-media-controls-panel,
+        .hero-video::-webkit-media-controls-start-playback-button,
+        .hero-video::-webkit-media-controls-play-button {
+            display: none !important;
+            -webkit-appearance: none !important;
+        }
 
         .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; }
         @keyframes textAppear { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
@@ -134,7 +147,7 @@
 
     <section class="hero">
         <div class="hero-bg">
-            <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80">
+            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback poster="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80">
                 <source src="https://videos.pexels.com/video-files/3121459/3121459-hd_1920_1080_24fps.mp4" type="video/mp4">
             </video>
         </div>
@@ -209,52 +222,4 @@
     </div>
 
     <footer>
-        <div class="footer-logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-footer">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
-            </a>
-        </div>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="service.html">Service</a>
-            <a href="company.html">Company</a>
-            <a href="recruit.html">Recruit</a>
-            <a href="privacy.html">Privacy Policy</a>
-        </div>
-        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
-    </footer>
-
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('nav ul');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navUl.classList.toggle('active');
-        });
-
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
-        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target);
-            });
-        }, appearOptions);
-
-        faders.forEach(fader => { appearOnScroll.observe(fader); });
-    </script>
-</body>
-</html>
+        <div class="footer-logo
