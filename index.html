@@ -30,16 +30,26 @@
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
         
-        /* --- Heroエリア（動画単独設定） --- */
+        /* --- Heroエリア --- */
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
         
-        /* 背景コンテナ */
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #111; }
+        /* ★ブロックされた時用の「美しい静止画」を背景に設定 */
+        .hero-bg { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
+            background: #111 url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
         
-        /* ★動画本体：透かさずにそのまま表示し、クリックを無効化 */
-        .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        /* ★動画の初期設定：透明（0）にして隠しておく */
+        .hero-video { 
+            width: 100%; height: 100%; object-fit: cover; pointer-events: none;
+            opacity: 0; 
+            transition: opacity 1.5s ease-in-out; 
+        }
         
-        /* ★動画を暗くするための黒いフィルター（これで二重写しは絶対に起きません） */
+        /* ★再生に成功した場合のみ、フワッと表示（0.5）させるクラス */
+        .hero-video.is-playing { opacity: 0.5; }
+        
+        /* 動画と静止画を暗くして文字を目立たせるフィルター */
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.65); z-index: -1; }
 
         .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; position: relative; z-index: 2; }
@@ -100,7 +110,7 @@
             .hero { height: 100vh; padding: 0 10px; }
             .animated-logo { width: 220px; height: 165px; margin-bottom: 15px; }
             
-            /* ★スマホの文字を絶対に2行で収める（折り返し禁止） */
+            /* スマホの文字を絶対に2行にする */
             .hero p { font-size: min(3.3vw, 14px); white-space: nowrap; line-height: 2.2; letter-spacing: 0; }
             
             .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
@@ -147,7 +157,7 @@
 
     <section class="hero">
         <div class="hero-bg">
-            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture>
+            <video id="bg-video" class="hero-video" loop muted playsinline disablePictureInPicture>
                 <source src="https://videos.pexels.com/video-files/3121459/3121459-hd_1920_1080_24fps.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
@@ -251,14 +261,23 @@
     </footer>
 
     <script>
-        // スマホでの強制再生補助
+        // ★Appleの強制ブロック（低電力モード等）を回避するマジックプログラム
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('bg-video');
-            if(video) {
-                video.play().catch(function() {
-                    // 自動再生がブロックされた場合はタッチで再生
-                    document.body.addEventListener('touchstart', function() { video.play(); }, {once:true});
-                });
+            if (video) {
+                video.muted = true;
+                
+                // 裏側でこっそり再生を試みる
+                var playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(function() {
+                        // 再生に成功した場合のみ、動画をフワッと表示させる！
+                        video.classList.add('is-playing');
+                    }).catch(function(error) {
+                        // 低電力モード等でブロックされた場合：何もしない（動画は透明のままなのでボタンは出ず、綺麗な静止画が表示され続ける）
+                        console.log("低電力モード等により自動再生がブロックされました。静止画モードを維持します。");
+                    });
+                }
             }
         });
 
