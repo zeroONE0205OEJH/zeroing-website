@@ -12,17 +12,17 @@
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- ヘッダー & ハンバーガーメニュー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; box-sizing: border-box; backdrop-filter: blur(5px); }
+        /* --- ヘッダー --- */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
         
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
+        /* ハンバーガーボタン（右端固定） */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; position: absolute; right: 30px; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
 
-        /* --- コンテナ設定 --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
         .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
 
@@ -30,20 +30,30 @@
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
         
-        /* --- Heroエリア（背景動画対応） --- */
+        /* --- Heroエリア --- */
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #111; }
         
-        /* ★背景動画用設定：クリック無効化を追加 */
+        /* ★背景画像はCSS側に持たせることで、動画タグの再生ボタンUIが出ないようにする */
+        .hero-bg { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+            background: #111 url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        
+        /* ★動画の再生ボタンを消す最強の呪文 */
         .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; pointer-events: none; }
-        /* ★CSSで「どんなボタンも絶対に出さない」という強制非表示の呪文を追加 */
-        .hero-video::-webkit-media-controls { display: none !important; }
+        
+        /* ブラウザの標準コントロールを徹底的に非表示 */
+        video::-webkit-media-controls { display: none !important; }
+        video::-webkit-media-controls-enclosure { display: none !important; }
+        video::-webkit-media-controls-panel { display: none !important; }
+        video::-webkit-media-controls-play-button { display: none !important; }
+        video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
 
         .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; }
         @keyframes textAppear { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-        .hero p { color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .hero p { color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); white-space: nowrap; }
 
-        /* --- NEWS（お知らせ）エリア --- */
+        /* --- NEWS --- */
         .news-section { background: #111; padding: 60px 20px; }
         .news-container { max-width: 900px; margin: 0 auto; }
         .news-item { display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid #333; transition: 0.3s; }
@@ -52,7 +62,7 @@
         .news-tag { background: #fff; color: #000; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-right: 20px; }
         .news-text { color: #ddd; font-size: 15px; }
 
-        /* --- 代表挨拶（GREETING） --- */
+        /* --- 代表挨拶 --- */
         .greeting { background: #1a1a1a; padding: 100px 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; }
         .greeting-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .greeting h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
@@ -60,7 +70,7 @@
         .greeting p:last-child { margin-bottom: 0; }
         .greeting strong { color: #ffffff; }
 
-        /* --- SERVICE案内 --- */
+        /* --- SERVICE --- */
         .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
         .teaser-box { text-align: center; background: #1a1a1a; padding: 50px 30px; border-radius: 8px; border: 1px solid #333; transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between; }
         .teaser-box:hover { border-color: #777; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -77,20 +87,26 @@
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
 
-        /* --- スマホ対応 --- */
+        /* --- ★スマホ対応★ --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
-            .logo svg { height: 50px; }
-            .hamburger { display: flex; }
-            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+            .logo svg { height: 45px; }
+            .hamburger { display: flex; right: 20px; }
+            
+            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; }
             nav ul.active { right: 0; }
             nav li { margin-bottom: 20px; }
+            
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-            .hero { height: auto; padding: 150px 20px 100px; }
-            .animated-logo { width: 250px; height: 185px; }
-            .hero p { font-size: 15px; }
+
+            .hero { height: 100vh; padding: 0 10px; }
+            .animated-logo { width: 220px; height: 165px; margin-bottom: 15px; }
+            
+            /* ★スマホで2行に収めるためのサイズ調整 */
+            .hero p { font-size: 3.5vw; white-space: normal; line-height: 1.8; display: block; max-width: 90%; margin: 0 auto; }
+            
             .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
             .service-grid { grid-template-columns: 1fr; }
         }
@@ -135,7 +151,7 @@
 
     <section class="hero">
         <div class="hero-bg">
-            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture disableRemotePlayback preload="auto">
+            <video id="bg-video" class="hero-video" autoplay loop muted playsinline webkit-playsinline disablePictureInPicture>
                 <source src="https://videos.pexels.com/video-files/3121459/3121459-hd_1920_1080_24fps.mp4" type="video/mp4">
             </video>
         </div>
@@ -238,17 +254,18 @@
     </footer>
 
     <script>
-        // ★JavaScriptで「ページを開いた瞬間に、有無を言わさず裏側で強制再生させる」プログラムを追加
+        // 強制再生スクリプト
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('bg-video');
             if(video) {
-                video.muted = true; // ミュート（自動再生の条件）
-                video.play().catch(function(error) {
-                    console.log("自動再生がブロックされましたが、エラーは処理されました:", error);
+                video.muted = true;
+                video.play().catch(function() {
+                    document.body.addEventListener('touchstart', function() { video.play(); }, {once:true});
                 });
             }
         });
 
+        // ハンバーガーメニュー
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('nav ul');
         hamburger.addEventListener('click', () => {
@@ -256,6 +273,7 @@
             navUl.classList.toggle('active');
         });
 
+        // フェードイン
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
@@ -265,7 +283,6 @@
                 observer.unobserve(entry.target);
             });
         }, appearOptions);
-
         faders.forEach(fader => { appearOnScroll.observe(fader); });
     </script>
 </body>
