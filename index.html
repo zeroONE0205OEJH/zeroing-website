@@ -19,8 +19,8 @@
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
         
-        /* ハンバーガーボタン（右端固定） */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; position: absolute; right: 30px; }
+        /* ハンバーガーボタン */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
 
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
@@ -30,28 +30,22 @@
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
         
-        /* --- Heroエリア --- */
+        /* --- Heroエリア（動画単独設定） --- */
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
         
-        /* ★背景画像はCSS側に持たせることで、動画タグの再生ボタンUIが出ないようにする */
-        .hero-bg { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: #111 url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-        }
+        /* 背景コンテナ */
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #111; }
         
-        /* ★動画の再生ボタンを消す最強の呪文 */
-        .hero-video { width: 100%; height: 100%; object-fit: cover; opacity: 0.4; pointer-events: none; }
+        /* ★動画本体：透かさずにそのまま表示し、クリックを無効化 */
+        .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         
-        /* ブラウザの標準コントロールを徹底的に非表示 */
-        video::-webkit-media-controls { display: none !important; }
-        video::-webkit-media-controls-enclosure { display: none !important; }
-        video::-webkit-media-controls-panel { display: none !important; }
-        video::-webkit-media-controls-play-button { display: none !important; }
-        video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+        /* ★動画を暗くするための黒いフィルター（これで二重写しは絶対に起きません） */
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.65); z-index: -1; }
 
-        .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; }
+        .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; position: relative; z-index: 2; }
         @keyframes textAppear { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-        .hero p { color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); white-space: nowrap; }
+        
+        .hero p { position: relative; z-index: 2; color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
 
         /* --- NEWS --- */
         .news-section { background: #111; padding: 60px 20px; }
@@ -91,9 +85,11 @@
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
-            .hamburger { display: flex; right: 20px; }
             
-            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; }
+            /* 三本線を右端に固定 */
+            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            
+            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
             nav ul.active { right: 0; }
             nav li { margin-bottom: 20px; }
             
@@ -104,8 +100,8 @@
             .hero { height: 100vh; padding: 0 10px; }
             .animated-logo { width: 220px; height: 165px; margin-bottom: 15px; }
             
-            /* ★スマホで2行に収めるためのサイズ調整 */
-            .hero p { font-size: 3.5vw; white-space: normal; line-height: 1.8; display: block; max-width: 90%; margin: 0 auto; }
+            /* ★スマホの文字を絶対に2行で収める（折り返し禁止） */
+            .hero p { font-size: min(3.3vw, 14px); white-space: nowrap; line-height: 2.2; letter-spacing: 0; }
             
             .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
             .service-grid { grid-template-columns: 1fr; }
@@ -151,9 +147,10 @@
 
     <section class="hero">
         <div class="hero-bg">
-            <video id="bg-video" class="hero-video" autoplay loop muted playsinline webkit-playsinline disablePictureInPicture>
+            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture>
                 <source src="https://videos.pexels.com/video-files/3121459/3121459-hd_1920_1080_24fps.mp4" type="video/mp4">
             </video>
+            <div class="hero-overlay"></div>
         </div>
 
         <svg class="animated-logo" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg">
@@ -254,12 +251,12 @@
     </footer>
 
     <script>
-        // 強制再生スクリプト
+        // スマホでの強制再生補助
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('bg-video');
             if(video) {
-                video.muted = true;
                 video.play().catch(function() {
+                    // 自動再生がブロックされた場合はタッチで再生
                     document.body.addEventListener('touchstart', function() { video.play(); }, {once:true});
                 });
             }
