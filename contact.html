@@ -3,28 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Contact | 株式会社zeroONE</title>
     <style>
+        /* --- 全体設定 --- */
+        html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
         nav a:hover { color: #ffffff; }
+
+        /* スマホ用ハンバーガーメニュー（非表示設定・今回は使わないが構造維持のため） */
+        .hamburger { display: none; }
+
+        /* --- コンテナ設定 --- */
         .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
         .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 20px; }
         .section-desc { text-align: center; color: #aaa; margin-bottom: 60px; font-size: 15px; line-height: 1.8; }
         
-        /* フォームのスタイリング */
+        /* --- フォームのスタイリング --- */
         .contact-form { max-width: 700px; margin: 0 auto; background: #1a1a1a; padding: 50px; border-radius: 8px; border: 1px solid #333; }
         .form-group { margin-bottom: 25px; }
         .form-group label { display: block; margin-bottom: 8px; color: #ccc; font-size: 14px; }
         .form-group label span { color: #ff5555; font-size: 12px; margin-left: 8px; }
-        .form-group input, .form-group textarea { width: 100%; padding: 15px; background: #222; border: 1px solid #444; color: #fff; border-radius: 4px; box-sizing: border-box; font-family: inherit; font-size: 15px; transition: 0.3s; }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #888; background: #2a2a2a; }
+        
+        /* ★プルダウン（select）、input、textarea の共通スタイル */
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea { 
+            width: 100%; 
+            padding: 15px; 
+            background: #222; 
+            border: 1px solid #444; 
+            color: #fff; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            font-family: inherit; 
+            font-size: 15px; 
+            transition: 0.3s; 
+            /* プルダウンの見た目を整える */
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        
+        /* プルダウンに下矢印をつける */
+        .select-wrapper { position: relative; }
+        .select-wrapper::after {
+            content: '▼';
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: #888;
+            pointer-events: none; /* クリックをすり抜けさせる */
+            font-size: 12px;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus,
+        .form-group textarea:focus { outline: none; border-color: #888; background: #2a2a2a; }
+        
         .submit-btn { display: block; width: 100%; padding: 18px; background: #fff; color: #000; font-weight: bold; font-size: 16px; border: none; border-radius: 4px; cursor: pointer; transition: 0.3s; letter-spacing: 2px; }
         .submit-btn:hover { background: #cccccc; }
 
+        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
@@ -32,8 +81,11 @@
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
 
+        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             .contact-form { padding: 30px 20px; }
+            header { padding: 15px 20px; }
+            .logo svg { height: 45px; }
         }
     </style>
 </head>
@@ -61,6 +113,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="service.html">Service</a></li>
                 <li><a href="company.html">Company</a></li>
+                <li><a href="recruit.html">Recruit</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -73,6 +126,20 @@
         <div class="contact-form">
             <form action="https://formspree.io/f/xwvaejje" method="POST">
                 
+                <div class="form-group">
+                    <label>お問い合わせ内容の選択 <span>※必須</span></label>
+                    <div class="select-wrapper">
+                        <select name="件名" required>
+                            <option value="" disabled selected>選択してください</option>
+                            <option value="配送・お見積りのご相談">配送・お見積りのご相談</option>
+                            <option value="映像制作に関するご相談">映像制作に関するご相談</option>
+                            <option value="アパレルに関するお問い合わせ">アパレルに関するお問い合わせ</option>
+                            <option value="求人・採用へのご応募">求人・採用へのご応募</option>
+                            <option value="その他のお問い合わせ">その他のお問い合わせ</option>
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-group">
                     <label>会社名</label>
                     <input type="text" name="会社名" placeholder="例：株式会社〇〇">
@@ -94,7 +161,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label>お問い合わせ内容 <span>※必須</span></label>
+                    <label>詳しいお問い合わせ内容 <span>※必須</span></label>
                     <textarea name="メッセージ" rows="8" placeholder="ご質問やご相談内容をご記入ください。" required></textarea>
                 </div>
                 
@@ -125,6 +192,7 @@
             <a href="index.html">Home</a>
             <a href="service.html">Service</a>
             <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
             <a href="privacy.html">Privacy Policy</a>
         </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
