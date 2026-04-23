@@ -19,7 +19,6 @@
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
         
-        /* ハンバーガーボタン */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
 
@@ -30,23 +29,21 @@
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
 
-        /* --- Heroエリア（エフェクト付き静止画、画像を都心街＋軽バンに変更） --- */
+        /* --- Heroエリア（都心のエフェクト動画に変更） --- */
         .recruit-hero { 
             position: relative; height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; margin-top: 0;
         }
         
-        /* ★ゆっくりズームするエフェクト（Ken Burns効果） */
-        .recruit-bg {
+        /* ★背景動画の設定（巨大トラックを削除し、都心の映像へ） */
+        .recruit-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-            background: url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-            animation: slowZoom 20s ease-in-out infinite alternate;
+            object-fit: cover; pointer-events: none;
         }
-        @keyframes slowZoom {
-            0% { transform: scale(1.0); }
-            100% { transform: scale(1.15); }
-        }
+        
+        video::-webkit-media-controls { display: none !important; }
+        video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
 
-        .recruit-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.7); z-index: -1; }
+        .recruit-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.65); z-index: -1; pointer-events: none; }
         
         .recruit-hero h1 { font-size: 42px; letter-spacing: 2px; margin-bottom: 20px; z-index: 2; text-align: center; }
         .recruit-hero p { font-size: 16px; color: #ccc; z-index: 2; letter-spacing: 1px; text-align: center; line-height: 1.8; }
@@ -95,8 +92,8 @@
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            .recruit-hero h1 { font-size: 28px; }
-            .recruit-hero p { font-size: 14px; padding: 0 20px; }
+            .recruit-hero h1 { font-size: 24px; white-space: nowrap; }
+            .recruit-hero p { font-size: 12px; padding: 0 10px; }
             .message-box { padding: 40px 20px; }
             
             /* テーブルのスマホ対応（縦並び） */
@@ -144,7 +141,9 @@
     </header>
 
     <section class="recruit-hero">
-        <div class="recruit-bg"></div>
+        <video class="recruit-video" autoplay loop muted playsinline disablePictureInPicture>
+            <source src="https://videos.pexels.com/video-files/3255275/3255275-hd_1920_1080_25fps.mp4" type="video/mp4">
+        </video>
         <div class="recruit-overlay"></div>
         <h1 class="fade-in">経験ゼロから、プロフェッショナルへ。</h1>
         <p class="fade-in">普通免許一本で、新しいキャリアをここから走らせよう。</p>
@@ -231,6 +230,23 @@
     </footer>
 
     <script>
+        // 動画のスマホでの再生補助
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.querySelector('.recruit-video');
+            if (video) {
+                video.muted = true; 
+                video.play().catch(function() {
+                    var startVideo = function() {
+                        video.play();
+                        document.body.removeEventListener('touchstart', startVideo);
+                        document.body.removeEventListener('click', startVideo);
+                    };
+                    document.body.addEventListener('touchstart', startVideo);
+                    document.body.addEventListener('click', startVideo);
+                });
+            }
+        });
+
         // ハンバーガーメニュー
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('nav ul');
