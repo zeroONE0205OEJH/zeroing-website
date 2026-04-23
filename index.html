@@ -33,22 +33,16 @@
         /* --- Heroエリア --- */
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
         
-        /* ★ダミーの静止画背景 */
-        .hero-bg { 
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
-            background: #111 url('https://images.unsplash.com/photo-1449824913935-59a10b8d2000?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-        }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #111; }
         
-        /* ★最初は動画を「透明」にして隠す */
-        .hero-video { 
-            width: 100%; height: 100%; object-fit: cover; pointer-events: none;
-            opacity: 0; 
-            transition: opacity 1.5s ease-in-out; 
-        }
-        /* ★動画が動いたらフワッと表示させる（フィルターがあるのでopacityは1でOK） */
-        .hero-video.is-playing { opacity: 1; }
+        /* ★純粋に動画だけを表示（静止画の細工は完全削除） */
+        .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         
-        /* 背景暗転フィルター（静止画も動画も一律で暗くする） */
+        /* 不要なUIを消す指定 */
+        video::-webkit-media-controls { display: none !important; }
+        video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+
+        /* 背景暗転フィルター */
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.65); z-index: -1; pointer-events: none; }
 
         .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; position: relative; z-index: 2; }
@@ -90,7 +84,7 @@
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
 
-        /* --- ★スマホ対応★ --- */
+        /* --- ★スマホ対応（前回完璧だった設定）★ --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
@@ -156,7 +150,7 @@
 
     <section class="hero">
         <div class="hero-bg">
-            <video id="bg-video" class="hero-video" loop muted playsinline disablePictureInPicture>
+            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture>
                 <source src="https://videos.pexels.com/video-files/3121459/3121459-hd_1920_1080_24fps.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
@@ -260,36 +254,21 @@
     </footer>
 
     <script>
-        // ★Appleの強制ブロック（低電力モード等）を回避し、タッチで再生させる魔法のスクリプト
+        // 動画を裏側で再生させるだけのシンプルなプログラム
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('bg-video');
             if (video) {
-                video.muted = true; // ミュートは絶対条件
-                
-                // ページ読み込み時にとりあえず再生を試みる
-                var playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.then(function() {
-                        // 成功時：自動で動画をフワッと表示
-                        video.classList.add('is-playing');
-                    }).catch(function(error) {
-                        // 失敗時（低電力モード等）：静止画のまま待機
-                        console.log("自動再生がブロックされました。ユーザーのタッチを待ちます。");
-                        
-                        // ユーザーが画面をスクロール（タッチ）した瞬間に再生を開始して表示する
-                        var startVideoOnTouch = function() {
-                            video.play().then(function() {
-                                video.classList.add('is-playing'); // 動画をフワッと出す
-                            });
-                            // 1回動いたらこのイベントは消す
-                            document.body.removeEventListener('touchstart', startVideoOnTouch);
-                            document.body.removeEventListener('click', startVideoOnTouch);
-                        };
-                        
-                        document.body.addEventListener('touchstart', startVideoOnTouch);
-                        document.body.addEventListener('click', startVideoOnTouch);
-                    });
-                }
+                video.muted = true; 
+                video.play().catch(function(e) {
+                    // もしOSにブロックされたら、ユーザーが画面をタッチした時に再生する
+                    var startVideo = function() {
+                        video.play();
+                        document.body.removeEventListener('touchstart', startVideo);
+                        document.body.removeEventListener('click', startVideo);
+                    };
+                    document.body.addEventListener('touchstart', startVideo);
+                    document.body.addEventListener('click', startVideo);
+                });
             }
         });
 
