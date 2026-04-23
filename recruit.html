@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>Recruit | 株式会社zeroONE</title>
+    <style>
+        /* --- 全体設定 --- */
+        html { scroll-behavior: smooth; }
+        body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+        
+        /* --- ヘッダー --- */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
+        .logo svg { height: 60px; width: auto; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
+        nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
+        nav a:hover { color: #ffffff; }
+        
+        /* ハンバーガーボタン */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
+        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 80px 20px; }
+        .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 50px; }
+
+        /* --- スクロールアニメーション --- */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
+
+        /* --- Heroエリア（エフェクト付き静止画） --- */
+        .recruit-hero { 
+            position: relative; height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; margin-top: 0;
+        }
+        
+        /* ★ゆっくりズームするエフェクト（Ken Burns効果） */
+        .recruit-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
+            background: url('https://images.unsplash.com/photo-1519003722824-194d4455a60c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+        @keyframes slowZoom {
+            0% { transform: scale(1.0); }
+            100% { transform: scale(1.15); }
+        }
+
+        .recruit-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.7); z-index: -1; }
+        
+        .recruit-hero h1 { font-size: 42px; letter-spacing: 2px; margin-bottom: 20px; z-index: 2; text-align: center; }
+        .recruit-hero p { font-size: 16px; color: #ccc; z-index: 2; letter-spacing: 1px; text-align: center; line-height: 1.8; }
+
+        /* --- メッセージセクション --- */
+        .message-box { background: #1a1a1a; padding: 60px 40px; border-radius: 8px; border: 1px solid #333; margin-top: -50px; position: relative; z-index: 10; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .message-box h3 { font-size: 24px; margin-bottom: 20px; color: #fff; text-align: center; letter-spacing: 2px; }
+        .message-box p { color: #aaa; line-height: 2.0; font-size: 15px; margin-bottom: 15px; }
+
+        /* --- 募集要項テーブル --- */
+        .recruit-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+        .recruit-table th, .recruit-table td { padding: 25px 20px; border-bottom: 1px solid #333; text-align: left; vertical-align: top; }
+        .recruit-table th { width: 25%; color: #888; font-weight: normal; font-size: 14px; background: #151515; }
+        .recruit-table td { font-size: 15px; line-height: 1.8; color: #eee; }
+        
+        /* --- その他事業の案内 --- */
+        .other-jobs { margin-top: 60px; padding: 40px; background: #111; border: 1px dashed #444; border-radius: 8px; text-align: center; }
+        .other-jobs h4 { font-size: 18px; margin-bottom: 15px; color: #fff; }
+        .other-jobs p { font-size: 14px; color: #888; line-height: 1.8; }
+
+        /* --- 応募CTA（Call to Action） --- */
+        .cta-section { text-align: center; margin-top: 80px; padding-bottom: 40px; }
+        .cta-section p { color: #aaa; margin-bottom: 30px; font-size: 15px; }
+        .apply-btn { display: inline-block; padding: 18px 50px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 16px; transition: 0.3s; letter-spacing: 2px; }
+        .apply-btn:hover { background: #ccc; transform: translateY(-3px); }
+
+        /* --- フッター --- */
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
+        .footer-links a:hover { color: #fff; }
+        .copyright { color: #555; font-size: 14px; margin-top: 20px; }
+
+        /* --- スマホ対応 --- */
+        @media (max-width: 900px) {
+            header { padding: 15px 20px; }
+            .logo svg { height: 45px; }
+            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            
+            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+            nav ul.active { right: 0; }
+            nav li { margin-bottom: 20px; }
+            
+            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .recruit-hero h1 { font-size: 28px; }
+            .recruit-hero p { font-size: 14px; padding: 0 20px; }
+            .message-box { padding: 40px 20px; }
+            
+            /* テーブルのスマホ対応（縦並び） */
+            .recruit-table th, .recruit-table td { display: block; width: 100%; padding: 15px 10px; box-sizing: border-box; }
+            .recruit-table th { border-bottom: none; padding-bottom: 5px; }
+            .recruit-table td { padding-top: 0; border-bottom: 1px solid #333; margin-bottom: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <mask id="cutout-header">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
+                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
+        
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="recruit.html">Recruit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="recruit-hero">
+        <div class="recruit-bg"></div>
+        <div class="recruit-overlay"></div>
+        <h1 class="fade-in">経験ゼロから、プロフェッショナルへ。</h1>
+        <p class="fade-in">普通免許一本で、新しいキャリアをここから走らせよう。</p>
+    </section>
+
+    <div class="container fade-in">
+        <div class="message-box">
+            <h3>ゼロからイチへ、共に歩む。</h3>
+            <p>必要なのは、普通自動車免許とあなたの誠実さだけです。</p>
+            <p>zeroONEは、Amazon 2.0のパートナーとして、安定した仕事量と未経験からでも安心してスタートできる環境を整えています。</p>
+            <p>ただ荷物を運ぶだけでなく、社会のインフラを最前線で支えるプロフェッショナルとして。私たちがあなたの新しい一歩を全力でバックアップします。</p>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 80px;">募集要項</h2>
+        <table class="recruit-table fade-in">
+            <tr>
+                <th>募集職種</th>
+                <td>軽貨物配送ドライバー（Amazon 2.0）</td>
+            </tr>
+            <tr>
+                <th>雇用形態</th>
+                <td>業務委託</td>
+            </tr>
+            <tr>
+                <th>応募資格</th>
+                <td>普通自動車免許（AT限定可）<br><span style="color: #aaa; font-size: 13px;">※経験者・未経験者ともに大歓迎！</span></td>
+            </tr>
+            <tr>
+                <th>報酬</th>
+                <td><strong style="color: #fff; font-size: 18px;">1日最低報酬 22,119円（税込）〜</strong><br><span style="color: #aaa; font-size: 13px;">※配送品質やパフォーマンスにより、1日あたりの報酬アップ制度あり</span></td>
+            </tr>
+            <tr>
+                <th>勤務時間</th>
+                <td>9:20〜 / 9:40〜<br><span style="color: #aaa; font-size: 13px;">※シフトによる</span></td>
+            </tr>
+            <tr>
+                <th>勤務地（配送エリア）</th>
+                <td>神奈川県相模原市および近隣エリア</td>
+            </tr>
+            <tr>
+                <th>車両について</th>
+                <td>車両持ち込み歓迎。<br>リース車両の手配も可能ですので、車をお持ちでない方もご相談ください。</td>
+            </tr>
+        </table>
+
+        <div class="other-jobs fade-in">
+            <h4>【 映像制作・アパレル部門について 】</h4>
+            <p>現在、軽貨物配送ドライバーをメインに募集しておりますが、クリエイティブ部門（映像・コンテンツ制作）、アパレル部門についても随時お問い合わせを受け付けております。<br>ご興味のある方は、お気軽にご連絡ください。</p>
+        </div>
+
+        <div class="cta-section fade-in">
+            <p>「まずは話を聞いてみたい」という方のお問い合わせも歓迎しております。</p>
+            <a href="contact.html" class="apply-btn">エントリー・お問い合わせへ</a>
+            <p style="margin-top: 15px; font-size: 13px; color: #888;">※お問い合わせフォームにて「求人・採用へのご応募」を選択してください。</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <mask id="cutout-footer">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
+                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        // ハンバーガーメニュー
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navUl.classList.toggle('active');
+        });
+
+        // フェードイン
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
+</body>
+</html>
