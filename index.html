@@ -3,54 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
     <title>株式会社zeroONE | 新時代のロジスティクス</title>
     <style>
-        /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
-        
-        /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
-        
-        /* ハンバーガーボタン */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
-
-        .container { max-width: 1200px; margin: 0 auto; padding: 80px 20px; }
-        .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
-
-        /* --- スクロールアニメーション --- */
-        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in.appear { opacity: 1; transform: translateY(0); }
-        
-        /* --- Heroエリア --- */
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
-        
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #111; }
-        
-        /* ★純粋に動画だけを表示（静止画の細工は完全削除） */
         .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-        
-        /* 不要なUIを消す指定 */
         video::-webkit-media-controls { display: none !important; }
         video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
-
-        /* 背景暗転フィルター */
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.65); z-index: -1; pointer-events: none; }
-
         .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; position: relative; z-index: 2; }
         @keyframes textAppear { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-        
         .hero p { position: relative; z-index: 2; color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-
-        /* --- NEWS --- */
         .news-section { background: #111; padding: 60px 20px; }
         .news-container { max-width: 900px; margin: 0 auto; }
         .news-item { display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid #333; transition: 0.3s; }
@@ -58,56 +30,33 @@
         .news-date { color: #888; font-size: 14px; min-width: 120px; }
         .news-tag { background: #fff; color: #000; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-right: 20px; }
         .news-text { color: #ddd; font-size: 15px; }
-
-        /* --- 代表挨拶 --- */
         .greeting { background: #1a1a1a; padding: 100px 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; }
         .greeting-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .greeting h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
         .greeting p { color: #aaaaaa; font-size: 16px; line-height: 2.1; margin-bottom: 30px; text-align: left; width: 100%; } 
-        .greeting p:last-child { margin-bottom: 0; }
         .greeting strong { color: #ffffff; }
-
-        /* --- SERVICE --- */
-        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .teaser-box { text-align: center; background: #1a1a1a; padding: 50px 30px; border-radius: 8px; border: 1px solid #333; transition: 0.4s; display: flex; flex-direction: column; justify-content: space-between; }
-        .teaser-box:hover { border-color: #777; transform: translateY(-10px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .teaser-box h3 { font-size: 20px; margin-bottom: 20px; color: #fff; }
-        .teaser-box p { color: #aaa; font-size: 14px; margin-bottom: 30px; text-align: left; flex-grow: 1; line-height: 1.8; }
-        .more-btn { display: inline-block; padding: 15px 30px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 13px; transition: 0.3s; }
-        .more-btn:hover { background: #ccc; }
-
-        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
-
-        /* --- ★スマホ対応（前回完璧だった設定）★ --- */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
-            
-            /* 三本線を右端に固定 */
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            
             nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
             nav ul.active { right: 0; }
             nav li { margin-bottom: 20px; }
-            
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
             .hero { height: 100vh; padding: 0 10px; }
             .animated-logo { width: 220px; height: 165px; margin-bottom: 15px; }
-            
-            /* スマホの文字を絶対に2行にする */
             .hero p { font-size: min(3.3vw, 14px); white-space: nowrap; line-height: 2.2; letter-spacing: 0; }
-            
             .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
-            .service-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -130,13 +79,7 @@
                 </svg>
             </a>
         </div>
-        
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
+        <div class="hamburger"><span></span><span></span><span></span></div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -147,7 +90,6 @@
             </ul>
         </nav>
     </header>
-
     <section class="hero">
         <div class="hero-bg">
             <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture>
@@ -155,7 +97,6 @@
             </video>
             <div class="hero-overlay"></div>
         </div>
-
         <svg class="animated-logo" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <mask id="cutout-hero">
@@ -171,10 +112,9 @@
         </svg>
         <p style="animation: textAppear 3s forwards;">すべての荷物に「絶対の安全」と「確かな品質」を。<br>ゼロからイチへ、ビジネスと暮らしを加速させる新時代のロジスティクス。</p>
     </section>
-
     <section class="news-section fade-in">
         <div class="news-container">
-            <h2 class="section-title" style="margin-bottom: 40px;">NEWS</h2>
+            <h2 class="section-title">NEWS</h2>
             <div class="news-item">
                 <div class="news-date">2024.11.01</div>
                 <div class="news-tag">お知らせ</div>
@@ -183,113 +123,50 @@
             <div class="news-item">
                 <div class="news-date">2024.10.15</div>
                 <div class="news-tag">事業拡大</div>
-                <div class="news-text">AmazonDSP2.0オフィシャルパートナーとしての稼働を開始しました。</div>
-            </div>
-            <div class="news-item">
-                <div class="news-date">2024.09.01</div>
-                <div class="news-tag">採用情報</div>
-                <div class="news-text">事業拡大に伴い、新規配送ドライバーの募集を開始しました。</div>
+                <div class="news-text">Amazon 2.0オフィシャルパートナーとしての稼働を開始しました。</div>
             </div>
         </div>
     </section>
-
     <section class="greeting fade-in">
         <div class="greeting-content">
-            <h2>GREETING<br><span style="font-size: 16px; color: #888; letter-spacing: 1px;">代表挨拶</span></h2>
+            <h2>GREETING</h2>
             <p>私たちの使命は、目の前の一つの荷物に誠心誠意向き合い、お客様の期待を超える配送サービスを提供し続けることです。</p>
-            <p>止まらない物流という社会のインフラを支え、お客様の大切なお荷物をドライバー一人一人の手で「安心」「安全」にお届けすることを、私たちは何よりも大切にしています。</p>
-            <p>私たちは現状に満足することなく、常に「挑戦」の歩みを止めません。地域や業界を牽引する総合的な物流パートナーへと成長を続け、「新しいビジネスの形」や「豊かな社会」の実現に貢献していきます。</p>
-            <p>これからも一つひとつのご依頼に真摯に向き合い、皆様から長く信頼される企業を目指してまいります。</p>
-            <p style="text-align: right; margin-top: 50px; font-size: 18px; color: #ffffff;">株式会社zeroONE<br>代表取締役 <strong>大八木 航輝</strong></p>
+            <p>止まらない物流という社会のインフラを支え、お客様の大切なお荷物を「安心」「安全」にお届けすることを、何よりも大切にしています。</p>
+            <p style="text-align: right; margin-top: 50px;">株式会社zeroONE<br>代表取締役 <strong>大八木 航輝</strong></p>
         </div>
     </section>
-
-    <div class="container fade-in">
-        <h2 class="section-title">SERVICE</h2>
-        <div class="service-grid">
-            <div class="teaser-box">
-                <h3>ロジスティクス事業</h3>
-                <p>軽貨物運送事業を核とし、AmazonDSP2.0オフィシャルパートナーとして、信頼とスピードを両立した配送サービスを提供。社会のインフラを最前線で支えます。</p>
-                <a href="service.html" class="more-btn">詳細を見る</a>
-            </div>
-            <div class="teaser-box">
-                <h3>映像・コンテンツ制作</h3>
-                <p>企業プロモーションやSNS動画など、企画から撮影・編集まで一貫してサポート。クリエイティブな発想で、お客様のブランドの魅力を最大限に引き出します。</p>
-                <a href="service.html" class="more-btn">詳細を見る</a>
-            </div>
-            <div class="teaser-box">
-                <h3>アパレル事業</h3>
-                <p>時代を捉えたファッション性と、ゼロからONEを創り出すブランドスピリットを体現。企画から販売まで自社で行い、お客様に独自のスタイルをご提案します。</p>
-                <a href="service.html" class="more-btn">詳細を見る</a>
-            </div>
-        </div>
-    </div>
-
     <footer>
         <div class="footer-logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-footer">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
-            </a>
+            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+              <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
+              <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+              <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
+            </svg>
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="service.html">Service</a>
             <a href="company.html">Company</a>
             <a href="recruit.html">Recruit</a>
-            <a href="privacy.html">Privacy Policy</a>
+            <a href="contact.html">Contact</a>
         </div>
-        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
+        <div class="copyright">&copy; 2024 zeroONE Inc.</div>
     </footer>
-
     <script>
-        // 動画を裏側で再生させるだけのシンプルなプログラム
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('bg-video');
-            if (video) {
-                video.muted = true; 
-                video.play().catch(function(e) {
-                    // もしOSにブロックされたら、ユーザーが画面をタッチした時に再生する
-                    var startVideo = function() {
-                        video.play();
-                        document.body.removeEventListener('touchstart', startVideo);
-                        document.body.removeEventListener('click', startVideo);
-                    };
-                    document.body.addEventListener('touchstart', startVideo);
-                    document.body.addEventListener('click', startVideo);
-                });
-            }
+            if (video) { video.muted = true; video.play().catch(function() {
+                var startVideo = function() { video.play(); document.body.removeEventListener('touchstart', startVideo); };
+                document.body.addEventListener('touchstart', startVideo);
+            }); }
         });
-
-        // ハンバーガーメニュー
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('nav ul');
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navUl.classList.toggle('active');
-        });
-
-        // フェードイン
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navUl.classList.toggle('active'); });
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => {
-                if (!entry.isIntersecting) return;
-                entry.target.classList.add('appear');
-                observer.unobserve(entry.target);
-            });
-        }, appearOptions);
+            entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add('appear'); observer.unobserve(entry.target); });
+        }, { threshold: 0.15 });
         faders.forEach(fader => { appearOnScroll.observe(fader); });
     </script>
 </body>
