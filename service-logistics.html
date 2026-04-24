@@ -16,9 +16,20 @@
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
         
-        /* ハンバーガーボタン（メニューより上に来るようz-indexを2001に修正） */
+        /* ハンバーガーボタン */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+
+        /* スマホ用 全画面中央メニュー */
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(17, 17, 17, 0.98); display: flex; justify-content: center; align-items: center;
+            z-index: 2000; opacity: 0; pointer-events: none; transition: 0.4s;
+        }
+        .mobile-menu.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
+        .mobile-menu li { margin: 30px 0; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; }
 
         /* --- ヒーローセクション --- */
         .detail-hero { 
@@ -29,25 +40,19 @@
         .detail-hero p { font-size: 16px; color: #ccc; letter-spacing: 2px; }
 
         .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
-        
-        /* --- リード文 --- */
         .lead-text { text-align: center; font-size: 18px; line-height: 2.2; color: #ddd; margin-bottom: 80px; max-width: 800px; margin-left: auto; margin-right: auto; }
 
-        /* --- 5本柱（グリッドレイアウト） --- */
         .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 80px; }
-        
         .pillar-card { background: #1a1a1a; padding: 40px 30px; border-radius: 8px; border-top: 4px solid #fff; transition: 0.4s; position: relative; overflow: hidden; }
         .pillar-card:hover { transform: translateY(-10px); background: #222; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .pillar-number { position: absolute; top: 10px; right: 20px; font-size: 60px; font-weight: bold; color: rgba(255,255,255,0.03); line-height: 1; }
         .pillar-card h3 { font-size: 22px; margin-bottom: 15px; color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
         .pillar-card p { font-size: 15px; color: #aaa; line-height: 1.8; margin: 0; }
 
-        /* --- 戻るボタン --- */
         .back-link { text-align: center; margin-top: 40px; }
         .back-link a { display: inline-block; padding: 15px 40px; border: 1px solid #555; color: #fff; text-decoration: none; font-size: 14px; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
         .back-link a:hover { background: #fff; color: #000; border-color: #fff; }
 
-        /* --- フッター --- */
         footer { padding: 80px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 40px 0; }
@@ -55,22 +60,17 @@
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; }
 
-        /* --- スクロールアニメーション --- */
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
 
-        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            nav ul { display: none; }
             
-            /* ★ ここから：真ん中にドカンと全画面で出る設定 */
-            nav ul { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(17, 17, 17, 0.98); flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 2000; opacity: 0; pointer-events: none; }
-            nav ul.active { opacity: 1; pointer-events: auto; }
-            nav li { margin-bottom: 40px; }
-            nav a { font-size: 26px; letter-spacing: 4px; }
-            /* ★ ここまで */
+            .mobile-menu li { margin-bottom: 40px; }
+            .mobile-menu a { font-size: 26px; letter-spacing: 4px; }
 
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
@@ -105,6 +105,16 @@
         </nav>
     </header>
 
+    <div class="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
     <section class="detail-hero">
         <h1 class="fade-in">Logistics</h1>
         <p class="fade-in">ロジスティクス事業</p>
@@ -123,25 +133,21 @@
                 <h3>SAFETY <span style="font-size: 14px; color: #888; font-weight: normal;">(安全性)</span></h3>
                 <p>徹底した安全運行管理を最優先しています。全車両の定期点検はもちろん、ドライバーへの継続的な安全講習を実施し、日々の業務における事故・トラブルゼロを追求し続けます。</p>
             </div>
-
             <div class="pillar-card fade-in">
                 <div class="pillar-number">02</div>
                 <h3>QUALITY <span style="font-size: 14px; color: #888; font-weight: normal;">(品質)</span></h3>
                 <p>大切なお荷物を傷つけない丁寧な取り扱いは物流の基本です。それに加え、清潔感のある身だしなみと正確な時間遵守を徹底し、お客様の期待を超える配送の質を常に維持します。</p>
             </div>
-
             <div class="pillar-card fade-in">
                 <div class="pillar-number">03</div>
                 <h3>DATA MANAGEMENT <span style="font-size: 14px; color: #888; font-weight: normal;">(データ管理)</span></h3>
                 <p>Amazon 配達アプリによる高度なデジタルシステムに加え、日々の業務連絡に公式LINEを導入。スケジュールの共有や報告作業をスマホ一つで『簡易化』し、ドライバーの負担を減らす徹底した業務効率化を実現しています。</p>
             </div>
-
             <div class="pillar-card fade-in">
                 <div class="pillar-number">04</div>
                 <h3>HOSPITALITY <span style="font-size: 14px; color: #888; font-weight: normal;">(ホスピタリティ)</span></h3>
                 <p>配送の「最後の一歩（ラストワンマイル）」に心を込めています。エンドユーザー様への明るい挨拶と丁寧なコミュニケーションにより、荷物を受け取る方へ安心と喜びをお届けします。</p>
             </div>
-
             <div class="pillar-card fade-in">
                 <div class="pillar-number">05</div>
                 <h3>HUMAN RESOURCES <span style="font-size: 14px; color: #888; font-weight: normal;">(ヒューマンリソース)</span></h3>
@@ -155,31 +161,16 @@
     </div>
 
     <footer>
-        <div class="footer-logo">
-            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-              <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-              <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-              <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-            </svg>
-        </div>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="service.html">Service</a>
-            <a href="company.html">Company</a>
-            <a href="recruit.html">Recruit</a>
-            <a href="contact.html">Contact</a>
-        </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
 
     <script>
         const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('nav ul');
+        const mobileMenu = document.querySelector('.mobile-menu');
         hamburger.addEventListener('click', () => { 
             hamburger.classList.toggle('active'); 
-            navUl.classList.toggle('active'); 
-            // ★ メニューが開いた時、裏画面がスクロールしないようにする
-            document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
+            mobileMenu.classList.toggle('active'); 
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
         const faders = document.querySelectorAll('.fade-in');
