@@ -8,36 +8,78 @@
         /* --- 全体設定 --- */
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         
+        /* --- 背景モーション映像設定 --- */
+        .company-video-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2; overflow: hidden; }
+        .company-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        video::-webkit-media-controls { display: none !important; }
+        video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+        /* 動画を少し暗くして落ち着かせるフィルター */
+        .company-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(17, 17, 17, 0.75); z-index: -1; pointer-events: none; }
+
         /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(26, 26, 26, 0.95); border-bottom: 1px solid #333333; position: sticky; top: 0; z-index: 1000; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
 
-        /* --- コンテナ設定 --- */
-        .container { max-width: 1000px; margin: 0 auto; padding: 80px 20px; }
+        /* ハンバーガーボタン */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
+        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+
+        /* --- コンテナ設定（動画の上で見やすくするために半透明の黒いパネルにする） --- */
+        .container { 
+            max-width: 1000px; 
+            margin: 140px auto 80px; 
+            padding: 60px 40px; 
+            background: rgba(20, 20, 20, 0.65); 
+            backdrop-filter: blur(10px); 
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 8px; 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
         .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
         
+        /* --- スクロールアニメーション --- */
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
+
         /* --- 会社概要テーブル --- */
-        .info-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
-        .info-table th, .info-table td { padding: 25px 20px; border-bottom: 1px solid #333; text-align: left; }
+        .info-table { width: 100%; border-collapse: collapse; }
+        .info-table th, .info-table td { padding: 25px 20px; border-bottom: 1px solid rgba(255,255,255,0.1); text-align: left; vertical-align: top; }
+        .info-table tr:last-child th, .info-table tr:last-child td { border-bottom: none; }
         .info-table th { width: 30%; color: #888; font-weight: normal; font-size: 14px; }
-        .info-table td { font-size: 16px; color: #eee; }
+        .info-table td { font-size: 16px; color: #eee; line-height: 1.8; }
 
         /* --- フッター --- */
-        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        footer { position: relative; z-index: 1; padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
 
+        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
-            .info-table th, .info-table td { display: block; width: 100%; padding: 15px 10px; }
-            .info-table th { border-bottom: none; color: #666; }
+            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            
+            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+            nav ul.active { right: 0; }
+            nav li { margin-bottom: 20px; }
+            
+            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .container { margin: 100px 20px 60px; padding: 40px 20px; }
+            .info-table th, .info-table td { display: block; width: 100%; padding: 15px 10px; box-sizing: border-box; }
+            .info-table th { border-bottom: none; color: #888; padding-bottom: 5px; }
+            .info-table td { padding-top: 0; margin-bottom: 10px; }
         }
     </style>
 </head>
@@ -60,6 +102,13 @@
                 </svg>
             </a>
         </div>
+        
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -71,31 +120,69 @@
         </nav>
     </header>
 
-    <div class="container">
+    <div class="company-video-wrapper">
+        <video class="company-video" autoplay loop muted playsinline disablePictureInPicture>
+            <source src="https://videos.pexels.com/video-files/2731176/2731176-hd_1920_1080_24fps.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="company-overlay"></div>
+
+    <div class="container fade-in">
         <h2 class="section-title">COMPANY</h2>
         <table class="info-table">
-            <tr><th>会社名</th><td>株式会社zeroONE</td></tr>
-            <tr><th>代表者</th><td>代表取締役 大八木 航輝</td></tr>
-            <tr><th>設立</th><td>2024年8月23日</td></tr>
-            <tr><th>所在地</th><td>〒252-0216 神奈川県相模原市中央区清新6-10-21-415</td></tr>
-            <tr><th>電話番号</th><td>070-1437-8545</td></tr>
-            <tr><th>メールアドレス</th><td>syk.zeroone@gmail.com</td></tr>
-            <tr><th>事業内容</th><td>
-                軽貨物運送事業<br>
-                Amazon 2.0 オフィシャルパートナー<br>
-                映像・コンテンツ制作事業<br>
-                アパレル事業
-            </td></tr>
+            <tr>
+                <th>会社名</th>
+                <td>株式会社zeroONE</td>
+            </tr>
+            <tr>
+                <th>代表者</th>
+                <td>代表取締役 大八木 航輝</td>
+            </tr>
+            <tr>
+                <th>設立</th>
+                <td>2024年8月23日</td>
+            </tr>
+            <tr>
+                <th>所在地</th>
+                <td>〒252-0216 神奈川県相模原市中央区清新6-10-21-415</td>
+            </tr>
+            <tr>
+                <th>電話番号</th>
+                <td>070-1437-8545</td>
+            </tr>
+            <tr>
+                <th>メールアドレス</th>
+                <td>syk.zeroone@gmail.com</td>
+            </tr>
+            <tr>
+                <th>事業内容</th>
+                <td>
+                    軽貨物運送事業<br>
+                    Amazon 2.0 オフィシャルパートナー<br>
+                    映像・コンテンツ制作事業<br>
+                    アパレル事業
+                </td>
+            </tr>
         </table>
     </div>
 
     <footer>
         <div class="footer-logo">
-            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-              <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-              <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-              <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-            </svg>
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <mask id="cutout-footer">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
+                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
@@ -106,5 +193,42 @@
         </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
+
+    <script>
+        // 動画のスマホでの再生補助
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.querySelector('.company-video');
+            if (video) {
+                video.muted = true; 
+                video.play().catch(function() {
+                    var startVideo = function() {
+                        video.play();
+                        document.body.removeEventListener('touchstart', startVideo);
+                    };
+                    document.body.addEventListener('touchstart', startVideo);
+                });
+            }
+        });
+
+        // ハンバーガーメニュー
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navUl.classList.toggle('active');
+        });
+
+        // フェードイン
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('appear');
+                observer.unobserve(entry.target);
+            });
+        }, appearOptions);
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
+    </script>
 </body>
 </html>
