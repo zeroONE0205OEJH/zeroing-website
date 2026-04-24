@@ -48,8 +48,13 @@
         .info-table th { width: 30%; color: #888; font-weight: normal; font-size: 13px; letter-spacing: 1px; padding-top: 31px; }
         .info-table td { font-size: 16px; color: #eee; line-height: 1.9; }
 
-        footer { padding: 60px 20px; text-align: center; background: #000; position: relative; border-top: 1px solid #111; }
-        .copyright { color: #444; font-size: 13px; letter-spacing: 1px; }
+        /* --- フッター（ホームと統一） --- */
+        footer { padding: 80px 20px 40px; text-align: center; background: #000; border-top: 1px solid #111; display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; }
+        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
+        .footer-links a:hover { color: #fff; }
+        .copyright { color: #444; font-size: 13px; letter-spacing: 1px; margin-top: 20px; }
 
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
@@ -141,6 +146,23 @@
     </div>
 
     <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
+                </svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
 
