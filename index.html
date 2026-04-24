@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -14,7 +12,8 @@
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
+        /* ★ z-indexを2001にして、メニューより上に来るように変更 */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #111; }
@@ -49,9 +48,14 @@
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
-            nav ul.active { right: 0; }
-            nav li { margin-bottom: 20px; }
+            
+            /* ★ ここから：真ん中にドカンと全画面で出る設定 */
+            nav ul { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(17, 17, 17, 0.98); flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 2000; opacity: 0; pointer-events: none; }
+            nav ul.active { opacity: 1; pointer-events: auto; }
+            nav li { margin-bottom: 40px; }
+            nav a { font-size: 26px; letter-spacing: 4px; }
+            /* ★ ここまで */
+
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -166,7 +170,12 @@
         });
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('nav ul');
-        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navUl.classList.toggle('active'); });
+        hamburger.addEventListener('click', () => { 
+            hamburger.classList.toggle('active'); 
+            navUl.classList.toggle('active'); 
+            // ★ メニューが開いた時、裏画面がスクロールしないようにする
+            document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
+        });
         const faders = document.querySelectorAll('.fade-in');
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add('appear'); observer.unobserve(entry.target); });
