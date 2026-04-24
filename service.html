@@ -104,3 +104,73 @@
     </footer>
 </body>
 </html>
+        
+        @media (max-width: 900px) {
+            .service-card { flex-direction: column !important; }
+            .service-img, .service-info { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs><mask id="cutout-header"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
+                  <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
+                </svg>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="recruit.html">Recruit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="service-card">
+            <div class="service-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80"></div>
+            <div class="service-info">
+                <h2>Logistics<br><span style="font-size:16px; color:#666;">ロジスティクス事業</span></h2>
+                <p>軽貨物運送を核とし、Amazon 2.0オフィシャルパートナーとして高品質な配送を提供。都心エリアを中心に、安全・迅速・確実な物流インフラを支えます。</p>
+                <a href="service-logistics.html" class="detail-btn">詳細を見る</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80"></div>
+            <div class="service-info">
+                <h2>Creative<br><span style="font-size:16px; color:#666;">映像・コンテンツ制作事業</span></h2>
+                <p>企業プロモーションからSNS動画まで、戦略的な視点でクリエイティブを制作。ゼロからONEを創り出す、心に響くストーリーテリングを提供します。</p>
+                <a href="service-creative.html" class="detail-btn">詳細を見る</a>
+            </div>
+        </div>
+
+        <div class="service-card">
+            <div class="service-img"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80"></div>
+            <div class="service-info">
+                <h2>Apparel<br><span style="font-size:16px; color:#666;">アパレル事業</span></h2>
+                <p>独自のブランドアイデンティティを展開。企画・デザインから販売まで一貫して行い、時代を捉えた新しいスタイルを提案します。</p>
+                <a href="service-apparel.html" class="detail-btn">詳細を見る</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div style="color:#555;">&copy; 2024 zeroONE Inc.</div>
+    </footer>
+</body>
+</html>
