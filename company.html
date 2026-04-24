@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Company | 株式会社zeroONE</title>
     <style>
         /* --- 全体設定 --- */
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         
-        /* --- 背景モーション映像設定 --- */
-        .company-video-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -2; overflow: hidden; }
+        /* --- ★背景モーション映像設定（重なり順を修正） --- */
+        .company-video-wrapper { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; overflow: hidden; }
         .company-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         video::-webkit-media-controls { display: none !important; }
         video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
-        /* 動画を少し暗くして落ち着かせるフィルター */
-        .company-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(17, 17, 17, 0.75); z-index: -1; pointer-events: none; }
+        
+        /* 動画を暗くするフィルター */
+        .company-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(17, 17, 17, 0.75); z-index: 1; pointer-events: none; }
 
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
@@ -27,7 +31,7 @@
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
 
-        /* --- コンテナ設定（動画の上で見やすくするために半透明の黒いパネルにする） --- */
+        /* --- コンテナ設定（★動画の上に配置するため z-index: 10 を設定） --- */
         .container { 
             max-width: 1000px; 
             margin: 140px auto 80px; 
@@ -38,7 +42,7 @@
             border-radius: 8px; 
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            z-index: 1;
+            z-index: 10;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
@@ -54,8 +58,8 @@
         .info-table th { width: 30%; color: #888; font-weight: normal; font-size: 14px; }
         .info-table td { font-size: 16px; color: #eee; line-height: 1.8; }
 
-        /* --- フッター --- */
-        footer { position: relative; z-index: 1; padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        /* --- フッター（★ z-index: 10 を設定） --- */
+        footer { position: relative; z-index: 10; padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
