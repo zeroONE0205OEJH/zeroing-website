@@ -3,82 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Logistics Service | 株式会社zeroONE</title>
+    <title>Service | 株式会社zeroONE</title>
     <style>
         /* --- 全体設定 --- */
-        html { scroll-behavior: smooth; }
-        body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
         /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
-        .logo svg { height: 60px; width: auto; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
-        nav a:hover { color: #ffffff; }
-        
-        /* ハンバーガーボタン（メニューより上に来るようz-indexを2001に修正） */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; }
-        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(5, 5, 5, 0.9); position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid #222; }
+        .logo svg { height: 50px; width: auto; }
+        nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
+        nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
+        nav.pc-nav a:hover { color: #fff; }
 
-        /* --- ヒーローセクション --- */
-        .detail-hero { 
-            height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; text-align: center; margin-top: 0;
-            background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.9)), url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-        }
-        .detail-hero h1 { font-size: 48px; letter-spacing: 4px; margin-bottom: 10px; color: #fff; }
-        .detail-hero p { font-size: 16px; color: #ccc; letter-spacing: 2px; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 80px 20px; }
-        
-        /* --- リード文 --- */
-        .lead-text { text-align: center; font-size: 18px; line-height: 2.2; color: #ddd; margin-bottom: 80px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5, 5, 5, 0.98); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 0.4s; }
+        .mobile-menu.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
+        .mobile-menu li { margin: 30px 0; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; }
 
-        /* --- 5本柱（グリッドレイアウト） --- */
-        .pillars-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; margin-bottom: 80px; }
-        
-        .pillar-card { background: #1a1a1a; padding: 40px 30px; border-radius: 8px; border-top: 4px solid #fff; transition: 0.4s; position: relative; overflow: hidden; }
-        .pillar-card:hover { transform: translateY(-10px); background: #222; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .pillar-number { position: absolute; top: 10px; right: 20px; font-size: 60px; font-weight: bold; color: rgba(255,255,255,0.03); line-height: 1; }
-        .pillar-card h3 { font-size: 22px; margin-bottom: 15px; color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
-        .pillar-card p { font-size: 15px; color: #aaa; line-height: 1.8; margin: 0; }
+        /* --- サービス内容 --- */
+        .container { max-width: 1100px; margin: 140px auto 80px; padding: 0 20px; }
+        .section-title { text-align: center; font-size: 32px; letter-spacing: 6px; margin-bottom: 80px; font-weight: 300; }
 
-        /* --- 戻るボタン --- */
-        .back-link { text-align: center; margin-top: 40px; }
-        .back-link a { display: inline-block; padding: 15px 40px; border: 1px solid #555; color: #fff; text-decoration: none; font-size: 14px; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
-        .back-link a:hover { background: #fff; color: #000; border-color: #fff; }
+        .service-list { display: flex; flex-direction: column; gap: 100px; }
+        .service-card { display: flex; align-items: center; gap: 60px; opacity: 0; transform: translateY(40px); transition: 1s; }
+        .service-card.appear { opacity: 1; transform: translateY(0); }
+        .service-card:nth-child(even) { flex-direction: row-reverse; }
 
-        /* --- フッター --- */
+        .service-img { width: 50%; height: 400px; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .service-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .service-card:hover .service-img img { transform: scale(1.05); }
+
+        .service-info { width: 45%; }
+        .service-info h2 { font-size: 36px; letter-spacing: 2px; margin-bottom: 10px; display: flex; flex-direction: column; }
+        .service-info h2 span { font-size: 14px; color: #888; letter-spacing: 1px; font-weight: normal; margin-top: 5px; }
+        .service-info p { color: #aaa; line-height: 2; margin-bottom: 30px; }
+
+        .btn-view { display: inline-block; padding: 15px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 14px; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
+        .btn-view:hover { background: #fff; color: #000; }
+
         footer { padding: 80px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
-        .footer-logo svg { height: 80px; width: auto; } 
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 40px 0; }
-        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
-        .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; }
 
-        /* --- スクロールアニメーション --- */
-        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in.appear { opacity: 1; transform: translateY(0); }
-
-        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
-            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            
-            /* ★ ここから：真ん中にドカンと全画面で出る設定 */
-            nav ul { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(17, 17, 17, 0.98); flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 2000; opacity: 0; pointer-events: none; }
-            nav ul.active { opacity: 1; pointer-events: auto; }
-            nav li { margin-bottom: 40px; }
-            nav a { font-size: 26px; letter-spacing: 4px; }
-            /* ★ ここまで */
-
-            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .hamburger.active span:nth-child(2) { opacity: 0; }
-            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-            
-            .detail-hero h1 { font-size: 32px; }
-            .lead-text { font-size: 15px; text-align: left; padding: 0 10px; }
-            .pillar-card { padding: 30px 20px; }
+            nav.pc-nav { display: none; }
+            .hamburger { display: flex; }
+            .service-card, .service-card:nth-child(even) { flex-direction: column; gap: 30px; }
+            .service-img, .service-info { width: 100%; height: auto; }
+            .service-img { height: 250px; }
+            .service-info h2 { font-size: 28px; }
         }
     </style>
 </head>
@@ -87,14 +64,13 @@
         <div class="logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="cutout-header"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
+                  <defs><mask id="m"><rect width="200" height="150" fill="white"/><rect x="90" y="5" width="20" height="90" fill="black"/><polygon points="65,30 90,5 90,30" fill="black"/></mask></defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="white" mask="url(#m)"/></mask></defs>
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" fill="white">zero<tspan font-weight="bold">ONE</tspan></text>
                 </svg>
             </a>
         </div>
-        <div class="hamburger"><span></span><span></span><span></span></div>
-        <nav>
+        <nav class="pc-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="service.html">Service</a></li>
@@ -103,90 +79,66 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </header>
 
-    <section class="detail-hero">
-        <h1 class="fade-in">Logistics</h1>
-        <p class="fade-in">ロジスティクス事業</p>
-    </section>
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 
     <div class="container">
-        <div class="lead-text fade-in">
-            株式会社zeroONEのロジスティクス事業は、軽貨物運送を核とし、Amazon 2.0オフィシャルパートナーとして高品質な配送サービスを提供しています。<br>
-            神奈川県相模原市を中心に、ただ荷物を運ぶだけでなく、社会のインフラとして「絶対の安全」と「確かな品質」をお約束します。<br>
-            私たちが誇る、5つの強みをご紹介します。
-        </div>
-
-        <div class="pillars-grid">
-            <div class="pillar-card fade-in">
-                <div class="pillar-number">01</div>
-                <h3>SAFETY <span style="font-size: 14px; color: #888; font-weight: normal;">(安全性)</span></h3>
-                <p>徹底した安全運行管理を最優先しています。全車両の定期点検はもちろん、ドライバーへの継続的な安全講習を実施し、日々の業務における事故・トラブルゼロを追求し続けます。</p>
+        <h1 class="section-title">SERVICE</h1>
+        <div class="service-list">
+            <div class="service-card">
+                <div class="service-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Logistics"></div>
+                <div class="service-info">
+                    <h2>Logistics<span>ロジスティクス事業</span></h2>
+                    <p>神奈川県相模原市を中心に、軽貨物運送のプロフェッショナルとして高品質な配送サービスを提供。Amazon 2.0パートナーとして物流の未来を支えます。</p>
+                    <a href="service-logistics.html" class="btn-view">詳細を見る</a>
+                </div>
             </div>
-
-            <div class="pillar-card fade-in">
-                <div class="pillar-number">02</div>
-                <h3>QUALITY <span style="font-size: 14px; color: #888; font-weight: normal;">(品質)</span></h3>
-                <p>大切なお荷物を傷つけない丁寧な取り扱いは物流の基本です。それに加え、清潔感のある身だしなみと正確な時間遵守を徹底し、お客様の期待を超える配送の質を常に維持します。</p>
+            <div class="service-card">
+                <div class="service-img"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80" alt="Creative"></div>
+                <div class="service-info">
+                    <h2>Creative<span>動画編集・コンテンツ制作事業</span></h2>
+                    <p>企業プロモーションからSNS特化型動画まで。お預かりした素材の魅力を最大限に引き出し、心に刺さるコンテンツへと昇華させます。</p>
+                    <a href="service-creative.html" class="btn-view">詳細を見る</a>
+                </div>
             </div>
-
-            <div class="pillar-card fade-in">
-                <div class="pillar-number">03</div>
-                <h3>DATA MANAGEMENT <span style="font-size: 14px; color: #888; font-weight: normal;">(データ管理)</span></h3>
-                <p>Amazon 配達アプリによる高度なデジタルシステムに加え、日々の業務連絡に公式LINEを導入。スケジュールの共有や報告作業をスマホ一つで『簡易化』し、ドライバーの負担を減らす徹底した業務効率化を実現しています。</p>
+            <div class="service-card">
+                <div class="service-img"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80" alt="Apparel"></div>
+                <div class="service-info">
+                    <h2>Apparel<span>アパレル事業</span></h2>
+                    <p>「ゼロからイチを纏う」。自社ブランドの企画・デザイン・販売を一貫して展開。時代を捉えた新しいスタイルを提案します。</p>
+                    <a href="service-apparel.html" class="btn-view">詳細を見る</a>
+                </div>
             </div>
-
-            <div class="pillar-card fade-in">
-                <div class="pillar-number">04</div>
-                <h3>HOSPITALITY <span style="font-size: 14px; color: #888; font-weight: normal;">(ホスピタリティ)</span></h3>
-                <p>配送の「最後の一歩（ラストワンマイル）」に心を込めています。エンドユーザー様への明るい挨拶と丁寧なコミュニケーションにより、荷物を受け取る方へ安心と喜びをお届けします。</p>
-            </div>
-
-            <div class="pillar-card fade-in">
-                <div class="pillar-number">05</div>
-                <h3>HUMAN RESOURCES <span style="font-size: 14px; color: #888; font-weight: normal;">(ヒューマンリソース)</span></h3>
-                <p>未経験からでもプロのドライバーへ育てる独自の研修プログラムを用意。ドライバー一人ひとりが仕事に責任と誇りを持てる手厚いサポート環境こそが、私たちのサービスの最大の原動力です。</p>
-            </div>
-        </div>
-
-        <div class="back-link fade-in">
-            <a href="service.html">Service一覧へ戻る</a>
         </div>
     </div>
 
     <footer>
-        <div class="footer-logo">
-            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-              <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-              <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-              <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-            </svg>
-        </div>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="service.html">Service</a>
-            <a href="company.html">Company</a>
-            <a href="recruit.html">Recruit</a>
-            <a href="contact.html">Contact</a>
-        </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
 
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('nav ul');
-        hamburger.addEventListener('click', () => { 
-            hamburger.classList.toggle('active'); 
-            navUl.classList.toggle('active'); 
-            // ★ メニューが開いた時、裏画面がスクロールしないようにする
-            document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add('appear'); observer.unobserve(entry.target); });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('appear'); });
         }, { threshold: 0.15 });
-        faders.forEach(fader => { appearOnScroll.observe(fader); });
+        document.querySelectorAll('.service-card').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
