@@ -11,7 +11,7 @@
         /* --- 全体設定 --- */
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         
-        /* --- ★ Recruitページと同じ仕組みの背景動画 --- */
+        /* --- ★ 背景動画 --- */
         .bg-video {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             object-fit: cover; z-index: -2; pointer-events: none;
@@ -43,7 +43,7 @@
             border-radius: 8px; 
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            position: relative; /* z-indexなしで自然に重ねる */
+            position: relative;
         }
         .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
         
@@ -154,7 +154,7 @@
     </footer>
 
     <script>
-        // Recruitページと同じ、iPadのSafariで動画を強制再生させる記述
+        // 動画再生補助スクリプト
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.querySelector('.bg-video');
             if (video) {
