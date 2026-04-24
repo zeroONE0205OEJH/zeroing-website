@@ -12,9 +12,10 @@
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
-        /* ★ z-indexを2001にして、メニューより上に来るように変更 */
+        
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+        
         .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
         .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #111; }
         .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
@@ -24,6 +25,7 @@
         .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; position: relative; z-index: 2; }
         @keyframes textAppear { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
         .hero p { position: relative; z-index: 2; color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        
         .news-section { background: #111; padding: 60px 20px; }
         .news-container { max-width: 900px; margin: 0 auto; }
         .news-item { display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid #333; transition: 0.3s; }
@@ -31,34 +33,38 @@
         .news-date { color: #888; font-size: 14px; min-width: 120px; }
         .news-tag { background: #fff; color: #000; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-right: 20px; }
         .news-text { color: #ddd; font-size: 15px; }
+        
         .greeting { background: #1a1a1a; padding: 100px 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; }
         .greeting-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
         .greeting h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
         .greeting p { color: #aaaaaa; font-size: 16px; line-height: 2.1; margin-bottom: 30px; text-align: left; width: 100%; } 
         .greeting strong { color: #ffffff; }
+        
+        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
+        
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
+        
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
             
-            /* ★ ここから：真ん中にドカンと全画面で出る設定 */
             nav ul { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(17, 17, 17, 0.98); flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 2000; opacity: 0; pointer-events: none; }
             nav ul.active { opacity: 1; pointer-events: auto; }
             nav li { margin-bottom: 40px; }
             nav a { font-size: 26px; letter-spacing: 4px; }
-            /* ★ ここまで */
 
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
             .hero { height: 100vh; padding: 0 10px; }
             .animated-logo { width: 220px; height: 165px; margin-bottom: 15px; }
             .hero p { font-size: min(3.3vw, 14px); white-space: nowrap; line-height: 2.2; letter-spacing: 0; }
@@ -143,6 +149,7 @@
             <p style="text-align: right; margin-top: 50px; font-size: 18px; color: #ffffff;">株式会社zeroONE<br>代表取締役 <strong>大八木 航輝</strong></p>
         </div>
     </section>
+    
     <footer>
         <div class="footer-logo">
             <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
@@ -157,9 +164,11 @@
             <a href="company.html">Company</a>
             <a href="recruit.html">Recruit</a>
             <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
         </div>
         <div class="copyright">&copy; 2024 zeroONE Inc.</div>
     </footer>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.getElementById('bg-video');
@@ -173,7 +182,6 @@
         hamburger.addEventListener('click', () => { 
             hamburger.classList.toggle('active'); 
             navUl.classList.toggle('active'); 
-            // ★ メニューが開いた時、裏画面がスクロールしないようにする
             document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
         });
         const faders = document.querySelectorAll('.fade-in');
