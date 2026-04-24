@@ -9,17 +9,29 @@
         body { background-color: #0a0a0a; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
         /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(10, 10, 10, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(10px); }
+        /* ★ z-indexを9999に設定 */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(10, 10, 10, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         .logo svg { height: 60px; width: auto; }
         
         /* PC用ナビゲーション */
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        nav a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
-        nav a:hover { color: #fff; }
+        nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
+        nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
+        nav.pc-nav a:hover { color: #fff; }
 
-        /* ★ハンバーガーボタン（初期状態は隠す） */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1100; position: relative; }
-        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+        /* ★ハンバーガーボタン（右上に絶対配置・z-index: 10000） */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
+
+        /* ★ スマホ用 全画面中央メニュー */
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(10, 10, 10, 0.98); display: flex; justify-content: center; align-items: center;
+            z-index: 9998; opacity: 0; pointer-events: none; transition: 0.4s;
+        }
+        .mobile-menu.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
+        .mobile-menu li { margin: 30px 0; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s; }
 
         /* --- コンテンツ --- */
         .container { max-width: 800px; margin: 150px auto 100px; padding: 0 20px; }
@@ -47,20 +59,13 @@
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
 
-            /* PCメニューを隠し、スマホメニューのスタイルを設定 */
-            nav ul { 
-                position: fixed; top: 0; right: -100%; 
-                width: 100%; height: 100vh; background-color: rgba(10, 10, 10, 0.98); 
-                flex-direction: column; justify-content: center; align-items: center; gap: 40px; 
-                transition: 0.4s; z-index: 1050; backdrop-filter: blur(10px);
-            }
-            nav ul.active { right: 0; }
-            nav a { font-size: 18px; color: #fff; }
+            /* PCメニューを隠す */
+            nav.pc-nav { display: none; }
 
             /* ハンバーガーボタンを表示 */
             .hamburger { display: flex; }
             
-            /* 3本線のアニメーション */
+            /* 3本線が「×」になるアニメーション */
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -84,13 +89,13 @@
             </a>
         </div>
 
-        <div class="hamburger">
+        <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </div>
 
-        <nav>
+        <nav class="pc-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="service.html">Service</a></li>
@@ -100,6 +105,16 @@
             </ul>
         </nav>
     </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 
     <div class="container">
         <h1 class="section-title">CONTACT</h1>
@@ -146,20 +161,14 @@
     </footer>
 
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('nav ul');
+        // ★ メニューの開閉と背景のスクロールロック制御
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
 
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-            navUl.classList.toggle('active');
-        });
-
-        const navLinks = document.querySelectorAll('nav a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navUl.classList.remove('active');
-            });
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
     </script>
 </body>
