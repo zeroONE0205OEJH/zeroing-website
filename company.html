@@ -9,7 +9,7 @@
         /* --- 全体設定 --- */
         body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- 背景設定（前回の静止画を確実に表示） --- */
+        /* --- 背景設定（静止画の確実な表示） --- */
         .bg-image {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920') no-repeat center center/cover;
@@ -20,36 +20,18 @@
             background: rgba(0, 0, 0, 0.75); z-index: -1; pointer-events: none;
         }
         
-        /* --- ヘッダー（全ページ共通・右上固定仕様） --- */
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 40px; background-color: rgba(5, 5, 5, 0.9); 
-            position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; 
-            backdrop-filter: blur(10px); border-bottom: 1px solid #222;
-        }
+        /* --- ヘッダー --- */
+        /* ★ z-indexを9999に設定 */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(5, 5, 5, 0.9); position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); border-bottom: 1px solid #222; }
         .logo svg { height: 50px; width: auto; }
         
         nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
         nav.pc-nav a:hover { color: #fff; }
 
-        /* ハンバーガーボタン（常に右上、メニューより手前に表示） */
-        .hamburger { 
-            display: none; cursor: pointer; flex-direction: column; gap: 6px; 
-            z-index: 2001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%);
-        }
+        /* ハンバーガーボタン（右上に絶対配置） */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
-
-        /* スマホ用 全画面中央メニュー */
-        .mobile-menu {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(5, 5, 5, 0.98); display: flex; justify-content: center; align-items: center;
-            z-index: 2000; opacity: 0; pointer-events: none; transition: 0.4s;
-        }
-        .mobile-menu.active { opacity: 1; pointer-events: auto; }
-        .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
-        .mobile-menu li { margin: 30px 0; }
-        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s; }
 
         /* --- コンテナ設定（ガラス風パネル） --- */
         .container { 
@@ -71,10 +53,22 @@
 
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
+            .logo svg { height: 45px; }
             nav.pc-nav { display: none; }
-            .hamburger { display: flex; }
             
-            /* 三本線が「×」になるアニメーション */
+            /* ★全画面メニュー（z-indexを9998にしてヘッダーの下に潜り込ませる） */
+            .mobile-menu {
+                position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                background-color: rgba(5, 5, 5, 0.98); display: flex;
+                flex-direction: column; justify-content: center; align-items: center;
+                transition: 0.4s; z-index: 9998; opacity: 0; pointer-events: none;
+            }
+            .mobile-menu.active { opacity: 1; pointer-events: auto; }
+            .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
+            .mobile-menu li { margin-bottom: 40px; }
+            .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s; }
+
+            .hamburger { display: flex; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
