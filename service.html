@@ -15,14 +15,9 @@
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
         nav.pc-nav a:hover { color: #fff; }
 
+        /* ハンバーガーボタン（メニューより前面に出るように設定） */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
-
-        .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(5, 5, 5, 0.98); display: flex; justify-content: center; align-items: center; z-index: 2000; opacity: 0; pointer-events: none; transition: 0.4s; }
-        .mobile-menu.active { opacity: 1; pointer-events: auto; }
-        .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
-        .mobile-menu li { margin: 30px 0; }
-        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; }
 
         /* --- サービス内容 --- */
         .container { max-width: 1100px; margin: 140px auto 80px; padding: 0 20px; }
@@ -48,10 +43,29 @@
         footer { padding: 80px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
         .copyright { color: #555; font-size: 14px; }
 
+        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
-            nav.pc-nav { display: none; }
+            .logo svg { height: 45px; }
+            
+            /* ★トップページと同じ、真ん中にドカンと出るフルスクリーンメニューの設定 */
+            nav.pc-nav ul {
+                position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                background-color: rgba(5, 5, 5, 0.98);
+                flex-direction: column; justify-content: center; align-items: center;
+                transition: 0.4s; z-index: 2000; opacity: 0; pointer-events: none;
+            }
+            nav.pc-nav ul.active { opacity: 1; pointer-events: auto; }
+            nav.pc-nav li { margin-bottom: 40px; }
+            nav.pc-nav a { font-size: 26px; letter-spacing: 4px; color: #fff; }
+
             .hamburger { display: flex; }
+            
+            /* ★三本線が「×」になるアニメーション */
+            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
             .service-card, .service-card:nth-child(even) { flex-direction: column; gap: 30px; }
             .service-img, .service-info { width: 100%; height: auto; }
             .service-img { height: 250px; }
@@ -65,7 +79,7 @@
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
                   <defs><mask id="m"><rect width="200" height="150" fill="white"/><rect x="90" y="5" width="20" height="90" fill="black"/><polygon points="65,30 90,5 90,30" fill="black"/></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="white" mask="url(#m)"/></mask></defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="white" mask="url(#m)"/>
                   <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" fill="white">zero<tspan font-weight="bold">ONE</tspan></text>
                 </svg>
             </a>
@@ -81,16 +95,6 @@
         </nav>
         <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </header>
-
-    <div class="mobile-menu" id="mobile-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="service.html">Service</a></li>
-            <li><a href="company.html">Company</a></li>
-            <li><a href="recruit.html">Recruit</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
 
     <div class="container">
         <h1 class="section-title">SERVICE</h1>
@@ -128,11 +132,13 @@
 
     <script>
         const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
+        const navUl = document.querySelector('nav.pc-nav ul');
+        
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            navUl.classList.toggle('active');
+            // ★ メニューが開いているときは背景がスクロールしないようにする
+            document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
         });
 
         const observer = new IntersectionObserver((entries) => {
