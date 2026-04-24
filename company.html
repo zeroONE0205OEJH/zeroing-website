@@ -11,10 +11,17 @@
         /* --- 全体設定 --- */
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         
-        /* --- ★ 背景モーション映像（安定リンク＆絶対配置） --- */
-        .video-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; object-fit: cover; z-index: 0; pointer-events: none; }
-        .video-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(17, 17, 17, 0.75); z-index: 1; pointer-events: none; }
-
+        /* --- ★ Recruitページと同じ仕組みの背景動画 --- */
+        .bg-video {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            object-fit: cover; z-index: -2; pointer-events: none;
+        }
+        .bg-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(17, 17, 17, 0.75); z-index: -1; pointer-events: none;
+        }
+        video::-webkit-media-controls { display: none !important; }
+        
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
         .logo svg { height: 60px; width: auto; }
@@ -25,10 +32,7 @@
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
 
-        /* --- コンテンツ全体を動画の上に乗せるラッパー --- */
-        .content-wrapper { position: relative; z-index: 2; }
-
-        /* --- コンテナ設定（半透明の黒いパネル） --- */
+        /* --- コンテナ設定（ガラス風パネル） --- */
         .container { 
             max-width: 1000px; 
             margin: 140px auto 80px; 
@@ -39,6 +43,7 @@
             border-radius: 8px; 
             border: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative; /* z-indexなしで自然に重ねる */
         }
         .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
         
@@ -50,7 +55,7 @@
         .info-table td { font-size: 16px; color: #eee; line-height: 1.8; }
 
         /* --- フッター --- */
-        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
@@ -66,15 +71,12 @@
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            
             nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
             nav ul.active { right: 0; }
             nav li { margin-bottom: 20px; }
-            
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
             .container { margin: 100px 20px 60px; padding: 40px 20px; }
             .info-table th, .info-table td { display: block; width: 100%; padding: 15px 10px; box-sizing: border-box; }
             .info-table th { border-bottom: none; color: #888; padding-bottom: 5px; }
@@ -83,21 +85,19 @@
     </style>
 </head>
 <body>
+    
+    <video class="bg-video" autoplay loop muted playsinline disablePictureInPicture>
+        <source src="https://videos.pexels.com/video-files/3255275/3255275-hd_1920_1080_25fps.mp4" type="video/mp4">
+    </video>
+    <div class="bg-overlay"></div>
+
     <header>
         <div class="logo">
             <a href="index.html">
                 <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-header">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
+                  <defs><mask id="cutout-header"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
                   <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
                 </svg>
             </a>
         </div>
@@ -113,54 +113,62 @@
         </nav>
     </header>
 
-    <video class="video-bg" autoplay loop muted playsinline>
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-skyscrapers-with-a-great-view-of-the-city-4318-large.mp4" type="video/mp4">
-    </video>
-    <div class="video-overlay"></div>
-
-    <div class="content-wrapper">
-        <div class="container fade-in">
-            <h2 class="section-title">COMPANY</h2>
-            <table class="info-table">
-                <tr><th>会社名</th><td>株式会社zeroONE</td></tr>
-                <tr><th>代表者</th><td>代表取締役 大八木 航輝</td></tr>
-                <tr><th>設立</th><td>2024年8月23日</td></tr>
-                <tr><th>所在地</th><td>〒252-0216 神奈川県相模原市中央区清新6-10-21-415</td></tr>
-                <tr><th>電話番号</th><td>070-1437-8545</td></tr>
-                <tr><th>メールアドレス</th><td>syk.zeroone@gmail.com</td></tr>
-                <tr><th>事業内容</th>
-                    <td>
-                        軽貨物運送事業<br>
-                        Amazon 2.0 オフィシャルパートナー<br>
-                        動画編集・コンテンツ制作事業<br>
-                        アパレル事業
-                    </td>
-                </tr>
-            </table>
-        </div>
-
-        <footer>
-            <div class="footer-logo">
-                <a href="index.html">
-                    <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                      <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                      <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                      <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-                    </svg>
-                </a>
-            </div>
-            <div class="footer-links">
-                <a href="index.html">Home</a>
-                <a href="service.html">Service</a>
-                <a href="company.html">Company</a>
-                <a href="recruit.html">Recruit</a>
-                <a href="contact.html">Contact</a>
-            </div>
-            <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
-        </footer>
+    <div class="container fade-in">
+        <h2 class="section-title">COMPANY</h2>
+        <table class="info-table">
+            <tr><th>会社名</th><td>株式会社zeroONE</td></tr>
+            <tr><th>代表者</th><td>代表取締役 大八木 航輝</td></tr>
+            <tr><th>設立</th><td>2024年8月23日</td></tr>
+            <tr><th>所在地</th><td>〒252-0216 神奈川県相模原市中央区清新6-10-21-415</td></tr>
+            <tr><th>電話番号</th><td>070-1437-8545</td></tr>
+            <tr><th>メールアドレス</th><td>syk.zeroone@gmail.com</td></tr>
+            <tr><th>事業内容</th>
+                <td>
+                    軽貨物運送事業<br>
+                    Amazon 2.0 オフィシャルパートナー<br>
+                    動画編集・コンテンツ制作事業<br>
+                    アパレル事業
+                </td>
+            </tr>
+        </table>
     </div>
 
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
+                </svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
+    </footer>
+
     <script>
+        // Recruitページと同じ、iPadのSafariで動画を強制再生させる記述
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.querySelector('.bg-video');
+            if (video) {
+                video.muted = true; 
+                video.play().catch(function() {
+                    var startVideo = function() {
+                        video.play();
+                        document.body.removeEventListener('touchstart', startVideo);
+                    };
+                    document.body.addEventListener('touchstart', startVideo);
+                });
+            }
+        });
+
         const hamburger = document.querySelector('.hamburger');
         const navUl = document.querySelector('nav ul');
         hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navUl.classList.toggle('active'); });
