@@ -9,7 +9,6 @@
         body { background-color: #0a0a0a; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
         /* --- ヘッダー --- */
-        /* ★ z-indexを9999に設定 */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(10, 10, 10, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         .logo svg { height: 60px; width: auto; }
         
@@ -18,11 +17,11 @@
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav.pc-nav a:hover { color: #fff; }
 
-        /* ★ハンバーガーボタン（右上に絶対配置・z-index: 10000） */
+        /* ハンバーガーボタン（右上に絶対配置） */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
 
-        /* ★ スマホ用 全画面中央メニュー */
+        /* スマホ用 全画面中央メニュー */
         .mobile-menu {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(10, 10, 10, 0.98); display: flex; justify-content: center; align-items: center;
@@ -45,16 +44,32 @@
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: #fff; outline: none; background-color: #151515; }
         .form-group textarea { height: 200px; resize: vertical; }
         
+        /* 必須・任意のバッジ */
+        .badge-req { background-color: #444; color: #fff; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
+        .badge-opt { background-color: #222; color: #888; font-size: 11px; padding: 3px 8px; border-radius: 4px; margin-left: 8px; vertical-align: middle; border: 1px solid #333; }
+
         /* セレクトボックスの矢印カスタム */
         .form-group select { appearance: none; -webkit-appearance: none; background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>'); background-repeat: no-repeat; background-position: right 15px center; background-size: 18px; }
+
+        /* プライバシーポリシーのチェックボックス専用スタイル */
+        .checkbox-group { display: flex; align-items: center; gap: 12px; margin: 40px 0; }
+        .checkbox-group input[type="checkbox"] { width: 22px; height: 22px; margin: 0; cursor: pointer; flex-shrink: 0; appearance: auto; -webkit-appearance: auto; }
+        .checkbox-group label { color: #ccc; font-size: 15px; cursor: pointer; margin: 0; display: flex; align-items: center; }
+        .checkbox-group a { color: #fff; text-decoration: underline; transition: 0.3s; }
+        .checkbox-group a:hover { color: #888; }
 
         .submit-btn { display: block; width: 100%; padding: 20px; background-color: #fff; color: #000; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; letter-spacing: 2px; }
         .submit-btn:hover { background-color: #ccc; }
 
-        footer { padding: 60px 20px; text-align: center; background: #000; border-top: 1px solid #111; }
-        .copyright { color: #444; font-size: 13px; letter-spacing: 1px; }
+        /* --- フッター（復元） --- */
+        footer { padding: 80px 20px 40px; text-align: center; background: #000; border-top: 1px solid #111; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
+        .footer-links a:hover { color: #fff; }
+        .copyright { color: #444; font-size: 13px; letter-spacing: 1px; margin-top: 20px; }
 
-        /* --- ★レスポンシブ設定（スマホ用） --- */
+        /* --- レスポンシブ設定（スマホ用） --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
@@ -120,8 +135,9 @@
         <h1 class="section-title">CONTACT</h1>
         
         <form class="contact-form" action="https://formspree.io/f/あなたのフォームID" method="POST">
+            
             <div class="form-group">
-                <label>お問い合わせ内容の選択</label>
+                <label>お問い合わせ内容の選択 <span class="badge-req">必須</span></label>
                 <select name="問い合わせ種別" required>
                     <option value="" disabled selected>選択してください</option>
                     <option value="配送に関するご相談">配送に関するご相談</option>
@@ -133,23 +149,40 @@
             </div>
 
             <div class="form-group">
-                <label>会社名（法人の場合）</label>
-                <input type="text" name="会社名">
+                <label>貴社名 <span class="badge-opt">任意</span> <span style="font-size:12px; color:#666; margin-left:5px;">※法人のお客様はご記入ください</span></label>
+                <input type="text" name="貴社名">
             </div>
 
             <div class="form-group">
-                <label>お名前</label>
+                <label>部署名 <span class="badge-opt">任意</span></label>
+                <input type="text" name="部署名">
+            </div>
+
+            <div class="form-group">
+                <label>お名前 <span class="badge-req">必須</span></label>
                 <input type="text" name="お名前" required>
             </div>
 
             <div class="form-group">
-                <label>メールアドレス</label>
+                <label>メールアドレス <span class="badge-req">必須</span></label>
                 <input type="email" name="email" required>
             </div>
 
             <div class="form-group">
-                <label>詳しいお問い合わせ内容</label>
+                <label>電話番号 <span class="badge-req">必須</span></label>
+                <input type="tel" name="電話番号" required>
+            </div>
+
+            <div class="form-group">
+                <label>詳しいお問い合わせ内容 <span class="badge-req">必須</span></label>
                 <textarea name="メッセージ" required></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" name="個人情報の取り扱い同意" id="privacy-check" required>
+                <label for="privacy-check">
+                    <a href="privacy.html" target="_blank">プライバシーポリシー</a>に同意する <span class="badge-req">必須</span>
+                </label>
             </div>
 
             <button type="submit" class="submit-btn">送信する</button>
@@ -157,6 +190,23 @@
     </div>
 
     <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
+                </svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
 
