@@ -13,14 +13,27 @@
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
         /* --- ヘッダー & ハンバーガーメニュー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
+        /* ★ z-indexを9999に設定し、メニュー展開時も隠れないように修正 */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(5px); }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
         
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
-        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+        /* ★ ハンバーガーボタン（右上に絶対配置・z-index: 10000） */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
+
+        /* ★ スマホ用 全画面中央メニュー */
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(17, 17, 17, 0.98); display: flex; justify-content: center; align-items: center;
+            z-index: 9998; opacity: 0; pointer-events: none; transition: 0.4s;
+        }
+        .mobile-menu.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
+        .mobile-menu li { margin: 30px 0; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s; }
 
         .container { max-width: 900px; margin: 0 auto; padding: 80px 20px; }
         .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 50px; }
@@ -82,12 +95,11 @@
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
-            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
             
-            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
-            nav ul.active { right: 0; }
-            nav li { margin-bottom: 20px; }
+            nav { display: none; } /* PC用ナビを非表示 */
+            .hamburger { display: flex; }
             
+            /* ★ 三本線が「×」になるアニメーション */
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -123,7 +135,7 @@
             </a>
         </div>
         
-        <div class="hamburger">
+        <div class="hamburger" id="hamburger">
             <span></span>
             <span></span>
             <span></span>
@@ -139,6 +151,16 @@
             </ul>
         </nav>
     </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 
     <section class="recruit-hero">
         <video class="recruit-video" autoplay loop muted playsinline disablePictureInPicture>
@@ -247,12 +269,14 @@
             }
         });
 
-        // ハンバーガーメニュー
-        const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('nav ul');
+        // ★ ハンバーガーメニューの挙動修正
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-            navUl.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            // メニューが開いているときは背景がスクロールしないようにロック
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
         // フェードイン
