@@ -1,107 +1,88 @@
+
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>株式会社zeroONE | 公式サイト</title>
+    <title>株式会社zeroONE | 新時代のロジスティクス</title>
     <style>
-        /* --- 全体設定 --- */
-        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
-
-        /* --- ヘッダー --- */
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 40px; background-color: rgba(5, 5, 5, 0.9); 
-            position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; 
-            backdrop-filter: blur(10px);
-        }
-        .logo svg { height: 50px; width: auto; }
-
-        /* --- デスクトップナビ --- */
-        nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
-        nav.pc-nav a:hover { color: #fff; }
-
-        /* --- スマホ用ハンバーガーボタン（常に右上固定） --- */
-        .hamburger { 
-            display: none; cursor: pointer; flex-direction: column; gap: 6px; 
-            z-index: 2001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%);
-        }
-        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
-
-        /* --- 真ん中にドカンと出るフルスクリーンメニュー --- */
-        .mobile-menu {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(5, 5, 5, 0.98);
-            display: flex; justify-content: center; align-items: center;
-            z-index: 2000; opacity: 0; pointer-events: none; transition: 0.4s;
-        }
-        .mobile-menu.active { opacity: 1; pointer-events: auto; }
-        .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
-        .mobile-menu li { margin: 30px 0; }
-        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s; }
-        .mobile-menu a:hover { color: #888; }
-
-        /* --- メインビジュアル --- */
-        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-        .hero-video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; filter: brightness(0.6); }
-        .hero-content { text-align: center; }
-        .hero-content h1 { font-size: clamp(40px, 8vw, 80px); letter-spacing: 15px; font-weight: 200; margin: 0; }
-
-        /* --- サービスセクション --- */
-        .services { padding: 100px 20px; max-width: 1100px; margin: 0 auto; }
-        .service-item { 
-            display: flex; align-items: center; gap: 50px; margin-bottom: 120px; 
-            opacity: 0; transform: translateY(50px); transition: 1s;
-        }
-        .service-item.appear { opacity: 1; transform: translateY(0); }
-        .service-item:nth-child(even) { flex-direction: row-reverse; }
-        
-        .service-img { width: 50%; height: 350px; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .service-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        
-        .service-text { width: 45%; }
-        .service-text h3 { font-size: 32px; border-left: 3px solid #fff; padding-left: 15px; margin-bottom: 10px; }
-        .service-text p { color: #aaa; line-height: 1.8; margin-bottom: 25px; }
-        
-        .btn-detail { 
-            display: inline-block; padding: 12px 35px; border: 1px solid #fff; 
-            color: #fff; text-decoration: none; font-size: 14px; transition: 0.3s; border-radius: 4px;
-        }
-        .btn-detail:hover { background: #fff; color: #000; }
-
-        /* フッター */
-        footer { padding: 60px 20px; text-align: center; background: #000; border-top: 1px solid #111; }
-        .copyright { color: #555; font-size: 14px; }
-
-        /* --- スマホ対応 --- */
+        html { scroll-behavior: smooth; }
+        body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
+        .logo svg { height: 60px; width: auto; }
+        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
+        nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
+        nav a:hover { color: #ffffff; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
+        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+        .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #111; }
+        .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+        video::-webkit-media-controls { display: none !important; }
+        video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.65); z-index: -1; pointer-events: none; }
+        .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; position: relative; z-index: 2; }
+        @keyframes textAppear { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
+        .hero p { position: relative; z-index: 2; color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .news-section { background: #111; padding: 60px 20px; }
+        .news-container { max-width: 900px; margin: 0 auto; }
+        .news-item { display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid #333; transition: 0.3s; }
+        .news-item:hover { background-color: rgba(255,255,255,0.02); }
+        .news-date { color: #888; font-size: 14px; min-width: 120px; }
+        .news-tag { background: #fff; color: #000; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-right: 20px; }
+        .news-text { color: #ddd; font-size: 15px; }
+        .greeting { background: #1a1a1a; padding: 100px 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; }
+        .greeting-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .greeting h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
+        .greeting p { color: #aaaaaa; font-size: 16px; line-height: 2.1; margin-bottom: 30px; text-align: left; width: 100%; } 
+        .greeting strong { color: #ffffff; }
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
+        .footer-links a:hover { color: #fff; }
+        .copyright { color: #555; font-size: 14px; margin-top: 20px; }
+        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
-            nav.pc-nav { display: none; }
-            .hamburger { display: flex; }
-            
-            /* ハンバーガーが×になるアニメーション */
+            .logo svg { height: 45px; }
+            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
+            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+            nav ul.active { right: 0; }
+            nav li { margin-bottom: 20px; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-            .service-item, .service-item:nth-child(even) { flex-direction: column; gap: 30px; margin-bottom: 80px; }
-            .service-img, .service-text { width: 100%; }
+            .hero { height: 100vh; padding: 0 10px; }
+            .animated-logo { width: 220px; height: 165px; margin-bottom: 15px; }
+            .hero p { font-size: min(3.3vw, 14px); white-space: nowrap; line-height: 2.2; letter-spacing: 0; }
+            .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
         }
     </style>
 </head>
 <body>
-
     <header>
         <div class="logo">
-            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                <defs><mask id="m"><rect width="200" height="150" fill="white"/><rect x="90" y="5" width="20" height="90" fill="black"/><polygon points="65,30 90,5 90,30" fill="black"/></mask></defs>
-                <ellipse cx="100" cy="50" rx="35" ry="45" fill="white" mask="url(#m)"/>
-                <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" fill="white">zero<tspan font-weight="bold">ONE</tspan></text>
-            </svg>
+            <a href="index.html">
+                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <mask id="cutout-header">
+                      <rect x="0" y="0" width="200" height="150" fill="white" />
+                      <rect x="90" y="5" width="20" height="90" fill="black" />
+                      <polygon points="65,30 90,5 90,30" fill="black" />
+                    </mask>
+                  </defs>
+                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
+                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
+                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+                  </text>
+                </svg>
+            </a>
         </div>
-        
-        <nav class="pc-nav">
+        <div class="hamburger"><span></span><span></span><span></span></div>
+        <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="service.html">Service</a></li>
@@ -110,84 +91,87 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </div>
     </header>
-
-    <div class="mobile-menu" id="mobile-menu">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="service.html">Service</a></li>
-            <li><a href="company.html">Company</a></li>
-            <li><a href="recruit.html">Recruit</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </div>
-
     <section class="hero">
-        <video class="hero-video" autoplay loop muted playsinline disablePictureInPicture>
-            <source src="https://videos.pexels.com/video-files/3125396/3125396-uhd_2160_1440_25fps.mp4" type="video/mp4">
-        </video>
-        <div class="hero-content">
-            <h1>zeroONE</h1>
+        <div class="hero-bg">
+            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture>
+                <source src="https://videos.pexels.com/video-files/3121459/3121459-hd_1920_1080_24fps.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+        </div>
+        <svg class="animated-logo" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <mask id="cutout-hero">
+              <rect x="0" y="0" width="200" height="170" fill="white" />
+              <rect x="90" y="20" width="20" height="90" fill="black" />
+              <polygon points="65,45 90,20 90,45" fill="black" />
+            </mask>
+          </defs>
+          <ellipse cx="100" cy="65" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-hero)" />
+          <text x="100" y="150" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5" style="animation: textAppear 2s forwards;">
+            <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
+          </text>
+        </svg>
+        <p style="animation: textAppear 3s forwards;">すべての荷物に「絶対の安全」と「確かな品質」を。<br>ゼロからイチへ、ビジネスと暮らしを加速させる新時代のロジスティクス。</p>
+    </section>
+    <section class="news-section fade-in">
+        <div class="news-container">
+            <h2 class="section-title">NEWS</h2>
+            <div class="news-item">
+                <div class="news-date">2026.05.01</div>
+                <div class="news-tag">お知らせ</div>
+                <div class="news-text">株式会社zeroONEの公式コーポレートサイトを公開いたしました。</div>
+            </div>
+            <div class="news-item">
+                <div class="news-date">2024.11.14</div>
+                <div class="news-tag">事業拡大</div>
+                <div class="news-text">Amazon 2.0オフィシャルパートナーとしての稼働を開始しました。</div>
+            </div>
         </div>
     </section>
-
-    <section class="services">
-        <div class="service-item">
-            <div class="service-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Logistics"></div>
-            <div class="service-text">
-                <h3>Logistics</h3>
-                <p>神奈川県相模原市を中心に展開する、高品質な軽貨物配送サービス。Amazon 2.0オフィシャルパートナーとして、地域に根ざした迅速かつ丁寧な物流インフラを提供します。</p>
-                <a href="service.html" class="btn-detail">詳細を見る</a>
-            </div>
-        </div>
-
-        <div class="service-item">
-            <div class="service-img"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80" alt="Creative"></div>
-            <div class="service-text">
-                <h3>Creative</h3>
-                <p>動画編集・コンテンツ制作事業。<br>企業プロモーションからSNS特化型ショート動画まで。ゼロからONEを創り出す、心に響くストーリーテリングを提供します。</p>
-                <a href="service.html" class="btn-detail">詳細を見る</a>
-            </div>
-        </div>
-        
-        <div class="service-item">
-            <div class="service-img"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80" alt="Apparel"></div>
-            <div class="service-text">
-                <h3>Apparel</h3>
-                <p>独自のブランドアイデンティティを展開。企画・デザインから販売まで一貫して行い、時代を捉えた新しいスタイルを提案します。</p>
-                <a href="service.html" class="btn-detail">詳細を見る</a>
-            </div>
+        <section class="greeting fade-in">
+        <div class="greeting-content">
+            <h2>GREETING<br><span style="font-size: 16px; color: #888; letter-spacing: 1px;">代表挨拶</span></h2>
+            <p>私たちの使命は、目の前の一つの荷物に誠心誠意向き合い、お客様の期待を超える配送サービスを提供し続けることです。</p>
+            <p>止まらない物流という社会のインフラを支え、お客様の大切なお荷物をドライバー一人一人の手で「安心」「安全」にお届けすることを、私たちは何よりも大切にしています。</p>
+            <p>私たちは現状に満足することなく、常に「挑戦」の歩みを止めません。地域や業界を牽引する総合的な物流パートナーへと成長を続け、「新しいビジネスの形」や「豊かな社会」の実現に貢献していきます。</p>
+            <p>これからも一つ一つのご依頼に真摯に向き合い、皆様から長く信頼される企業を目指してまいります。</p>
+            <p style="text-align: right; margin-top: 50px; font-size: 18px; color: #ffffff;">株式会社zeroONE<br>代表取締役 <strong>大八木 航輝</strong></p>
         </div>
     </section>
-
     <footer>
-        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
+        <div class="footer-logo">
+            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
+              <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
+              <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
+              <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
+            </svg>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="copyright">&copy; 2024 zeroONE Inc.</div>
     </footer>
-
     <script>
-        // メニュー開閉とスクロールロック制御
-        const hamburger = document.getElementById('hamburger');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            mobileMenu.classList.toggle('active');
-            // メニューが開いているときは裏の画面がスクロールしないようにする
-            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        document.addEventListener('DOMContentLoaded', function() {
+            var video = document.getElementById('bg-video');
+            if (video) { video.muted = true; video.play().catch(function() {
+                var startVideo = function() { video.play(); document.body.removeEventListener('touchstart', startVideo); };
+                document.body.addEventListener('touchstart', startVideo);
+            }); }
         });
-
-        // スクロールアニメーション
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('appear');
-            });
+        const hamburger = document.querySelector('.hamburger');
+        const navUl = document.querySelector('nav ul');
+        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navUl.classList.toggle('active'); });
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add('appear'); observer.unobserve(entry.target); });
         }, { threshold: 0.15 });
-
-        document.querySelectorAll('.service-item').forEach(el => observer.observe(el));
+        faders.forEach(fader => { appearOnScroll.observe(fader); });
     </script>
 </body>
 </html>
