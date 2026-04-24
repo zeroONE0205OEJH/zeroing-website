@@ -11,7 +11,7 @@
         /* --- 全体設定 --- */
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
         
-        /* --- ★ 背景動画 --- */
+        /* --- 背景動画 --- */
         .bg-video {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             object-fit: cover; z-index: -2; pointer-events: none;
@@ -32,7 +32,7 @@
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
         .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
 
-        /* --- コンテナ設定（ガラス風パネル） --- */
+        /* --- コンテナ設定 --- */
         .container { 
             max-width: 1000px; 
             margin: 140px auto 80px; 
@@ -54,7 +54,6 @@
         .info-table th { width: 30%; color: #888; font-weight: normal; font-size: 14px; }
         .info-table td { font-size: 16px; color: #eee; line-height: 1.8; }
 
-        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; }
         .footer-logo svg { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
@@ -62,32 +61,24 @@
         .footer-links a:hover { color: #fff; }
         .copyright { color: #555; font-size: 14px; margin-top: 20px; }
 
-        /* --- スクロールアニメーション --- */
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
 
-        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; box-shadow: -5px 0 15px rgba(0,0,0,0.5); }
+            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; }
             nav ul.active { right: 0; }
-            nav li { margin-bottom: 20px; }
-            .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-            .hamburger.active span:nth-child(2) { opacity: 0; }
-            .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
             .container { margin: 100px 20px 60px; padding: 40px 20px; }
-            .info-table th, .info-table td { display: block; width: 100%; padding: 15px 10px; box-sizing: border-box; }
-            .info-table th { border-bottom: none; color: #888; padding-bottom: 5px; }
-            .info-table td { padding-top: 0; margin-bottom: 10px; }
+            .info-table th, .info-table td { display: block; width: 100%; padding: 15px 10px; }
         }
     </style>
 </head>
 <body>
     
     <video class="bg-video" autoplay loop muted playsinline disablePictureInPicture>
-        <source src="https://videos.pexels.com/video-files/853889/853889-hd_1920_1080_25fps.mp4" type="video/mp4">
+        <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1920_1080_25fps.mp4" type="video/mp4">
     </video>
     <div class="bg-overlay"></div>
 
@@ -154,7 +145,6 @@
     </footer>
 
     <script>
-        // 動画再生補助スクリプト
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.querySelector('.bg-video');
             if (video) {
@@ -174,10 +164,9 @@
         hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navUl.classList.toggle('active'); });
 
         const faders = document.querySelectorAll('.fade-in');
-        const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
             entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add('appear'); observer.unobserve(entry.target); });
-        }, appearOptions);
+        }, { threshold: 0.15 });
         faders.forEach(fader => { appearOnScroll.observe(fader); });
     </script>
 </body>
