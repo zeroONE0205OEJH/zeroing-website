@@ -13,18 +13,15 @@
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
         /* --- ヘッダー & ハンバーガーメニュー --- */
-        /* ★ z-indexを9999に設定し、メニュー展開時も隠れないように修正 */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(5px); }
         .logo svg { height: 60px; width: auto; }
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
         
-        /* ★ ハンバーガーボタン（右上に絶対配置・z-index: 10000） */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
 
-        /* ★ スマホ用 全画面中央メニュー */
         .mobile-menu {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(17, 17, 17, 0.98); display: flex; justify-content: center; align-items: center;
@@ -42,20 +39,16 @@
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
 
-        /* --- Heroエリア（都心のエフェクト動画に変更） --- */
+        /* --- Heroエリア --- */
         .recruit-hero { 
             position: relative; height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; margin-top: 0;
         }
-        
-        /* ★背景動画の設定（巨大トラックを削除し、都心の映像へ） */
         .recruit-video {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
             object-fit: cover; pointer-events: none;
         }
-        
         video::-webkit-media-controls { display: none !important; }
         video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
-
         .recruit-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.65); z-index: -1; pointer-events: none; }
         
         .recruit-hero h1 { font-size: 42px; letter-spacing: 2px; margin-bottom: 20px; z-index: 2; text-align: center; }
@@ -77,7 +70,7 @@
         .other-jobs h4 { font-size: 18px; margin-bottom: 15px; color: #fff; }
         .other-jobs p { font-size: 14px; color: #888; line-height: 1.8; }
 
-        /* --- 応募CTA（Call to Action） --- */
+        /* --- 応募CTA --- */
         .cta-section { text-align: center; margin-top: 80px; padding-bottom: 40px; }
         .cta-section p { color: #aaa; margin-bottom: 30px; font-size: 15px; }
         .apply-btn { display: inline-block; padding: 18px 50px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 16px; transition: 0.3s; letter-spacing: 2px; }
@@ -96,19 +89,18 @@
             header { padding: 15px 20px; }
             .logo svg { height: 45px; }
             
-            nav { display: none; } /* PC用ナビを非表示 */
+            nav { display: none; }
             .hamburger { display: flex; }
             
-            /* ★ 三本線が「×」になるアニメーション */
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            .recruit-hero h1 { font-size: 24px; white-space: nowrap; }
-            .recruit-hero p { font-size: 12px; padding: 0 10px; }
+            /* ★スマホでの文字のはみ出しを修正・画面幅に合わせて文字サイズを自動調整・改行 */
+            .recruit-hero h1 { font-size: clamp(20px, 5.5vw, 28px); white-space: normal; padding: 0 10px; text-align: center; word-break: keep-all; }
+            .recruit-hero p { font-size: 13px; padding: 0 15px; white-space: normal; text-align: center; }
             .message-box { padding: 40px 20px; }
             
-            /* テーブルのスマホ対応（縦並び） */
             .recruit-table th, .recruit-table td { display: block; width: 100%; padding: 15px 10px; box-sizing: border-box; }
             .recruit-table th { border-bottom: none; padding-bottom: 5px; }
             .recruit-table td { padding-top: 0; border-bottom: 1px solid #333; margin-bottom: 10px; }
@@ -246,13 +238,13 @@
             <a href="service.html">Service</a>
             <a href="company.html">Company</a>
             <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
             <a href="privacy.html">Privacy Policy</a>
         </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
 
     <script>
-        // 動画のスマホでの再生補助
         document.addEventListener('DOMContentLoaded', function() {
             var video = document.querySelector('.recruit-video');
             if (video) {
@@ -269,17 +261,14 @@
             }
         });
 
-        // ★ ハンバーガーメニューの挙動修正
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
-            // メニューが開いているときは背景がスクロールしないようにロック
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
-        // フェードイン
         const faders = document.querySelectorAll('.fade-in');
         const appearOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
