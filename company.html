@@ -3,103 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <title>Company | 株式会社zeroONE</title>
     <style>
         /* --- 全体設定 --- */
+        html { scroll-behavior: smooth; }
         body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- 背景設定（静止画の確実な表示） --- */
-        .bg-image {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: url('https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=1920') no-repeat center center/cover;
-            z-index: -2;
-        }
-        .bg-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.75); z-index: -1; pointer-events: none;
-        }
-        
         /* --- ヘッダー --- */
-        /* ★ z-indexを9999に設定 */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(5, 5, 5, 0.9); position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); border-bottom: 1px solid #222; }
-        .logo svg { height: 50px; width: auto; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         
+        /* ★ロゴ画像の設定（透過・反転・2倍サイズ） */
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 120px; width: auto; display: block; filter: invert(1); mix-blend-mode: screen; }
+
         nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
         nav.pc-nav a:hover { color: #fff; }
-
-        /* ハンバーガーボタン（右上に絶対配置） */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
-        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
-
-        /* --- コンテナ設定（ガラス風パネル） --- */
-        .container { 
-            max-width: 900px; margin: 160px auto 100px; padding: 80px 50px; 
-            background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-            border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.08); position: relative;
-        }
-        .section-title { text-align: center; font-size: 32px; letter-spacing: 6px; margin-bottom: 80px; font-weight: 300; color: #fff; }
         
-        /* --- 会社概要テーブル --- */
-        .info-table { width: 100%; border-collapse: collapse; }
-        .info-table th, .info-table td { padding: 28px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: left; vertical-align: top; }
-        .info-table tr:last-child th, .info-table tr:last-child td { border-bottom: none; }
-        .info-table th { width: 30%; color: #888; font-weight: normal; font-size: 13px; letter-spacing: 1px; padding-top: 31px; }
-        .info-table td { font-size: 16px; color: #eee; line-height: 1.9; }
+        /* ハンバーガーボタン */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
+        
+        /* スマホ用全画面メニュー（※ここにバグがありましたので完全修正済） */
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(5, 5, 5, 0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 10000; opacity: 0; pointer-events: none; }
+        .mobile-menu.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu ul { list-style: none; padding: 0; text-align: center; margin: 0; }
+        .mobile-menu li { margin-bottom: 40px; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; }
 
-        /* --- フッター（ホームと統一） --- */
-        footer { padding: 80px 20px 40px; text-align: center; background: #000; border-top: 1px solid #111; display: flex; flex-direction: column; align-items: center; gap: 40px; position: relative; }
-        .footer-logo svg { height: 80px; width: auto; } 
+        /* --- 下層ページ共通Hero --- */
+        .sub-hero { height: 50vh; display: flex; align-items: center; justify-content: center; position: relative; background-color: #111; overflow: hidden; margin-top: 0; }
+        .sub-hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.3; pointer-events: none; }
+        .sub-hero h1 { font-size: 40px; letter-spacing: 6px; position: relative; z-index: 1; margin: 0; }
+
+        /* --- コンテンツセクション --- */
+        .section { padding: 100px 20px; max-width: 900px; margin: 0 auto; }
+        .fade-in { opacity: 0; transform: translateY(40px); transition: 0.8s; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
+
+        .company-table { width: 100%; border-collapse: collapse; }
+        .company-table th, .company-table td { padding: 25px 0; border-bottom: 1px solid #222; text-align: left; }
+        .company-table th { width: 30%; color: #888; font-weight: normal; }
+
+        /* --- フッター --- */
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo img { height: 120px; width: auto; filter: invert(1); mix-blend-mode: screen; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
-        .copyright { color: #444; font-size: 13px; letter-spacing: 1px; margin-top: 20px; }
+        .copyright { color: #444; font-size: 13px; margin-top: 20px; }
 
+        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
-            header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
+            header { padding: 10px 20px; }
+            .logo img { height: 80px; }
             nav.pc-nav { display: none; }
-            
-            /* ★全画面メニュー（z-indexを9998にしてヘッダーの下に潜り込ませる） */
-            .mobile-menu {
-                position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-                background-color: rgba(5, 5, 5, 0.98); display: flex;
-                flex-direction: column; justify-content: center; align-items: center;
-                transition: 0.4s; z-index: 9998; opacity: 0; pointer-events: none;
-            }
-            .mobile-menu.active { opacity: 1; pointer-events: auto; }
-            .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
-            .mobile-menu li { margin-bottom: 40px; }
-            .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s; }
-
             .hamburger { display: flex; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            .container { margin: 120px 20px 80px; padding: 50px 25px; }
-            .info-table th, .info-table td { display: block; width: 100%; padding: 15px 10px; }
-            .info-table th { padding-top: 20px; padding-bottom: 5px; color: #888; }
+            .company-table th, .company-table td { display: block; width: 100%; padding: 10px 0; border-bottom: none; }
+            .company-table td { padding-bottom: 20px; border-bottom: 1px solid #222; margin-bottom: 10px; }
+            .footer-logo img { height: 80px; }
         }
     </style>
 </head>
 <body>
-    
-    <div class="bg-image"></div>
-    <div class="bg-overlay"></div>
 
     <header>
         <div class="logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="m"><rect width="200" height="150" fill="white"/><rect x="90" y="5" width="20" height="90" fill="black"/><polygon points="65,30 90,5 90,30" fill="black"/></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="white" mask="url(#m)"/>
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" fill="white">zero<tspan font-weight="bold">ONE</tspan></text>
-                </svg>
-            </a>
+            <a href="index.html"><img src="logo.png" alt="株式会社zeroONE"></a>
         </div>
-        
         <nav class="pc-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -109,10 +84,7 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
-
-        <div class="hamburger" id="hamburger">
-            <span></span><span></span><span></span>
-        </div>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </header>
 
     <div class="mobile-menu" id="mobile-menu">
@@ -125,35 +97,38 @@
         </ul>
     </div>
 
-    <div class="container">
-        <h1 class="section-title">COMPANY</h1>
-        <table class="info-table">
-            <tr><th>会社名</th><td>株式会社zeroONE</td></tr>
-            <tr><th>代表者</th><td>代表取締役 大八木 航輝</td></tr>
-            <tr><th>設立</th><td>2024年8月23日</td></tr>
-            <tr><th>所在地</th><td>〒252-0216 神奈川県相模原市中央区清新6-10-21-415</td></tr>
-            <tr><th>電話番号</th><td>070-1437-8545</td></tr>
-            <tr><th>メールアドレス</th><td>syk.zeroone@gmail.com</td></tr>
-            <tr><th>事業内容</th>
-                <td>
-                    軽貨物運送事業<br>
-                    Amazonオフィシャル配送パートナー<br>
-                    動画編集・コンテンツ制作事業<br>
-                    アパレル事業
-                </td>
+    <section class="sub-hero">
+        <h1 class="fade-in">COMPANY</h1>
+    </section>
+
+    <section class="section fade-in">
+        <table class="company-table">
+            <tr>
+                <th>会社名</th>
+                <td>株式会社zeroONE</td>
+            </tr>
+            <tr>
+                <th>代表者</th>
+                <td>代表取締役 大八木 航輝</td>
+            </tr>
+            <tr>
+                <th>設立</th>
+                <td>2024年8月23日</td>
+            </tr>
+            <tr>
+                <th>所在地</th>
+                <td>神奈川県相模原市（※必要に応じて修正してください）</td>
+            </tr>
+            <tr>
+                <th>事業内容</th>
+                <td>ロジスティクス事業 / アパレル事業 / クリエイティブ事業</td>
             </tr>
         </table>
-    </div>
+    </section>
 
     <footer>
         <div class="footer-logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-                </svg>
-            </a>
+            <img src="logo.png" alt="zeroONE">
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
@@ -169,13 +144,15 @@
     <script>
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
-
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
-            // メニューが開いている時は裏の画面がスクロールしないようにロック
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('appear'); });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
