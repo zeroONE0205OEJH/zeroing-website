@@ -12,9 +12,14 @@
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         
-        /* ロゴ（SVG）の設定 */
+        /* ★ロゴ画像の設定（ここで黒背景を透明にします） */
         .logo a { display: flex; align-items: center; text-decoration: none; }
-        .logo svg { height: 60px; width: auto; display: block; fill: #fff; } /* 白で表示 */
+        .logo img { 
+            height: 60px; 
+            width: auto; 
+            display: block; 
+            mix-blend-mode: screen; /* ★画像内の黒い部分を透明にする魔法のコード */
+        }
 
         nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
@@ -37,8 +42,16 @@
         .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: -1; }
         
-        /* Hero内ロゴ（アニメーション用） */
-        .hero-logo { width: 320px; height: auto; margin-bottom: 20px; opacity: 0; transform: translateY(20px); animation: fadeInUp 1.5s forwards; fill: #fff; }
+        /* Hero内ロゴ */
+        .hero-logo { 
+            width: 280px; 
+            height: auto; 
+            margin-bottom: 20px; 
+            opacity: 0; 
+            transform: translateY(20px); 
+            animation: fadeInUp 1.5s forwards; 
+            mix-blend-mode: screen; /* ★ここでも黒背景を透明化 */
+        }
         
         /* スマホ文字途切れ修正 */
         .hero p { color: #eee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); opacity: 0; animation: fadeInUp 1.5s forwards 0.5s; white-space: normal; max-width: 800px; }
@@ -60,7 +73,11 @@
 
         /* --- フッター（完全統一版） --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo svg { height: 80px; width: auto; fill: #fff; } 
+        .footer-logo img { 
+            height: 80px; 
+            width: auto; 
+            mix-blend-mode: screen; /* ★ここでも黒背景を透明化 */
+        } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
@@ -69,19 +86,19 @@
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 10px 20px; }
-            .logo svg { height: 50px; }
+            .logo img { height: 50px; }
             nav.pc-nav { display: none; }
             .hamburger { display: flex; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            .hero-logo { width: 220px; }
+            .hero-logo { width: 180px; }
             /* スマホ文字サイズ最適化 */
             .hero p { font-size: 14px; padding: 0 10px; line-height: 1.7; }
             
             .news-item { flex-direction: column; gap: 10px; }
-            .footer-logo svg { height: 60px; }
+            .footer-logo img { height: 60px; }
         }
     </style>
 </head>
@@ -90,19 +107,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="header-logo-mask">
-                      <rect width="200" height="160" fill="white"/>
-                      <rect x="94" y="15" width="18" height="80" fill="black"/>
-                      <polygon points="70,40 94,15 94,40" fill="black"/>
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="55" rx="36" ry="48" mask="url(#header-logo-mask)"/>
-                  <text x="100" y="145" text-anchor="middle" font-size="32" font-family="'Coolvetica', 'Helvetica Neue', Arial, sans-serif" letter-spacing="-1.8px">
-                    <tspan font-weight="400">zero</tspan><tspan font-weight="800">ONE</tspan>
-                  </text>
-                </svg>
+                <img src="logo.png" alt="株式会社zeroONE">
             </a>
         </div>
         <nav class="pc-nav">
@@ -134,19 +139,9 @@
             </video>
             <div class="hero-overlay"></div>
         </div>
-        <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg" class="hero-logo">
-          <defs>
-            <mask id="hero-logo-mask">
-              <rect width="200" height="160" fill="white"/>
-              <rect x="94" y="15" width="18" height="80" fill="black"/>
-              <polygon points="70,40 94,15 94,40" fill="black"/>
-            </mask>
-          </defs>
-          <ellipse cx="100" cy="55" rx="36" ry="48" mask="url(#hero-logo-mask)"/>
-          <text x="100" y="145" text-anchor="middle" font-size="32" font-family="'Coolvetica', 'Helvetica Neue', Arial, sans-serif" letter-spacing="-1.8px">
-            <tspan font-weight="400">zero</tspan><tspan font-weight="800">ONE</tspan>
-          </text>
-        </svg>
+        
+        <img src="logo.png" alt="zeroONE" class="hero-logo">
+        
         <p>すべての荷物に誠実な配送を。<br>ゼロからイチへ、ビジネスと暮らしを加速させる新時代のロジスティクス。</p>
     </section>
 
@@ -176,19 +171,7 @@
 
     <footer>
         <div class="footer-logo">
-            <svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <mask id="footer-logo-mask">
-                  <rect width="200" height="160" fill="white"/>
-                  <rect x="94" y="15" width="18" height="80" fill="black"/>
-                  <polygon points="70,40 94,15 94,40" fill="black"/>
-                </mask>
-              </defs>
-              <ellipse cx="100" cy="55" rx="36" ry="48" mask="url(#footer-logo-mask)"/>
-              <text x="100" y="145" text-anchor="middle" font-size="32" font-family="'Coolvetica', 'Helvetica Neue', Arial, sans-serif" letter-spacing="-1.8px">
-                <tspan font-weight="400">zero</tspan><tspan font-weight="800">ONE</tspan>
-              </text>
-            </svg>
+            <img src="logo.png" alt="zeroONE">
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
