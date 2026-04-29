@@ -5,89 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Service | 株式会社zeroONE</title>
     <style>
-        /* --- 全体設定 --- */
-        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
+        html { scroll-behavior: smooth; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(5, 5, 5, 0.9); position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(10px); border-bottom: 1px solid #222; }
-        .logo svg { height: 50px; width: auto; }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 120px; width: auto; display: block; filter: invert(1); mix-blend-mode: screen; }
+
         nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
         nav.pc-nav a:hover { color: #fff; }
-
-        /* ハンバーガーボタン（メニューより前面に出るように設定） */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+        
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
+        
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(5, 5, 5, 0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 10000; opacity: 0; pointer-events: none; }
+        .mobile-menu.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu ul { list-style: none; padding: 0; text-align: center; margin: 0; }
+        .mobile-menu li { margin-bottom: 40px; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; }
 
-        /* --- サービス内容 --- */
-        .container { max-width: 1100px; margin: 140px auto 80px; padding: 0 20px; }
-        .section-title { text-align: center; font-size: 32px; letter-spacing: 6px; margin-bottom: 80px; font-weight: 300; }
+        .sub-hero { height: 50vh; display: flex; align-items: center; justify-content: center; position: relative; background-color: #111; overflow: hidden; margin-top: 0; }
+        .sub-hero h1 { font-size: 40px; letter-spacing: 6px; position: relative; z-index: 1; margin: 0; }
 
-        .service-list { display: flex; flex-direction: column; gap: 100px; }
-        .service-card { display: flex; align-items: center; gap: 60px; opacity: 0; transform: translateY(40px); transition: 1s; }
-        .service-card.appear { opacity: 1; transform: translateY(0); }
-        .service-card:nth-child(even) { flex-direction: row-reverse; }
+        .section { padding: 100px 20px; max-width: 1000px; margin: 0 auto; }
+        .fade-in { opacity: 0; transform: translateY(40px); transition: 0.8s; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
 
-        .service-img { width: 50%; height: 400px; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .service-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .service-card:hover .service-img img { transform: scale(1.05); }
+        .service-list { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        .service-card { background: #111; border: 1px solid #222; padding: 40px; text-align: center; transition: 0.3s; text-decoration: none; color: #fff; display: block; }
+        .service-card:hover { transform: translateY(-5px); border-color: #444; }
+        .service-card h2 { font-size: 24px; margin-bottom: 20px; letter-spacing: 2px; }
+        .service-card p { color: #aaa; font-size: 15px; margin-bottom: 30px; line-height: 1.8; }
+        .service-btn { display: inline-block; padding: 12px 30px; border: 1px solid #fff; color: #fff; font-size: 14px; letter-spacing: 1px; transition: 0.3s; }
+        .service-card:hover .service-btn { background: #fff; color: #000; }
 
-        .service-info { width: 45%; }
-        .service-info h2 { font-size: 36px; letter-spacing: 2px; margin-bottom: 10px; display: flex; flex-direction: column; }
-        .service-info h2 span { font-size: 14px; color: #888; letter-spacing: 1px; font-weight: normal; margin-top: 5px; }
-        .service-info p { color: #aaa; line-height: 2; margin-bottom: 30px; }
-
-        .btn-view { display: inline-block; padding: 15px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 14px; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
-        .btn-view:hover { background: #fff; color: #000; }
-
-        /* --- フッター（ホームと統一） --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-logo img { height: 120px; width: auto; filter: invert(1); mix-blend-mode: screen; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
-        .copyright { color: #555; font-size: 14px; margin-top: 20px; }
+        .copyright { color: #444; font-size: 13px; margin-top: 20px; }
 
-        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
-            header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
-            
-            /* ★トップページと同じ、真ん中にドカンと出るフルスクリーンメニューの設定 */
-            nav.pc-nav ul {
-                position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-                background-color: rgba(5, 5, 5, 0.98);
-                flex-direction: column; justify-content: center; align-items: center;
-                transition: 0.4s; z-index: 2000; opacity: 0; pointer-events: none;
-            }
-            nav.pc-nav ul.active { opacity: 1; pointer-events: auto; }
-            nav.pc-nav li { margin-bottom: 40px; }
-            nav.pc-nav a { font-size: 26px; letter-spacing: 4px; color: #fff; }
-
+            header { padding: 10px 20px; }
+            .logo img { height: 80px; }
+            nav.pc-nav { display: none; }
             .hamburger { display: flex; }
-            
-            /* ★三本線が「×」になるアニメーション */
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            .service-card, .service-card:nth-child(even) { flex-direction: column; gap: 30px; }
-            .service-img, .service-info { width: 100%; height: auto; }
-            .service-img { height: 250px; }
-            .service-info h2 { font-size: 28px; }
+            .service-card { padding: 30px 20px; }
+            .footer-logo img { height: 80px; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <div class="logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="m"><rect width="200" height="150" fill="white"/><rect x="90" y="5" width="20" height="90" fill="black"/><polygon points="65,30 90,5 90,30" fill="black"/></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="white" mask="url(#m)"/>
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" fill="white">zero<tspan font-weight="bold">ONE</tspan></text>
-                </svg>
-            </a>
+            <a href="index.html"><img src="logo.png" alt="株式会社zeroONE"></a>
         </div>
         <nav class="pc-nav">
             <ul>
@@ -101,45 +79,45 @@
         <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </header>
 
-    <div class="container">
-        <h1 class="section-title">SERVICE</h1>
-        <div class="service-list">
-            <div class="service-card">
-                <div class="service-img"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Logistics"></div>
-                <div class="service-info">
-                    <h2>Logistics<span>ロジスティクス事業</span></h2>
-                    <p>神奈川県相模原市を中心に、軽貨物運送のプロフェッショナルとして高品質な配送サービスを提供。Amazon 2.0パートナーとして物流の未来を支えます。</p>
-                    <a href="service-logistics.html" class="btn-view">詳細を見る</a>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-img"><img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80" alt="Creative"></div>
-                <div class="service-info">
-                    <h2>Creative<span>動画編集・コンテンツ制作事業</span></h2>
-                    <p>企業プロモーションからSNS特化型動画まで。お預かりした素材の魅力を最大限に引き出し、心に刺さるコンテンツへと昇華させます。</p>
-                    <a href="service-creative.html" class="btn-view">詳細を見る</a>
-                </div>
-            </div>
-            <div class="service-card">
-                <div class="service-img"><img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80" alt="Apparel"></div>
-                <div class="service-info">
-                    <h2>Apparel<span>アパレル事業</span></h2>
-                    <p>「ゼロからイチを纏う」。自社ブランドの企画・デザイン・販売を一貫して展開。時代を捉えた新しいスタイルを提案します。</p>
-                    <a href="service-apparel.html" class="btn-view">詳細を見る</a>
-                </div>
-            </div>
-        </div>
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </div>
+
+    <section class="sub-hero">
+        <h1 class="fade-in">SERVICE</h1>
+    </section>
+
+    <section class="section fade-in">
+        <div class="service-list">
+            <a href="service-logistics.html" class="service-card">
+                <h2>01. Logistics</h2>
+                <p>Amazon 2.0オフィシャルパートナーとして、社会インフラを支える高品質な配送サービスを提供します。</p>
+                <span class="service-btn">詳細を見る</span>
+            </a>
+            
+            <a href="service-apparel.html" class="service-card">
+                <h2>02. Apparel</h2>
+                <p>独自のクリエイティビティを発揮し、時代に合わせたアパレルブランドの展開・運営を行います。</p>
+                <span class="service-btn">詳細を見る</span>
+            </a>
+            
+            <a href="service-creative.html" class="service-card">
+                <h2>03. Creative</h2>
+                <p>既成概念にとらわれない新しい価値を創出する、幅広いクリエイティブ事業を展開しています。</p>
+                <span class="service-btn">詳細を見る</span>
+            </a>
+        </div>
+    </section>
 
     <footer>
         <div class="footer-logo">
-            <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-                </svg>
-            </a>
+            <img src="logo.png" alt="zeroONE">
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
@@ -154,19 +132,16 @@
 
     <script>
         const hamburger = document.getElementById('hamburger');
-        const navUl = document.querySelector('nav.pc-nav ul');
-        
+        const mobileMenu = document.getElementById('mobile-menu');
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
-            navUl.classList.toggle('active');
-            // ★ メニューが開いているときは背景がスクロールしないようにする
-            document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
-
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('appear'); });
         }, { threshold: 0.15 });
-        document.querySelectorAll('.service-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
