@@ -12,13 +12,14 @@
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         
-        /* ★ロゴ画像の設定（ここで白い背景を透明にします） */
+        /* ★ロゴ画像の設定（白黒反転 ＆ 黒背景透過） */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
             height: 60px; 
             width: auto; 
             display: block; 
-            mix-blend-mode: multiply; /* ★画像内の白い部分を透明にする魔法のコード */
+            filter: invert(1); /* 魔法1：白黒を反転させる（白背景が黒に、黒ロゴが白になる） */
+            mix-blend-mode: screen; /* 魔法2：反転してできた「黒背景」だけを透明にする */
         }
 
         nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
@@ -50,7 +51,8 @@
             opacity: 0; 
             transform: translateY(20px); 
             animation: fadeInUp 1.5s forwards; 
-            mix-blend-mode: multiply; /* ★ここでも白い背景を透明化 */
+            filter: invert(1); /* 魔法1：白黒反転 */
+            mix-blend-mode: screen; /* 魔法2：黒透過 */
         }
         
         /* スマホ文字途切れ修正 */
@@ -76,7 +78,8 @@
         .footer-logo img { 
             height: 80px; 
             width: auto; 
-            mix-blend-mode: multiply; /* ★ここでも白い背景を透明化 */
+            filter: invert(1); /* 魔法1：白黒反転 */
+            mix-blend-mode: screen; /* 魔法2：黒透過 */
         } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
