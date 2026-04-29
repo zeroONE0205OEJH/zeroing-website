@@ -12,10 +12,10 @@
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         
-        /* ★ロゴ画像の設定（反転＆透過） */
+        /* ★ロゴ画像の設定（サイズを約2倍に） */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
-            height: 75px; /* ★PCでのヘッダーロゴを大きく (60px -> 75px) */
+            height: 120px; /* ★PCヘッダーロゴをガツンと大きく（75px → 120px） */
             width: auto; 
             display: block; 
             filter: invert(1); 
@@ -45,7 +45,8 @@
         
         /* ★Hero内ロゴ（中央） */
         .hero-logo { 
-            width: 350px; /* ★PCでの中央ロゴを大きく (280px -> 350px) */
+            width: 520px; /* ★PC中央ロゴをさらに大きく（350px → 520px） */
+            max-width: 90vw; /* 画面からはみ出さないための保険 */
             height: auto; 
             margin-bottom: 20px; 
             opacity: 0; 
@@ -76,7 +77,7 @@
         /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo img { 
-            height: 80px; 
+            height: 120px; /* ★バランスを取るためフッターロゴも拡大 */
             width: auto; 
             filter: invert(1); 
             mix-blend-mode: screen; 
@@ -89,19 +90,19 @@
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 10px 20px; }
-            .logo img { height: 60px; } /* ★スマホでのヘッダーロゴを大きく (50px -> 60px) */
+            .logo img { height: 80px; } /* ★スマホのヘッダーロゴも拡大（60px → 80px） */
             nav.pc-nav { display: none; }
             .hamburger { display: flex; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            .hero-logo { width: 220px; } /* ★スマホでの中央ロゴを大きく (180px -> 220px) */
+            .hero-logo { width: 320px; } /* ★スマホの中央ロゴを画面の限界まで拡大 */
             /* スマホ文字サイズ最適化 */
             .hero p { font-size: 14px; padding: 0 10px; line-height: 1.7; }
             
             .news-item { flex-direction: column; gap: 10px; }
-            .footer-logo img { height: 60px; }
+            .footer-logo img { height: 80px; }
         }
     </style>
 </head>
