@@ -12,14 +12,14 @@
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         
-        /* ★ロゴ画像の設定（白黒反転 ＆ 黒背景透過） */
+        /* ★ロゴ画像の設定（反転＆透過） */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
-            height: 60px; 
+            height: 75px; /* ★PCでのヘッダーロゴを大きく (60px -> 75px) */
             width: auto; 
             display: block; 
-            filter: invert(1); /* 魔法1：白黒を反転させる（白背景が黒に、黒ロゴが白になる） */
-            mix-blend-mode: screen; /* 魔法2：反転してできた「黒背景」だけを透明にする */
+            filter: invert(1); 
+            mix-blend-mode: screen; 
         }
 
         nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
@@ -43,16 +43,16 @@
         .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: -1; }
         
-        /* Hero内ロゴ */
+        /* ★Hero内ロゴ（中央） */
         .hero-logo { 
-            width: 280px; 
+            width: 350px; /* ★PCでの中央ロゴを大きく (280px -> 350px) */
             height: auto; 
             margin-bottom: 20px; 
             opacity: 0; 
             transform: translateY(20px); 
             animation: fadeInUp 1.5s forwards; 
-            filter: invert(1); /* 魔法1：白黒反転 */
-            mix-blend-mode: screen; /* 魔法2：黒透過 */
+            filter: invert(1); 
+            mix-blend-mode: screen; 
         }
         
         /* スマホ文字途切れ修正 */
@@ -73,13 +73,13 @@
         .greeting-box h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 40px; }
         .greeting-box p { color: #aaa; text-align: left; line-height: 2; margin-bottom: 25px; }
 
-        /* --- フッター（完全統一版） --- */
+        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo img { 
             height: 80px; 
             width: auto; 
-            filter: invert(1); /* 魔法1：白黒反転 */
-            mix-blend-mode: screen; /* 魔法2：黒透過 */
+            filter: invert(1); 
+            mix-blend-mode: screen; 
         } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
@@ -89,14 +89,14 @@
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 10px 20px; }
-            .logo img { height: 50px; }
+            .logo img { height: 60px; } /* ★スマホでのヘッダーロゴを大きく (50px -> 60px) */
             nav.pc-nav { display: none; }
             .hamburger { display: flex; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            .hero-logo { width: 180px; }
+            .hero-logo { width: 220px; } /* ★スマホでの中央ロゴを大きく (180px -> 220px) */
             /* スマホ文字サイズ最適化 */
             .hero p { font-size: 14px; padding: 0 10px; line-height: 1.7; }
             
@@ -207,3 +207,16 @@
     </script>
 </body>
 </html>
+```ロゴの大きさを、PCとスマホ両方で少し大きく調整しました！これでより存在感が出たと思います。
+
+ホーム（`index.html`）が完璧に仕上がりましたね。
+
+ここからは、残りのページの「完全版コード」を一気にお作りします。
+これまで修正してきた以下のポイントを、すべてのページに完璧に反映させます。
+
+1.  **ロゴ：** 反転＆透過の完璧な設定（サイズも今回の拡大版を適用）
+2.  **フッター：** プライバシーポリシーを含めた統一デザイン
+3.  **メニュー：** スマホでの挙動統一（中央表示・スクロール防止）
+4.  **テキスト：** これまで確定した「嘘のないリアルな言葉」
+
+まずは **「2. Service（service.html）」** の完全版コードをお送りします。準備ができたら教えてください！
