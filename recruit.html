@@ -14,7 +14,17 @@
         
         /* --- ヘッダー & ハンバーガーメニュー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(5px); }
-        .logo svg { height: 60px; width: auto; }
+        
+        /* ★ロゴ画像の設定（サイズを約2倍に・反転・透過） */
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .logo img { 
+            height: 120px; 
+            width: auto; 
+            display: block; 
+            filter: invert(1); 
+            mix-blend-mode: screen; 
+        }
+
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
@@ -76,9 +86,14 @@
         .apply-btn { display: inline-block; padding: 18px 50px; background: #fff; color: #000; text-decoration: none; font-weight: bold; border-radius: 4px; font-size: 16px; transition: 0.3s; letter-spacing: 2px; }
         .apply-btn:hover { background: #ccc; transform: translateY(-3px); }
 
-        /* --- フッター --- */
+        /* --- フッター（完全統一版） --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-logo img { 
+            height: 120px; 
+            width: auto; 
+            filter: invert(1); 
+            mix-blend-mode: screen; 
+        } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
@@ -87,7 +102,7 @@
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
+            .logo img { height: 80px; } /* スマホ用ロゴも拡大 */
             
             nav { display: none; }
             .hamburger { display: flex; }
@@ -124,6 +139,8 @@
             .recruit-table th, .recruit-table td { display: block; width: 100%; padding: 15px 10px; box-sizing: border-box; }
             .recruit-table th { border-bottom: none; padding-bottom: 5px; }
             .recruit-table td { padding-top: 0; border-bottom: 1px solid #333; margin-bottom: 10px; }
+            
+            .footer-logo img { height: 80px; }
         }
     </style>
 </head>
@@ -131,19 +148,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-header">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
+                <img src="logo.png" alt="株式会社zeroONE">
             </a>
         </div>
         
@@ -238,19 +243,7 @@
     <footer>
         <div class="footer-logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-footer">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
+                <img src="logo.png" alt="zeroONE">
             </a>
         </div>
         <div class="footer-links">
