@@ -5,95 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社zeroONE | 新時代のロジスティクス</title>
     <style>
+        /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
-        body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
-        .logo svg { height: 60px; width: auto; }
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
-        nav a:hover { color: #ffffff; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; }
-        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+        /* --- ヘッダー --- */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         
-        .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; z-index: 1; margin-top: 0; }
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #111; }
+        /* ロゴ画像の設定 */
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .logo img { height: 60px; width: auto; display: block; }
+
+        nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
+        nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
+        nav.pc-nav a:hover { color: #fff; }
+        
+        /* ハンバーガーボタン */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
+        
+        /* スマホ用全画面メニュー */
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(5, 5, 5, 0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 10000; opacity: 0; pointer-events: none; }
+        .mobile-menu.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
+        .mobile-menu li { margin-bottom: 40px; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; }
+
+        /* --- Heroエリア --- */
+        .hero { text-align: center; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; padding: 0 20px; box-sizing: border-box; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #050505; }
         .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
-        video::-webkit-media-controls { display: none !important; }
-        video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
-        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(17, 17, 17, 0.65); z-index: -1; pointer-events: none; }
-        .animated-logo { width: 350px; height: 260px; margin-bottom: 20px; position: relative; z-index: 2; }
-        @keyframes textAppear { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: translateY(0); } }
-        .hero p { position: relative; z-index: 2; color: #eeeeee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: -1; }
         
-        .news-section { background: #111; padding: 60px 20px; }
-        .news-container { max-width: 900px; margin: 0 auto; }
-        .news-item { display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid #333; transition: 0.3s; }
-        .news-item:hover { background-color: rgba(255,255,255,0.02); }
-        .news-date { color: #888; font-size: 14px; min-width: 120px; }
-        .news-tag { background: #fff; color: #000; font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: bold; margin-right: 20px; }
-        .news-text { color: #ddd; font-size: 15px; }
+        /* Hero内ロゴ（アニメーション用） */
+        .hero-logo { width: 320px; height: auto; margin-bottom: 20px; opacity: 0; transform: translateY(20px); animation: fadeInUp 1.5s forwards; }
         
-        .greeting { background: #1a1a1a; padding: 100px 20px; border-top: 1px solid #333; border-bottom: 1px solid #333; }
-        .greeting-content { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
-        .greeting h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; }
-        .greeting p { color: #aaaaaa; font-size: 16px; line-height: 2.1; margin-bottom: 30px; text-align: left; width: 100%; } 
-        .greeting strong { color: #ffffff; }
+        /* ★スマホ文字途切れ修正：改行を許可しサイズを自動調整 */
+        .hero p { color: #eee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); opacity: 0; animation: fadeInUp 1.5s forwards 0.5s; white-space: normal; max-width: 800px; }
         
-        /* --- フッター --- */
+        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+
+        /* --- コンテンツセクション --- */
+        .section { padding: 100px 20px; max-width: 1000px; margin: 0 auto; }
+        .fade-in { opacity: 0; transform: translateY(40px); transition: 0.8s; }
+        .fade-in.appear { opacity: 1; transform: translateY(0); }
+        
+        .news-item { display: flex; padding: 25px 0; border-bottom: 1px solid #222; gap: 30px; }
+        .news-date { color: #888; font-size: 14px; min-width: 100px; }
+        .news-tag { background: #fff; color: #000; font-size: 11px; padding: 3px 12px; border-radius: 2px; font-weight: bold; height: fit-content; }
+        
+        .greeting-box { text-align: center; }
+        .greeting-box h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 40px; }
+        .greeting-box p { color: #aaa; text-align: left; line-height: 2; margin-bottom: 25px; }
+
+        /* --- フッター（完全統一版） --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-logo img { height: 80px; width: auto; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
-        .copyright { color: #555; font-size: 14px; margin-top: 20px; }
-        
-        .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
-        .fade-in.appear { opacity: 1; transform: translateY(0); }
-        
-        @media (max-width: 900px) {
-            header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
-            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            
-            nav ul { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(17, 17, 17, 0.98); flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 2000; opacity: 0; pointer-events: none; }
-            nav ul.active { opacity: 1; pointer-events: auto; }
-            nav li { margin-bottom: 40px; }
-            nav a { font-size: 26px; letter-spacing: 4px; }
+        .copyright { color: #444; font-size: 13px; margin-top: 20px; }
 
+        /* --- スマホ対応 --- */
+        @media (max-width: 900px) {
+            header { padding: 10px 20px; }
+            .logo img { height: 50px; }
+            nav.pc-nav { display: none; }
+            .hamburger { display: flex; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+            .hero-logo { width: 220px; }
+            /* ★スマホでの文字サイズをさらに最適化 */
+            .hero p { font-size: 14px; padding: 0 10px; line-height: 1.7; }
             
-            .hero { height: 100vh; padding: 0 10px; }
-            .animated-logo { width: 220px; height: 165px; margin-bottom: 15px; }
-            /* ★スマホでの文字のはみ出しを修正・画面幅に合わせて改行 */
-            .hero p { font-size: 14px; white-space: normal; line-height: 1.8; letter-spacing: 0; padding: 0 15px; }
-            .news-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .news-item { flex-direction: column; gap: 10px; }
+            .footer-logo img { height: 60px; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <div class="logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <mask id="cutout-header">
-                      <rect x="0" y="0" width="200" height="150" fill="white" />
-                      <rect x="90" y="5" width="20" height="90" fill="black" />
-                      <polygon points="65,30 90,5 90,30" fill="black" />
-                    </mask>
-                  </defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5">
-                    <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-                  </text>
-                </svg>
+                <img src="Logo 001.png" alt="株式会社zeroONE">
             </a>
         </div>
-        <div class="hamburger"><span></span><span></span><span></span></div>
-        <nav>
+        <nav class="pc-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="service.html">Service</a></li>
@@ -102,62 +102,57 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
     <section class="hero">
         <div class="hero-bg">
-            <video id="bg-video" class="hero-video" autoplay loop muted playsinline disablePictureInPicture>
+            <video autoplay loop muted playsinline class="hero-video">
                 <source src="https://videos.pexels.com/video-files/3121459/3121459-hd_1920_1080_24fps.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
         </div>
-        <svg class="animated-logo" viewBox="0 0 200 170" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <mask id="cutout-hero">
-              <rect x="0" y="0" width="200" height="170" fill="white" />
-              <rect x="90" y="20" width="20" height="90" fill="black" />
-              <polygon points="65,45 90,20 90,45" fill="black" />
-            </mask>
-          </defs>
-          <ellipse cx="100" cy="65" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-hero)" />
-          <text x="100" y="150" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5" style="animation: textAppear 2s forwards;">
-            <tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan>
-          </text>
-        </svg>
-        <p style="animation: textAppear 3s forwards;">すべての荷物に「絶対の安全」と「確かな品質」を。<br>ゼロからイチへ、ビジネスと暮らしを加速させる新時代のロジスティクス。</p>
+        <img src="Logo 001.png" alt="zeroONE" class="hero-logo">
+        <p>すべての荷物に誠実な配送を。<br>ゼロからイチへ、ビジネスと暮らしを加速させる新時代のロジスティクス。</p>
     </section>
-    <section class="news-section fade-in">
-        <div class="news-container">
-            <h2 class="section-title">NEWS</h2>
-            <div class="news-item">
-                <div class="news-date">2026.05.01</div>
-                <div class="news-tag">お知らせ</div>
-                <div class="news-text">株式会社zeroONEの公式コーポレートサイトを公開いたしました。</div>
-            </div>
-            <div class="news-item">
-                <div class="news-date">2024.11.14</div>
-                <div class="news-tag">事業拡大</div>
-                <div class="news-text">Amazonオフィシャル配送パートナーとしての稼働を開始しました。</div>
-            </div>
+
+    <section class="section fade-in">
+        <h2 style="text-align: center; letter-spacing: 4px; margin-bottom: 60px;">NEWS</h2>
+        <div class="news-item">
+            <div class="news-date">2026.05.01</div>
+            <div class="news-tag">お知らせ</div>
+            <div class="news-text">株式会社zeroONEの公式コーポレートサイトを公開いたしました。</div>
+        </div>
+        <div class="news-item">
+            <div class="news-date">2024.11.14</div>
+            <div class="news-tag">事業拡大</div>
+            <div class="news-text">Amazon 2.0オフィシャルパートナーとしての稼働を開始しました。</div>
         </div>
     </section>
-        <section class="greeting fade-in">
-        <div class="greeting-content">
-            <h2>GREETING<br><span style="font-size: 16px; color: #888; letter-spacing: 1px;">代表挨拶</span></h2>
-            <p>私たちの使命は、目の前の一つの荷物に誠心誠意向き合い、お客様の期待を超える配送サービスを提供し続けることです。</p>
-            <p>止まらない物流という社会のインフラを支え、お客様の大切なお荷物をドライバー一人一人の手で「安心」「安全」にお届けすることを、私たちは何よりも大切にしています。</p>
-            <p>私たちは現状に満足することなく、常に「挑戦」の歩みを止めません。地域や業界を牽引する総合的な物流パートナーへと成長を続け、「新しいビジネスの形」や「豊かな社会」の実現に貢献していきます。</p>
-            <p>これからも一つ一つのご依頼に真摯に向き合い、皆様から長く信頼される企業を目指してまいります。</p>
-            <p style="text-align: right; margin-top: 50px; font-size: 18px; color: #ffffff;">株式会社zeroONE<br>代表取締役 <strong>大八木 航輝</strong></p>
+
+    <section class="section fade-in" style="background: #0a0a0a; max-width: 100%;">
+        <div class="greeting-box" style="max-width: 900px; margin: 0 auto;">
+            <h2>GREETING<br><span style="font-size: 16px; color: #888;">代表挨拶</span></h2>
+            <p>私たちの使命は、目の前の一つの荷物に誠心誠意向き合い、お客様の期待に応える配送サービスを提供し続けることです。</p>
+            <p>止まらない物流という社会のインフラを支え、お預かりしたお荷物をドライバー一人ひとりの手で「安心」「安全」にお届けすることを何より大切にしています。</p>
+            <p>これからも一つひとつのご依頼に真摯に向き合い、皆様から長く信頼される企業を目指してまいります。</p>
+            <p style="text-align: right; margin-top: 50px;">株式会社zeroONE 代表取締役 <strong>大八木 航輝</strong></p>
         </div>
     </section>
-    
+
     <footer>
         <div class="footer-logo">
-            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-              <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-              <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-              <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-            </svg>
+            <img src="Logo 001.png" alt="zeroONE">
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
@@ -167,29 +162,26 @@
             <a href="contact.html">Contact</a>
             <a href="privacy.html">Privacy Policy</a>
         </div>
-        <div class="copyright">&copy; 2024 zeroONE Inc.</div>
+        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
-    
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var video = document.getElementById('bg-video');
-            if (video) { video.muted = true; video.play().catch(function() {
-                var startVideo = function() { video.play(); document.body.removeEventListener('touchstart', startVideo); };
-                document.body.addEventListener('touchstart', startVideo);
-            }); }
+        // ハンバーガーメニュー制御
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
-        const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('nav ul');
-        hamburger.addEventListener('click', () => { 
-            hamburger.classList.toggle('active'); 
-            navUl.classList.toggle('active'); 
-            document.body.style.overflow = navUl.classList.contains('active') ? 'hidden' : '';
-        });
-        const faders = document.querySelectorAll('.fade-in');
-        const appearOnScroll = new IntersectionObserver(function(entries, observer) {
-            entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add('appear'); observer.unobserve(entry.target); });
+
+        // スクロールアニメーション
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('appear');
+            });
         }, { threshold: 0.15 });
-        faders.forEach(fader => { appearOnScroll.observe(fader); });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
