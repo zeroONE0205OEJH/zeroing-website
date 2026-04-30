@@ -9,17 +9,29 @@
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
+        /* --- ヘッダー（ロゴの境界線を消すために背景を調整） --- */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 40px; 
+            background-color: #000000; /* ロゴの背景色と完全に一致させる */
+            border-bottom: 1px solid #333333; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            box-sizing: border-box; 
+            z-index: 1000; 
+            backdrop-filter: blur(5px); 
+        }
         
-        /* ロゴ画像の設定修正 */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
             height: 120px; 
             width: auto; 
             display: block; 
             filter: invert(1); 
-            mix-blend-mode: screen; 
+            mix-blend-mode: screen; /* 背景の黒を透過させて馴染ませる */
         }
 
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
@@ -54,7 +66,6 @@
         .back-link a:hover { background: #fff; color: #000; border-color: #fff; }
 
         footer { padding: 80px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
-        /* フッターロゴの設定修正 */
         .footer-logo img { height: 120px; width: auto; filter: invert(1); mix-blend-mode: screen; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 40px 0; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
@@ -65,10 +76,10 @@
         .fade-in.appear { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 900px) {
-            header { padding: 15px 20px; }
+            header { padding: 15px 20px; background-color: #000000; }
             .logo img { height: 80px; }
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; }
+            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #000; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; }
             nav ul.active { right: 0; }
             nav li { margin-bottom: 20px; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
