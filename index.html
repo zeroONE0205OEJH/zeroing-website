@@ -66,13 +66,23 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
+        /* ★ 署名部分のスタイル調整 */
         .greeting-sign { 
             font-family: 'Yuji Syuku', serif; 
-            font-size: 24px; 
+            font-size: 22px; 
             text-align: right; 
             margin-top: 80px; 
             color: #ffffff;
             letter-spacing: 2px;
+            line-height: 1.8;
+        }
+        
+        /* ★ 名前だけをさらに特大にする魔法 */
+        .greeting-sign .sign-name {
+            display: inline-block;
+            font-size: 48px; /* ガツンと大きく！ */
+            margin-top: 15px; /* 上の会社名との間に少し余白を作る */
+            font-weight: bold;
         }
 
         /* --- フッター --- */
@@ -99,7 +109,9 @@
             
             /* スマホ用挨拶テキスト調整 */
             .greeting-text p { font-size: 18px; line-height: 2.0; margin-bottom: 25px; }
-            .greeting-sign { font-size: 18px; margin-top: 50px; }
+            .greeting-sign { font-size: 16px; margin-top: 50px; }
+            /* スマホ用の名前サイズ */
+            .greeting-sign .sign-name { font-size: 34px; margin-top: 10px; }
             
             .footer-logo img { height: 80px; }
         }
@@ -179,7 +191,8 @@
             </div>
             
             <div class="greeting-sign">
-                株式会社zeroONE 代表取締役 <strong>大八木 航輝</strong>
+                株式会社zeroONE 代表取締役<br>
+                <span class="sign-name">大八木 航輝</span>
             </div>
         </div>
     </section>
