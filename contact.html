@@ -8,10 +8,23 @@
         /* --- 全体設定 --- */
         body { background-color: #0a0a0a; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(10, 10, 10, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
+        /* --- ヘッダー（ロゴの境界線を消すために背景を純黒に調整） --- */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 40px; 
+            background-color: #000000; /* ロゴの背景と完全に一致させる */
+            border-bottom: 1px solid #222; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            box-sizing: border-box; 
+            z-index: 9999; 
+            backdrop-filter: blur(10px); 
+        }
         
-        /* ★ロゴ画像の設定（サイズを約2倍に・反転・透過） */
+        /* ★ロゴ画像の設定 */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
             height: 120px; 
@@ -26,14 +39,14 @@
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav.pc-nav a:hover { color: #fff; }
 
-        /* ハンバーガーボタン（右上に絶対配置） */
+        /* ハンバーガーボタン */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
 
         /* スマホ用 全画面中央メニュー */
         .mobile-menu {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(10, 10, 10, 0.98); display: flex; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.98); display: flex; justify-content: center; align-items: center;
             z-index: 9998; opacity: 0; pointer-events: none; transition: 0.4s;
         }
         .mobile-menu.active { opacity: 1; pointer-events: auto; }
@@ -70,7 +83,7 @@
         .submit-btn { display: block; width: 100%; padding: 20px; background-color: #fff; color: #000; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; letter-spacing: 2px; }
         .submit-btn:hover { background-color: #ccc; }
 
-        /* --- フッター（完全統一版） --- */
+        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo img { 
             height: 120px; 
@@ -83,26 +96,17 @@
         .footer-links a:hover { color: #fff; }
         .copyright { color: #444; font-size: 13px; margin-top: 20px; }
 
-        /* --- レスポンシブ設定（スマホ用） --- */
         @media (max-width: 900px) {
-            header { padding: 15px 20px; }
-            .logo img { height: 80px; } /* スマホ用ロゴも拡大 */
-
-            /* PCメニューを隠す */
+            header { padding: 15px 20px; background-color: #000000; }
+            .logo img { height: 80px; }
             nav.pc-nav { display: none; }
-
-            /* ハンバーガーボタンを表示 */
             .hamburger { display: flex; }
-            
-            /* 3本線が「×」になるアニメーション */
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
             .container { margin-top: 100px; }
             .contact-form { padding: 30px 20px; }
             .section-title { font-size: 26px; margin-bottom: 40px; }
-
             .footer-logo img { height: 80px; }
         }
     </style>
@@ -146,7 +150,7 @@
     <div class="container">
         <h1 class="section-title">CONTACT</h1>
         
-        <form class="contact-form" action="https://formspree.io/f/あなたのフォームID" method="POST">
+        <form class="contact-form" action="https://formspree.io/f/xwvaejje" method="POST">
             
             <div class="form-group">
                 <label>お問い合わせ内容の選択 <span class="badge-req">必須</span></label>
@@ -219,7 +223,6 @@
     </footer>
 
     <script>
-        // ★ メニューの開閉と背景のスクロールロック制御
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
 
