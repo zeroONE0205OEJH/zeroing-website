@@ -8,10 +8,22 @@
         /* --- 全体設定 --- */
         body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(5, 5, 5, 0.9); position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); border-bottom: 1px solid #222; }
+        /* --- ヘッダー（背景を純黒 #000000 に修正） --- */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 40px; 
+            background-color: #000000; /* 透過を廃止し、ロゴの背景と完全に一致させる */
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            box-sizing: border-box; 
+            z-index: 9999; 
+            border-bottom: 1px solid #222; 
+        }
         
-        /* ★ロゴ画像の設定（サイズを約2倍に・反転・透過） */
+        /* ★ロゴ画像の設定 */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
             height: 120px; 
@@ -29,10 +41,10 @@
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
 
-        /* スマホ用全画面メニュー（※バグ修正・他ページと統一） */
+        /* スマホ用全画面メニュー */
         .mobile-menu {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: rgba(5, 5, 5, 0.98); display: flex;
+            background-color: #000000; display: flex;
             flex-direction: column; justify-content: center; align-items: center;
             transition: 0.4s; z-index: 9998; opacity: 0; pointer-events: none;
         }
@@ -62,7 +74,7 @@
         .btn-view { display: inline-block; padding: 15px 40px; border: 1px solid #fff; color: #fff; text-decoration: none; font-size: 14px; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
         .btn-view:hover { background: #fff; color: #000; }
 
-        /* --- フッター（完全統一版） --- */
+        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo img { 
             height: 120px; 
@@ -77,8 +89,8 @@
 
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
-            header { padding: 15px 20px; }
-            .logo img { height: 80px; } /* スマホ用ロゴも拡大 */
+            header { padding: 15px 20px; background-color: #000000; }
+            .logo img { height: 80px; }
             nav.pc-nav { display: none; }
             
             .hamburger { display: flex; }
@@ -176,7 +188,6 @@
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             mobileMenu.classList.toggle('active');
-            // メニューが開いている時は裏の画面がスクロールしないようにロック
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
