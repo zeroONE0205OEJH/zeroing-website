@@ -51,14 +51,14 @@
         .news-date { color: #888; font-size: 14px; min-width: 100px; }
         .news-tag { background: #fff; color: #000; font-size: 11px; padding: 3px 12px; border-radius: 2px; font-weight: bold; height: fit-content; }
         
-        /* ★ 代表挨拶エリアのスタイル（筆文字＆デカ文字設定） */
+        /* ★ 代表挨拶エリアのスタイル */
         .greeting-box { text-align: center; }
         .greeting-box h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; font-family: 'Helvetica Neue', Arial, sans-serif; }
         
         .greeting-text { text-align: left; display: inline-block; max-width: 900px; }
         .greeting-text p { 
-            font-family: 'Yuji Syuku', serif; /* 筆文字風フォントを適用 */
-            font-size: 26px; /* 文字をデカデカと！ */
+            font-family: 'Yuji Syuku', serif; 
+            font-size: 26px; 
             color: #ffffff; 
             line-height: 2.2; 
             margin-bottom: 30px; 
@@ -77,12 +77,12 @@
             line-height: 1.8;
         }
         
-        /* ★ 名前だけをさらに特大にする魔法 */
+        /* ★ 名前の太さを「normal」にしてスッキリと！ */
         .greeting-sign .sign-name {
             display: inline-block;
-            font-size: 48px; /* ガツンと大きく！ */
-            margin-top: 15px; /* 上の会社名との間に少し余白を作る */
-            font-weight: bold;
+            font-size: 48px; 
+            margin-top: 15px; 
+            font-weight: normal; /* 太字設定を解除 */
         }
 
         /* --- フッター --- */
@@ -110,7 +110,6 @@
             /* スマホ用挨拶テキスト調整 */
             .greeting-text p { font-size: 18px; line-height: 2.0; margin-bottom: 25px; }
             .greeting-sign { font-size: 16px; margin-top: 50px; }
-            /* スマホ用の名前サイズ */
             .greeting-sign .sign-name { font-size: 34px; margin-top: 10px; }
             
             .footer-logo img { height: 80px; }
