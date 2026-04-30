@@ -66,29 +66,33 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        /* ★ 署名部分のスタイル調整 */
+        /* ★ 署名部分のスタイル調整（下面合わせ） */
         .greeting-sign { 
             font-family: 'Yuji Syuku', serif; 
             text-align: right; 
             margin-top: 80px; 
             color: #ffffff;
             letter-spacing: 2px;
-            line-height: 1.8;
+            line-height: 1.0; /* 署名行の行間をリセットして精密に合わせる */
         }
         
+        .sign-row {
+            display: flex;
+            align-items: flex-end; /* 下面（ベースライン）で揃える */
+            justify-content: flex-end;
+            gap: 15px; /* 代表取締役とお名前の間隔 */
+        }
+
         /* 代表取締役のサイズ（固定） */
         .greeting-sign .sign-title {
             font-size: 22px;
-            vertical-align: middle;
+            margin-bottom: 4px; /* 視覚的なベースラインの微調整 */
         }
 
         /* 名前のサイズ（大きく） */
         .greeting-sign .sign-name {
-            display: inline-block;
             font-size: 48px; 
             font-weight: normal;
-            margin-left: 10px;
-            vertical-align: middle;
         }
 
         /* --- フッター --- */
@@ -116,10 +120,9 @@
             /* スマホ用挨拶テキスト調整 */
             .greeting-text p { font-size: 18px; line-height: 2.0; margin-bottom: 25px; }
             .greeting-sign { margin-top: 50px; }
-            .greeting-sign .sign-title { font-size: 16px; }
-            .greeting-sign .sign-name { font-size: 34px; margin-left: 5px; }
-            
-            .footer-logo img { height: 80px; }
+            .greeting-sign .sign-title { font-size: 16px; margin-bottom: 2px; }
+            .greeting-sign .sign-name { font-size: 34px; }
+            .sign-row { gap: 8px; }
         }
     </style>
 </head>
@@ -197,8 +200,11 @@
             </div>
             
             <div class="greeting-sign">
-                株式会社zeroONE<br>
-                <span class="sign-title">代表取締役</span><span class="sign-name">大八木 航輝</span>
+                <div style="margin-bottom: 10px;">株式会社zeroONE</div>
+                <div class="sign-row">
+                    <span class="sign-title">代表取締役</span>
+                    <span class="sign-name">大八木 航輝</span>
+                </div>
             </div>
         </div>
     </section>
