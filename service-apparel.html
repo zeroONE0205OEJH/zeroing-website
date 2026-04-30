@@ -9,15 +9,26 @@
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
-        .logo svg { height: 60px; width: auto; }
+        /* --- ヘッダー（他のページと統一：背景色と高さを調整） --- */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
+        
+        /* ★ ロゴ画像の設定（他ページと完全に統一） */
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .logo img { 
+            height: 120px; 
+            width: auto; 
+            display: block; 
+            filter: invert(1); 
+            mix-blend-mode: screen; 
+        }
+
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
         
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 1001; }
-        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+        /* ハンバーガーボタン */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10001; }
+        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
 
         /* --- ヒーローセクション --- */
         .detail-hero { 
@@ -43,21 +54,22 @@
         .back-link a { display: inline-block; padding: 15px 40px; border: 1px solid #555; color: #fff; text-decoration: none; font-size: 14px; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
         .back-link a:hover { background: #fff; color: #000; border-color: #fff; }
 
-        footer { padding: 80px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
-        .footer-logo svg { height: 80px; width: auto; } 
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 40px 0; }
+        /* --- フッター（他ページと統一） --- */
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo img { height: 120px; width: auto; filter: invert(1); mix-blend-mode: screen; } 
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
-        .copyright { color: #555; font-size: 14px; }
+        .copyright { color: #555; font-size: 14px; margin-top: 20px; }
 
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
+            .logo img { height: 80px; }
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; }
+            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #050505; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 10000; }
             nav ul.active { right: 0; }
             nav li { margin-bottom: 20px; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
@@ -67,6 +79,7 @@
             .detail-hero h1 { font-size: 32px; }
             .lead-text { font-size: 15px; text-align: left; padding: 0 10px; }
             .pillar-card { padding: 30px 20px; }
+            .footer-logo img { height: 80px; }
         }
     </style>
 </head>
@@ -74,11 +87,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="cutout-header"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-                </svg>
+                <img src="logo.png" alt="株式会社zeroONE">
             </a>
         </div>
         <div class="hamburger"><span></span><span></span><span></span></div>
@@ -138,11 +147,9 @@
 
     <footer>
         <div class="footer-logo">
-            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-              <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-              <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-              <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-            </svg>
+            <a href="index.html">
+                <img src="logo.png" alt="zeroONE">
+            </a>
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
@@ -150,6 +157,7 @@
             <a href="company.html">Company</a>
             <a href="recruit.html">Recruit</a>
             <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
         </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
