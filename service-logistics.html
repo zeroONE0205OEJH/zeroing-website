@@ -9,27 +9,37 @@
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
-        .logo svg { height: 60px; width: auto; }
+        /* ★ ヘッダー：透過をなくし、濃い黒（#050505）に固定してロゴの枠を隠す */
+        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: #050505; border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; }
+        
+        /* ★ロゴ画像の設定（サイズを約2倍に・反転・透過） */
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .logo img { 
+            height: 120px; 
+            width: auto; 
+            display: block; 
+            filter: invert(1); 
+            mix-blend-mode: screen; 
+        }
+
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
         
         /* ハンバーガーボタン */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 2001; }
-        .hamburger span { display: block; width: 25px; height: 2px; background-color: #ffffff; transition: 0.3s; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+        .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
 
         /* スマホ用 全画面中央メニュー */
         .mobile-menu {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(17, 17, 17, 0.98); display: flex; justify-content: center; align-items: center;
-            z-index: 2000; opacity: 0; pointer-events: none; transition: 0.4s;
+            z-index: 9998; opacity: 0; pointer-events: none; transition: 0.4s;
         }
         .mobile-menu.active { opacity: 1; pointer-events: auto; }
         .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
         .mobile-menu li { margin: 30px 0; }
-        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s;}
 
         /* --- ヒーローセクション --- */
         .detail-hero { 
@@ -53,25 +63,28 @@
         .back-link a { display: inline-block; padding: 15px 40px; border: 1px solid #555; color: #fff; text-decoration: none; font-size: 14px; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
         .back-link a:hover { background: #fff; color: #000; border-color: #fff; }
 
-        footer { padding: 80px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
-        .footer-logo svg { height: 80px; width: auto; } 
-        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 40px 0; }
+        /* --- フッター（完全統一版） --- */
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo img { 
+            height: 120px; 
+            width: auto; 
+            filter: invert(1); 
+            mix-blend-mode: screen; 
+        } 
+        .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
-        .copyright { color: #555; font-size: 14px; }
+        .copyright { color: #555; font-size: 14px; margin-top: 20px; }
 
         .fade-in { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
         .fade-in.appear { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
+            .logo img { height: 80px; } /* スマホ用ロゴも拡大 */
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
             nav ul { display: none; }
             
-            .mobile-menu li { margin-bottom: 40px; }
-            .mobile-menu a { font-size: 26px; letter-spacing: 4px; }
-
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -79,6 +92,8 @@
             .detail-hero h1 { font-size: 32px; }
             .lead-text { font-size: 15px; text-align: left; padding: 0 10px; }
             .pillar-card { padding: 30px 20px; }
+            
+            .footer-logo img { height: 80px; }
         }
     </style>
 </head>
@@ -86,11 +101,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="cutout-header"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-                </svg>
+                <img src="logo.png" alt="株式会社zeroONE">
             </a>
         </div>
         <div class="hamburger"><span></span><span></span><span></span></div>
@@ -122,18 +133,14 @@
 
     <div class="container">
         <div class="lead-text fade-in">
-            神奈川県相模原市を中心に、Amazonオフィシャル配送パートナーとして軽貨物運送を担っています。
-常に安全第一で、お客様の大切なお荷物を確実にお届けすることに全力を注いでいます。
-私たちの物流を支える、5つの柱をご紹介します。
-
+            神奈川県相模原市を中心に、Amazonオフィシャル配送パートナーとして軽貨物運送を担っています。<br>常に安全第一で、お客様の大切なお荷物を確実にお届けすることに全力を注いでいます。<br>私たちの物流を支える、5つの柱をご紹介します。
         </div>
 
         <div class="pillars-grid">
             <div class="pillar-card fade-in">
                 <div class="pillar-number">01</div>
                 <h3>SAFETY <span style="font-size: 14px; color: #888; font-weight: normal;">(安全性)</span></h3>
-                <p>運転中の事故防止はもちろん、荷物を積み込む倉庫内での安全ルールの周知に力を入れています。当たり前のルールを決して軽視しない姿勢が、私たちの安全の基本です。
-</p>
+                <p>運転中の事故防止はもちろん、荷物を積み込む倉庫内での安全ルールの周知に力を入れています。当たり前のルールを決して軽視しない姿勢が、私たちの安全の基本です。</p>
             </div>
             <div class="pillar-card fade-in">
                 <div class="pillar-number">02</div>
@@ -143,16 +150,16 @@
             <div class="pillar-card fade-in">
                 <div class="pillar-number">03</div>
                 <h3>DATA MANAGEMENT <span style="font-size: 14px; color: #888; font-weight: normal;">(データ管理 / 業務効率化)</span></h3>
-                <p>Amazon 日々の業務連絡には公式LINEを導入しています。報告作業をスマホ一つで簡易化し、ドライバーの負担を減らす業務効率化に取り組んでいます。</p>
+                <p>日々の業務連絡には公式LINEを導入しています。報告作業をスマホ一つで簡易化し、ドライバーの負担を減らす業務効率化に取り組んでいます。</p>
             </div>
             <div class="pillar-card fade-in">
-                <div class="pillar-number">04</
+                <div class="pillar-number">04</div>
                 <h3>HOSPITALITY <span style="font-size: 14px; color: #888; font-weight: normal;">(ホスピタリティ)</span></h3>
                 <p>配送の「最後の一歩（ラストワンマイル）」に心を込めています。エンドユーザー様への明るい挨拶と丁寧なコミュニケーションにより、荷物を受け取る方へ安心と喜びをお届けします。</p>
             </div>
             <div class="pillar-card fade-in">
                 <div class="pillar-number">05</div>
-                <h3> TRAINING<span style="font-size: 14px; color: #888; font-weight: normal;">(人材育成)</span></h3>
+                <h3>TRAINING <span style="font-size: 14px; color: #888; font-weight: normal;">(人材育成)</span></h3>
                 <p>未経験からでも安心して始められるよう、現場での実践的なサポートを行っています。一人ひとりが無理なく業務に慣れ、責任を持って配達に取り組める環境づくりを大切にしています。</p>
             </div>
         </div>
@@ -163,6 +170,17 @@
     </div>
 
     <footer>
+        <div class="footer-logo">
+            <a href="index.html"><img src="logo.png" alt="zeroONE"></a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
         <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
     </footer>
 
