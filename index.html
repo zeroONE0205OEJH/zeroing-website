@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社zeroONE | 新時代のロジスティクス</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
     <style>
         /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
@@ -12,26 +15,17 @@
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         
-        /* ★ロゴ画像の設定（サイズを約2倍に） */
         .logo a { display: flex; align-items: center; text-decoration: none; }
-        .logo img { 
-            height: 120px; 
-            width: auto; 
-            display: block; 
-            filter: invert(1); 
-            mix-blend-mode: screen; 
-        }
+        .logo img { height: 120px; width: auto; display: block; filter: invert(1); mix-blend-mode: screen; }
 
         nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
         nav.pc-nav a:hover { color: #fff; }
         
-        /* ハンバーガーボタン */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
         
-        /* ★修正箇所：スマホ用全画面メニュー（z-indexを9998に変更し、ボタンの下に潜らせました） */
-        .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(5, 5, 5, 0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 9998; opacity: 0; pointer-events: none; }
+        .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(5, 5, 5, 0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 10000; opacity: 0; pointer-events: none; }
         .mobile-menu.active { opacity: 1; pointer-events: auto; }
         .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
         .mobile-menu li { margin-bottom: 40px; }
@@ -43,20 +37,7 @@
         .hero-video { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: -1; }
         
-        /* Hero内ロゴ（中央） */
-        .hero-logo { 
-            width: 520px; 
-            max-width: 90vw; 
-            height: auto; 
-            margin-bottom: 20px; 
-            opacity: 0; 
-            transform: translateY(20px); 
-            animation: fadeInUp 1.5s forwards; 
-            filter: invert(1); 
-            mix-blend-mode: screen; 
-        }
-        
-        /* スマホ文字途切れ修正 */
+        .hero-logo { width: 520px; max-width: 90vw; height: auto; margin-bottom: 20px; opacity: 0; transform: translateY(20px); animation: fadeInUp 1.5s forwards; filter: invert(1); mix-blend-mode: screen; }
         .hero p { color: #eee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); opacity: 0; animation: fadeInUp 1.5s forwards 0.5s; white-space: normal; max-width: 800px; }
         
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
@@ -70,18 +51,33 @@
         .news-date { color: #888; font-size: 14px; min-width: 100px; }
         .news-tag { background: #fff; color: #000; font-size: 11px; padding: 3px 12px; border-radius: 2px; font-weight: bold; height: fit-content; }
         
+        /* ★ 代表挨拶エリアのスタイル（筆文字＆デカ文字設定） */
         .greeting-box { text-align: center; }
-        .greeting-box h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 40px; }
-        .greeting-box p { color: #aaa; text-align: left; line-height: 2; margin-bottom: 25px; }
+        .greeting-box h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; font-family: 'Helvetica Neue', Arial, sans-serif; }
+        
+        .greeting-text { text-align: left; display: inline-block; max-width: 900px; }
+        .greeting-text p { 
+            font-family: 'Yuji Syuku', serif; /* 筆文字風フォントを適用 */
+            font-size: 26px; /* 文字をデカデカと！ */
+            color: #ffffff; 
+            line-height: 2.2; 
+            margin-bottom: 30px; 
+            letter-spacing: 1.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .greeting-sign { 
+            font-family: 'Yuji Syuku', serif; 
+            font-size: 24px; 
+            text-align: right; 
+            margin-top: 80px; 
+            color: #ffffff;
+            letter-spacing: 2px;
+        }
 
         /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo img { 
-            height: 120px; 
-            width: auto; 
-            filter: invert(1); 
-            mix-blend-mode: screen; 
-        } 
+        .footer-logo img { height: 120px; width: auto; filter: invert(1); mix-blend-mode: screen; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
@@ -90,17 +86,21 @@
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
             header { padding: 10px 20px; }
-            .logo img { height: 80px; } 
+            .logo img { height: 80px; }
             nav.pc-nav { display: none; }
             .hamburger { display: flex; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            .hero-logo { width: 320px; } 
+            .hero-logo { width: 320px; }
             .hero p { font-size: 14px; padding: 0 10px; line-height: 1.7; }
-            
             .news-item { flex-direction: column; gap: 10px; }
+            
+            /* スマホ用挨拶テキスト調整 */
+            .greeting-text p { font-size: 18px; line-height: 2.0; margin-bottom: 25px; }
+            .greeting-sign { font-size: 18px; margin-top: 50px; }
+            
             .footer-logo img { height: 80px; }
         }
     </style>
@@ -162,13 +162,25 @@
         </div>
     </section>
 
-    <section class="section fade-in" style="background: #0a0a0a; max-width: 100%;">
-        <div class="greeting-box" style="max-width: 900px; margin: 0 auto;">
+    <section class="section fade-in" style="background: #0a0a0a; max-width: 100%; padding-top: 120px; padding-bottom: 120px;">
+        <div class="greeting-box" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
             <h2>GREETING<br><span style="font-size: 16px; color: #888;">代表挨拶</span></h2>
-            <p>私たちの使命は、目の前の一つの荷物に誠心誠意向き合い、お客様の期待に応える配送サービスを提供し続けることです。</p>
-            <p>止まらない物流という社会のインフラを支え、お預かりしたお荷物をドライバー一人ひとりの手で「安心」「安全」にお届けすることを何より大切にしています。</p>
-            <p>これからも一つひとつのご依頼に真摯に向き合い、皆様から長く信頼される企業を目指してまいります。</p>
-            <p style="text-align: right; margin-top: 50px;">株式会社zeroONE 代表取締役 <strong>大八木 航輝</strong></p>
+            
+            <div class="greeting-text">
+                <p>私たちの使命は、目の前の一つひとつの荷物に誠心誠意向き合い、<br>お客様の期待を超える配送サービスを提供し続けることです。</p>
+                
+                <p>止まることのない物流インフラを支えています。<br>お客様の大切なお荷物を、ドライバー一人ひとりの手で<br>「安心」「安全」にお届けすることを、何よりも大切にしています。</p>
+                
+                <p>私たちは現状に満足することなく、常に挑戦を続けてまいります。</p>
+                
+                <p>地域や業界を牽引する総合物流パートナーへと成長し、<br>「新しいビジネスの形」と「豊かな社会」の実現に貢献していきます。</p>
+                
+                <p>これからも一つひとつのご依頼に真摯に向き合い、<br>皆様から長く信頼される企業を目指してまいります。</p>
+            </div>
+            
+            <div class="greeting-sign">
+                株式会社zeroONE 代表取締役 <strong>大八木 航輝</strong>
+            </div>
         </div>
     </section>
 
