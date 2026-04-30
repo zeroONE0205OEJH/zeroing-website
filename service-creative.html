@@ -11,7 +11,17 @@
         
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(17, 17, 17, 0.95); border-bottom: 1px solid #333333; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 1000; backdrop-filter: blur(5px); }
-        .logo svg { height: 60px; width: auto; }
+        
+        /* ロゴ画像の設定修正 */
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .logo img { 
+            height: 120px; 
+            width: auto; 
+            display: block; 
+            filter: invert(1); 
+            mix-blend-mode: screen; 
+        }
+
         nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav a:hover { color: #ffffff; }
@@ -44,7 +54,8 @@
         .back-link a:hover { background: #fff; color: #000; border-color: #fff; }
 
         footer { padding: 80px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; }
-        .footer-logo svg { height: 80px; width: auto; } 
+        /* フッターロゴの設定修正 */
+        .footer-logo img { height: 120px; width: auto; filter: invert(1); mix-blend-mode: screen; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 40px 0; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
@@ -55,7 +66,7 @@
 
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
+            .logo img { height: 80px; }
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
             nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #111; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 1000; }
             nav ul.active { right: 0; }
@@ -67,6 +78,7 @@
             .detail-hero h1 { font-size: 32px; }
             .lead-text { font-size: 15px; text-align: left; padding: 0 10px; }
             .pillar-card { padding: 30px 20px; }
+            .footer-logo img { height: 80px; }
         }
     </style>
 </head>
@@ -74,11 +86,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="cutout-header"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-                </svg>
+                <img src="logo.png" alt="株式会社zeroONE">
             </a>
         </div>
         <div class="hamburger"><span></span><span></span><span></span></div>
@@ -100,33 +108,34 @@
 
     <div class="container">
         <div class="lead-text fade-in">
-            お預かりした素材の魅力を最大限に引き出す、高品質な動画編集サービスを提供します。<br>
-            企業プロモーションからSNS特化型ショート動画まで、テンポの良いカット割りと視聴者を惹きつける演出で、単なる動画を「伝わるコンテンツ」へと昇華させます。
+            YouTubeやTikTokなどのSNS動画から、企業向けのプロモーション映像まで幅広く対応しています。<br>
+            一つひとつの素材を丁寧に繋ぎ、想いが伝わるコンテンツに仕上げます。<br>
+            私たちの動画制作における、4つの柱をご紹介します。
         </div>
 
         <div class="pillars-grid">
             <div class="pillar-card fade-in">
                 <div class="pillar-number">01</div>
-                <h3>QUALITY <span style="font-size: 14px; color: #888; font-weight: normal;">(品質・演出力)</span></h3>
-                <p>単なるカットやテロップ挿入にとどまらず、素材の良さを引き出すカラーグレーディングや目を惹きつけるエフェクトを駆使し、妥協のない高品質な動画に仕上げます。</p>
+                <h3>EDITING <span style="font-size: 14px; color: #888; font-weight: normal;">(動画編集)</span></h3>
+                <p>お客様のニーズに合わせた構成をゼロから構築し、内容が一番伝わる形を追求します。映像のテンポや音のタイミングなど、視聴者の心地よさを第一に考えた編集にこだわります。</p>
             </div>
 
             <div class="pillar-card fade-in">
                 <div class="pillar-number">02</div>
-                <h3>SPEED & FLEXIBILITY <span style="font-size: 14px; color: #888; font-weight: normal;">(スピードと柔軟性)</span></h3>
-                <p>トレンドの移り変わりが激しいSNS時代に合わせ、圧倒的なスピード感で納品。クオリティを妥協することなく、細かな修正やご要望にも柔軟かつ迅速に対応します。</p>
+                <h3>CREATIVE <span style="font-size: 14px; color: #888; font-weight: normal;">(演出・デザイン)</span></h3>
+                <p>効果的なエフェクトやグラフィックを用いて動画の質を高めます。派手な演出に頼りすぎず、内容が一番伝わりやすい表現をご提案します。</p>
             </div>
 
             <div class="pillar-card fade-in">
                 <div class="pillar-number">03</div>
-                <h3>SNS OPTIMIZATION <span style="font-size: 14px; color: #888; font-weight: normal;">(SNS最適化)</span></h3>
-                <p>TikTok、Instagramリール、YouTube Shortsなど、各プラットフォームのアルゴリズムを熟知。最初の数秒で視聴者を離脱させない「見られる」縦型ショート動画の編集に特化しています。</p>
+                <h3>FLEXIBLE <span style="font-size: 14px; color: #888; font-weight: normal;">(柔軟な対応)</span></h3>
+                <p>1本単位のスポット依頼から、継続的なチャンネル運用まで柔軟に対応可能です。ショート動画や広告動画など、プラットフォームごとの特性に合わせた最適な形に仕上げます。</p>
             </div>
 
             <div class="pillar-card fade-in">
                 <div class="pillar-number">04</div>
-                <h3>BRANDING <span style="font-size: 14px; color: #888; font-weight: normal;">(世界観の構築)</span></h3>
-                <p>企業や個人のブランドイメージを正確に汲み取り、フォント選びからBGM・効果音のタイミングまで細部にこだわった編集を実施。クライアントの「らしさ」を際立たせます。</p>
+                <h3>SUPPORT <span style="font-size: 14px; color: #888; font-weight: normal;">(サポート)</span></h3>
+                <p>企画のアイデア出しから実際の編集、納品後の修正まで責任を持って対応します。お客様のご要望を形にし、長く信頼していただけるパートナーを目指します。</p>
             </div>
         </div>
 
@@ -137,11 +146,9 @@
 
     <footer>
         <div class="footer-logo">
-            <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-              <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-              <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-              <text x="100" y="130" font-family="sans-serif" text-anchor="middle" font-size="28"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-            </svg>
+            <a href="index.html">
+                <img src="logo.png" alt="zeroONE">
+            </a>
         </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
