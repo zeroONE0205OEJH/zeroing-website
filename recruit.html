@@ -77,13 +77,14 @@
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-            /* ★修正：フォントサイズを小さくし、意図しない改行を防ぐ設定 */
-            .recruit-hero h1 { font-size: clamp(16px, 4.8vw, 24px) !important; letter-spacing: 0 !important; white-space: normal !important; word-break: normal !important; overflow-wrap: break-word !important; width: 100%; padding: 0 15px; box-sizing: border-box; text-align: center; line-height: 1.5; }
+            /* ★修正：フォントサイズを画面幅に合わせ、絶対に1行(改行なし)にする設定 */
+            .recruit-hero h1 { font-size: clamp(14px, 4.5vw, 24px) !important; letter-spacing: 0 !important; white-space: nowrap !important; width: 100%; padding: 0 15px; box-sizing: border-box; text-align: center; }
             .recruit-hero p { font-size: clamp(12px, 3.5vw, 15px) !important; letter-spacing: 0 !important; white-space: normal !important; width: 100%; padding: 0 15px; box-sizing: border-box; text-align: center; }
             
             .message-box { padding: 40px 20px; }
-            /* ★修正：h3のフォントサイズと文字間隔を調整 */
-            .message-box h3 { font-size: 20px; letter-spacing: 0; }
+            
+            /* ★修正：h3のフォントサイズを画面幅に合わせ、絶対に1行(改行なし)にする設定 */
+            .message-box h3 { font-size: clamp(14px, 5vw, 20px) !important; letter-spacing: 0 !important; white-space: nowrap !important; }
 
             .recruit-table th, .recruit-table td { display: block; width: 100%; padding: 15px 10px; box-sizing: border-box; }
             .recruit-table th { border-bottom: none; padding-bottom: 5px; }
@@ -104,13 +105,13 @@
     <section class="recruit-hero">
         <video class="recruit-video" autoplay loop muted playsinline disablePictureInPicture><source src="https://videos.pexels.com/video-files/3255275/3255275-hd_1920_1080_25fps.mp4" type="video/mp4"></video>
         <div class="recruit-overlay"></div>
-        <h1 class="fade-in">経験ゼロから、<br>プロフェッショナルへ。</h1>
+        <h1 class="fade-in">経験ゼロから、プロフェッショナルへ。</h1>
         <p class="fade-in">普通免許一本で、新しいキャリアをここから走らせよう。</p>
     </section>
 
     <div class="container fade-in">
         <div class="message-box">
-            <h3>ゼロからイチへ、<br>共に歩む。</h3>
+            <h3>ゼロからイチへ、共に歩む。</h3>
             <p>必要なのは、普通自動車免許とあなたの誠実さだけです。</p>
             <p>zeroONEはAmazonオフィシャル配送パートナーとして、安定した仕事量と未経験からでも安心してスタートできる環境を整えています。</p>
             <p>ただ荷物を運ぶだけでなく、社会のインフラを最前線で支えるプロフェッショナルとして私たちがあなたの新しい一歩を全力でバックアップします。</p>
