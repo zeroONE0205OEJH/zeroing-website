@@ -8,14 +8,23 @@
         /* --- 全体設定 --- */
         body { background-color: #0a0a0a; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.8; overflow-x: hidden; }
         
-        /* --- ヘッダー（全ページ共通・右上固定仕様） --- */
+        /* --- ヘッダー（全ページ共通・右上固定仕様、透過をなくし、純黒 #000000 に修正） --- */
         header { 
             display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 40px; background-color: rgba(10, 10, 10, 0.95); 
+            padding: 20px 40px; background-color: #000000; /* ロゴの背景と完全に一致させ枠を隠す */
             position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; 
-            backdrop-filter: blur(10px); border-bottom: 1px solid #222;
+            border-bottom: 1px solid #222;
         }
-        .logo svg { height: 60px; width: auto; }
+        
+        /* ★ロゴ画像の設定 */
+        .logo a { display: flex; align-items: center; text-decoration: none; }
+        .logo img { 
+            height: 120px; 
+            width: auto; 
+            display: block; 
+            filter: invert(1); 
+            mix-blend-mode: screen; 
+        }
         
         nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
@@ -49,7 +58,12 @@
 
         /* --- フッター --- */
         footer { padding: 80px 20px 40px; text-align: center; background: #000; border-top: 1px solid #111; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo svg { height: 80px; width: auto; } 
+        .footer-logo img { 
+            height: 120px; 
+            width: auto; 
+            filter: invert(1); 
+            mix-blend-mode: screen; 
+        } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
@@ -57,8 +71,8 @@
 
         /* --- レスポンシブ設定 --- */
         @media (max-width: 900px) {
-            header { padding: 15px 20px; }
-            .logo svg { height: 45px; }
+            header { padding: 15px 20px; background-color: #000000; }
+            .logo img { height: 80px; } /* スマホ用ロゴも拡大 */
             nav.pc-nav { display: none; }
             .hamburger { display: flex; }
             
@@ -69,6 +83,7 @@
 
             .container { margin-top: 120px; }
             h1 { font-size: 26px; }
+            .footer-logo img { height: 80px; }
         }
     </style>
 </head>
@@ -77,11 +92,7 @@
     <header>
         <div class="logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="cutout-header"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-header)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-                </svg>
+                <img src="logo.png" alt="株式会社zeroONE">
             </a>
         </div>
 
@@ -155,11 +166,7 @@
     <footer>
         <div class="footer-logo">
             <a href="index.html">
-                <svg viewBox="0 0 200 150" xmlns="http://www.w3.org/2000/svg">
-                  <defs><mask id="cutout-footer"><rect x="0" y="0" width="200" height="150" fill="white" /><rect x="90" y="5" width="20" height="90" fill="black" /><polygon points="65,30 90,5 90,30" fill="black" /></mask></defs>
-                  <ellipse cx="100" cy="50" rx="35" ry="45" fill="#ffffff" mask="url(#cutout-footer)" />
-                  <text x="100" y="130" font-family="'Helvetica Neue', Arial, sans-serif" text-anchor="middle" font-size="28" letter-spacing="-0.5"><tspan font-weight="400" fill="#ffffff">zero</tspan><tspan font-weight="800" fill="#ffffff">ONE</tspan></text>
-                </svg>
+                <img src="logo.png" alt="zeroONE">
             </a>
         </div>
         <div class="footer-links">
