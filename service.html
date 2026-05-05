@@ -101,9 +101,13 @@
             .service-card, .service-card:nth-child(even) { flex-direction: column; gap: 30px; }
             
             .service-img, .service-info { width: 100%; height: auto; }
-            .service-img { height: auto; } 
-            .service-img img { 
+            .service-img { 
+                aspect-ratio: 3 / 2; 
                 height: auto; 
+            } 
+            .service-img img { 
+                width: 100%; 
+                height: 100%; 
                 object-fit: cover; 
             } 
 
@@ -160,7 +164,7 @@
                 </div>
             </div>
             <div class="service-card">
-                <div class="service-img"><img src="https://images.pexels.com/photos/392586/pexels-photo-392586.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Apparel Design Process"></div>
+                <div class="service-img"><img src="https://images.unsplash.com/photo-1618220179428-22790b46a0eb?auto=format&fit=crop&w=800&q=80" alt="Apparel Design Process"></div>
                 <div class="service-info">
                     <h2>Apparel<span>アパレル事業</span></h2>
                     <p>受注生産アパレルの展開に加え、オリジナルデザインの制作も承ります。お客様のイメージを形にし、こだわりの一着をお届けします。</p>
