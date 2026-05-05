@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社zeroONE | 新時代のロジスティクス</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
     <style>
         /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
@@ -36,15 +39,13 @@
         
         .hero-logo { width: 520px; max-width: 90vw; height: auto; margin-bottom: 20px; opacity: 0; transform: translateY(20px); animation: fadeInUp 1.5s forwards; filter: invert(1); mix-blend-mode: screen; }
         
-        /* ★ 修正箇所：動画上のテキスト（太字・純白・強いシャドウで見やすく） */
         .hero p { 
             color: #ffffff; 
-            font-weight: 800; /* 太字 */
+            font-weight: 800; 
             font-size: 20px; 
             margin: 0; 
             line-height: 1.8; 
             letter-spacing: 2px; 
-            /* 何層も影を重ねてクッキリ浮き上がらせる */
             text-shadow: 0 2px 4px rgba(0,0,0,1), 0 0 15px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.8); 
             opacity: 0; 
             animation: fadeInUp 1.5s forwards 0.5s; 
@@ -63,25 +64,25 @@
         .news-date { color: #888; font-size: 14px; min-width: 100px; }
         .news-tag { background: #fff; color: #000; font-size: 11px; padding: 3px 12px; border-radius: 2px; font-weight: bold; height: fit-content; }
         
-        /* ★ 代表挨拶エリアのスタイル */
         .greeting-box { text-align: center; }
         .greeting-box h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; font-family: 'Helvetica Neue', Arial, sans-serif; }
         
         .greeting-text { text-align: left; display: inline-block; max-width: 900px; }
         
-        /* ★ 修正箇所：挨拶テキスト（無機質・テック・クールなゴシック体に変更） */
         .greeting-text p { 
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; /* テックでクリーンなフォント */
-            font-weight: 300; /* スタイリッシュな細字 */
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; 
+            font-weight: 300; 
             font-size: 22px; 
             color: #ffffff; 
             line-height: 2.2; 
             margin-bottom: 30px; 
-            letter-spacing: 2px; /* 字間を少し広げて無機質感を演出 */
+            letter-spacing: 2px; 
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        /* ★ 署名部分のスタイル調整（フォント変更） */
+        /* ★ 追加：単語の途中で不自然に改行されるのを防ぐ魔法のクラス */
+        .ib { display: inline-block; }
+
         .greeting-sign { 
             font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif; 
             font-weight: 300;
@@ -121,16 +122,17 @@
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
             .hero-logo { width: 320px; }
-            /* スマホの動画テキストサイズ */
             .hero p { font-size: 15px; padding: 0 15px; line-height: 1.8; }
             .news-item { flex-direction: column; gap: 10px; }
             
-            /* スマホ用挨拶テキスト調整 */
             .greeting-text p { font-size: 16px; line-height: 2.0; margin-bottom: 25px; }
             .greeting-sign { margin-top: 50px; }
             .greeting-sign .sign-title { font-size: 16px; margin-bottom: 2px; }
             .greeting-sign .sign-name { font-size: 34px; }
             .sign-row { gap: 8px; }
+
+            /* ★ 追加：スマホ表示時にPC用の強制改行を無効化し、画面幅に合わせて自然に折り返す */
+            .sp-br-none { display: none; }
         }
     </style>
 </head>
@@ -174,7 +176,7 @@
         
         <img src="logo.png" alt="zeroONE" class="hero-logo">
         
-        <p>すべての荷物に、誠実な配送を。<br>一つひとつの配送に責任を持ち、物流の未来を前へ進める。</p>
+        <p><span class="ib">すべての荷物に、</span><span class="ib">誠実な配送を。</span><br class="sp-br-none"><span class="ib">一つひとつの配送に責任を持ち、</span><span class="ib">物流の未来を前へ進める。</span></p>
     </section>
 
     <section class="section fade-in">
@@ -196,13 +198,28 @@
             <h2>GREETING<br><span style="font-size: 16px; color: #888;">代表挨拶</span></h2>
             
             <div class="greeting-text">
-                <p>私たちzeroONEは、ただ荷物を運ぶ会社ではありません。</p>
-                <p>一つひとつの荷物の先には、待っているお客様がいて、<br>その配送を支える一人ひとりのドライバーがいます。</p>
-                <p>だからこそ私たちは、「安心」「安全」「品質」を大切にしながら、<br>現場で働く仲間が誇りを持てる物流会社を目指しています。</p>
-                <p>配送の仕事は、決して目立つ仕事ではありません。<br>それでも、日々止まることのない物流インフラを支え、<br>誰かの生活や仕事を支える大切な役割があります。<br>私たちは、その価値を本気で信じています。</p>
-                <p>そして、私たちは止まりません。</p>
-                <p>現場の声を力に変え、一つひとつの課題を改善し、<br>昨日よりも良い配送を積み重ねていく。<br>仲間の成長が会社の成長につながり、<br>その先でお客様や社会により大きな価値を届ける。</p>
-                <p>zeroONEは、現場で信頼を積み重ね、仲間とともに成長しながら、<br>新しい可能性を形にしていく会社であり続けます。</p>
+                <p><span class="ib">私たちzeroONEは、</span><span class="ib">ただ荷物を運ぶ会社ではありません。</span></p>
+                
+                <p><span class="ib">一つひとつの荷物の先には、</span><span class="ib">待っているお客様がいて、</span><br class="sp-br-none">
+                <span class="ib">その配送を支える</span><span class="ib">一人ひとりのドライバーがいます。</span></p>
+                
+                <p><span class="ib">だからこそ私たちは、</span><span class="ib">「安心」「安全」「品質」を</span><span class="ib">大切にしながら、</span><br class="sp-br-none">
+                <span class="ib">現場で働く仲間が</span><span class="ib">誇りを持てる物流会社を</span><span class="ib">目指しています。</span></p>
+                
+                <p><span class="ib">配送の仕事は、</span><span class="ib">決して目立つ仕事ではありません。</span><br class="sp-br-none">
+                <span class="ib">それでも、</span><span class="ib">日々止まることのない</span><span class="ib">物流インフラを支え、</span><br class="sp-br-none">
+                <span class="ib">誰かの生活や仕事を支える</span><span class="ib">大切な役割があります。</span><br class="sp-br-none">
+                <span class="ib">私たちは、</span><span class="ib">その価値を本気で信じています。</span></p>
+                
+                <p><span class="ib">そして、</span><span class="ib">私たちは止まりません。</span></p>
+                
+                <p><span class="ib">現場の声を力に変え、</span><span class="ib">一つひとつの課題を改善し、</span><br class="sp-br-none">
+                <span class="ib">昨日よりも良い配送を</span><span class="ib">積み重ねていく。</span><br class="sp-br-none">
+                <span class="ib">仲間の成長が</span><span class="ib">会社の成長につながり、</span><br class="sp-br-none">
+                <span class="ib">その先で</span><span class="ib">お客様や社会に</span><span class="ib">より大きな価値を届ける。</span></p>
+                
+                <p><span class="ib">zeroONEは、</span><span class="ib">現場で信頼を積み重ね、</span><span class="ib">仲間とともに成長しながら、</span><br class="sp-br-none">
+                <span class="ib">新しい可能性を</span><span class="ib">形にしていく会社であり続けます。</span></p>
             </div>
             
             <div class="greeting-sign">
