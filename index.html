@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>株式会社zeroONE | 新時代のロジスティクス</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
     <style>
         /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
-        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
+        body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
         /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 15px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
@@ -25,7 +22,6 @@
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
         
-        /* ★修正箇所：z-indexを10000から9998に変更し、メニューをヘッダーの下に潜らせました */
         .mobile-menu { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: rgba(5, 5, 5, 0.98); display: flex; flex-direction: column; justify-content: center; align-items: center; transition: 0.4s; z-index: 9998; opacity: 0; pointer-events: none; }
         .mobile-menu.active { opacity: 1; pointer-events: auto; }
         .mobile-menu ul { list-style: none; padding: 0; text-align: center; }
@@ -39,7 +35,22 @@
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: -1; }
         
         .hero-logo { width: 520px; max-width: 90vw; height: auto; margin-bottom: 20px; opacity: 0; transform: translateY(20px); animation: fadeInUp 1.5s forwards; filter: invert(1); mix-blend-mode: screen; }
-        .hero p { color: #eee; font-size: 18px; margin: 0; line-height: 1.8; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.8); opacity: 0; animation: fadeInUp 1.5s forwards 0.5s; white-space: normal; max-width: 800px; }
+        
+        /* ★ 修正箇所：動画上のテキスト（太字・純白・強いシャドウで見やすく） */
+        .hero p { 
+            color: #ffffff; 
+            font-weight: 800; /* 太字 */
+            font-size: 20px; 
+            margin: 0; 
+            line-height: 1.8; 
+            letter-spacing: 2px; 
+            /* 何層も影を重ねてクッキリ浮き上がらせる */
+            text-shadow: 0 2px 4px rgba(0,0,0,1), 0 0 15px rgba(0,0,0,0.8), 0 0 30px rgba(0,0,0,0.8); 
+            opacity: 0; 
+            animation: fadeInUp 1.5s forwards 0.5s; 
+            white-space: normal; 
+            max-width: 800px; 
+        }
         
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
 
@@ -57,44 +68,39 @@
         .greeting-box h2 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; font-family: 'Helvetica Neue', Arial, sans-serif; }
         
         .greeting-text { text-align: left; display: inline-block; max-width: 900px; }
+        
+        /* ★ 修正箇所：挨拶テキスト（無機質・テック・クールなゴシック体に変更） */
         .greeting-text p { 
-            font-family: 'Yuji Syuku', serif; 
-            font-size: 26px; 
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; /* テックでクリーンなフォント */
+            font-weight: 300; /* スタイリッシュな細字 */
+            font-size: 22px; 
             color: #ffffff; 
             line-height: 2.2; 
             margin-bottom: 30px; 
-            letter-spacing: 1.5px;
+            letter-spacing: 2px; /* 字間を少し広げて無機質感を演出 */
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        /* ★ 署名部分のスタイル調整（下面合わせ） */
+        /* ★ 署名部分のスタイル調整（フォント変更） */
         .greeting-sign { 
-            font-family: 'Yuji Syuku', serif; 
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif; 
+            font-weight: 300;
             text-align: right; 
             margin-top: 80px; 
             color: #ffffff;
             letter-spacing: 2px;
-            line-height: 1.0; /* 署名行の行間をリセットして精密に合わせる */
+            line-height: 1.0; 
         }
         
         .sign-row {
             display: flex;
-            align-items: flex-end; /* 下面（ベースライン）で揃える */
+            align-items: flex-end; 
             justify-content: flex-end;
-            gap: 15px; /* 代表取締役とお名前の間隔 */
+            gap: 15px; 
         }
 
-        /* 代表取締役のサイズ（固定） */
-        .greeting-sign .sign-title {
-            font-size: 22px;
-            margin-bottom: 4px; /* 視覚的なベースラインの微調整 */
-        }
-
-        /* 名前のサイズ（大きく） */
-        .greeting-sign .sign-name {
-            font-size: 48px; 
-            font-weight: normal;
-        }
+        .greeting-sign .sign-title { font-size: 22px; margin-bottom: 4px; }
+        .greeting-sign .sign-name { font-size: 48px; font-weight: 300; }
 
         /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
@@ -115,11 +121,12 @@
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
             .hero-logo { width: 320px; }
-            .hero p { font-size: 14px; padding: 0 10px; line-height: 1.7; }
+            /* スマホの動画テキストサイズ */
+            .hero p { font-size: 15px; padding: 0 15px; line-height: 1.8; }
             .news-item { flex-direction: column; gap: 10px; }
             
             /* スマホ用挨拶テキスト調整 */
-            .greeting-text p { font-size: 18px; line-height: 2.0; margin-bottom: 25px; }
+            .greeting-text p { font-size: 16px; line-height: 2.0; margin-bottom: 25px; }
             .greeting-sign { margin-top: 50px; }
             .greeting-sign .sign-title { font-size: 16px; margin-bottom: 2px; }
             .greeting-sign .sign-name { font-size: 34px; }
@@ -167,7 +174,7 @@
         
         <img src="logo.png" alt="zeroONE" class="hero-logo">
         
-        <p>すべての荷物に誠実な配送を。<br>ゼロからイチへ、ビジネスと暮らしを加速させる新時代のロジスティクス。</p>
+        <p>すべての荷物に、誠実な配送を。<br>一つひとつの配送に責任を持ち、物流の未来を前へ進める。</p>
     </section>
 
     <section class="section fade-in">
@@ -189,15 +196,13 @@
             <h2>GREETING<br><span style="font-size: 16px; color: #888;">代表挨拶</span></h2>
             
             <div class="greeting-text">
-                <p>私たちの使命は、目の前の一つひとつの荷物に誠心誠意向き合い、<br>お客様の期待を超える配送サービスを提供し続けることです。</p>
-                
-                <p>止まることのない物流インフラを支えています。<br>お客様の大切なお荷物を、ドライバー一人ひとりの手で<br>「安心」「安全」にお届けすることを、何よりも大切にしています。</p>
-                
-                <p>私たちは現状に満足することなく、常に挑戦を続けてまいります。</p>
-                
-                <p>地域や業界を牽引する総合物流パートナーへと成長し、<br>「新しいビジネスの形」と「豊かな社会」の実現に貢献していきます。</p>
-                
-                <p>これからも一つひとつのご依頼に真摯に向き合い、<br>皆様から長く信頼される企業を目指してまいります。</p>
+                <p>私たちzeroONEは、ただ荷物を運ぶ会社ではありません。</p>
+                <p>一つひとつの荷物の先には、待っているお客様がいて、<br>その配送を支える一人ひとりのドライバーがいます。</p>
+                <p>だからこそ私たちは、「安心」「安全」「品質」を大切にしながら、<br>現場で働く仲間が誇りを持てる物流会社を目指しています。</p>
+                <p>配送の仕事は、決して目立つ仕事ではありません。<br>それでも、日々止まることのない物流インフラを支え、<br>誰かの生活や仕事を支える大切な役割があります。<br>私たちは、その価値を本気で信じています。</p>
+                <p>そして、私たちは止まりません。</p>
+                <p>現場の声を力に変え、一つひとつの課題を改善し、<br>昨日よりも良い配送を積み重ねていく。<br>仲間の成長が会社の成長につながり、<br>その先でお客様や社会により大きな価値を届ける。</p>
+                <p>zeroONEは、現場で信頼を積み重ね、仲間とともに成長しながら、<br>新しい可能性を形にしていく会社であり続けます。</p>
             </div>
             
             <div class="greeting-sign">
@@ -226,7 +231,6 @@
     </footer>
 
     <script>
-        // ハンバーガーメニュー制御
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
         hamburger.addEventListener('click', () => {
@@ -235,7 +239,6 @@
             document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
         });
 
-        // スクロールアニメーション
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('appear');
