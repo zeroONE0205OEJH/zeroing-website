@@ -8,13 +8,13 @@
         /* --- 全体設定 --- */
         body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* --- ヘッダー（透过をなくし、純黒 #000000 に修正） --- */
+        /* --- ヘッダー --- */
         header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             padding: 20px 40px; 
-            background-color: #000000; /* ロゴの背景と完全に一致させ枠を隠す */
+            background-color: #000000; 
             position: fixed; 
             top: 0; 
             width: 100%; 
@@ -100,13 +100,15 @@
 
             .service-card, .service-card:nth-child(even) { flex-direction: column; gap: 30px; }
             
-            /* ★画像の比率をそのままに、横幅いっぱい（文章の幅）になるよう自動調整。
-               file-6.htmlでの画像読み込み修正（比率維持）を維持。 */
             .service-img, .service-info { width: 100%; height: auto; }
-            .service-img { height: auto; } 
-            .service-img img { 
+            .service-img { 
+                aspect-ratio: 3 / 2; 
                 height: auto; 
-                object-fit: cover; /* 画像全体を表示し、比率を保ち、縦横サイズを統一 */
+            } 
+            .service-img img { 
+                width: 100%; 
+                height: 100%; 
+                object-fit: cover; 
             } 
 
             .footer-logo img { height: 80px; }
@@ -162,7 +164,7 @@
                 </div>
             </div>
             <div class="service-card">
-                <div class="service-img"><img src="image_34.png" alt="DTF (Direct-to-Film) Printer Machine in Operation"></div>
+                <div class="service-img"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80" alt="Apparel Design and Print"></div>
                 <div class="service-info">
                     <h2>Apparel<span>アパレル事業</span></h2>
                     <p>受注生産アパレルの展開に加え、オリジナルデザインの制作も承ります。お客様のイメージを形にし、こだわりの一着をお届けします。</p>
