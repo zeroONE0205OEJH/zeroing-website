@@ -8,13 +8,13 @@
         /* --- 全体設定 --- */
         body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* --- ヘッダー（背景を純黒 #000000 に修正） --- */
+        /* --- ヘッダー --- */
         header { 
             display: flex; 
             justify-content: space-between; 
             align-items: center; 
             padding: 20px 40px; 
-            background-color: #000000; /* 透過を廃止し、ロゴの背景と完全に一致させる */
+            background-color: #000000; 
             position: fixed; 
             top: 0; 
             width: 100%; 
@@ -23,7 +23,6 @@
             border-bottom: 1px solid #222; 
         }
         
-        /* ★ロゴ画像の設定 */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
             height: 120px; 
@@ -101,7 +100,8 @@
             .service-card, .service-card:nth-child(even) { flex-direction: column; gap: 30px; }
             .service-img, .service-info { width: 100%; height: auto; }
             .service-img { height: 250px; }
-            .service-info h2 { font-size: 28px; }
+            /* スマホ表示時に画像全体が表示されるように修正 */
+            .service-img img { object-fit: contain; } 
 
             .footer-logo img { height: 80px; }
         }
@@ -168,8 +168,7 @@
 
     <footer>
         <div class="footer-logo">
-            <img src="logo.png" alt="zeroONE">
-        </div>
+            <img src="logo.png" alt="zeroONE"> </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="service.html">Service</a>
