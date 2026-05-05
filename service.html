@@ -8,7 +8,7 @@
         /* --- 全体設定 --- */
         body { background-color: #050505; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; overflow-x: hidden; }
         
-        /* --- ヘッダー --- */
+        /* --- ヘッダー（背景を純黒 #000000 に修正） --- */
         header { 
             display: flex; 
             justify-content: space-between; 
@@ -23,6 +23,7 @@
             border-bottom: 1px solid #222; 
         }
         
+        /* ★ロゴ画像の設定 */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
             height: 120px; 
@@ -98,10 +99,11 @@
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
             .service-card, .service-card:nth-child(even) { flex-direction: column; gap: 30px; }
+            
+            /* ★画像の比率をそのままに、横幅いっぱい（文章の幅）になるよう自動調整 */
             .service-img, .service-info { width: 100%; height: auto; }
-            .service-img { height: 250px; }
-            /* スマホ表示時に画像全体が表示されるように修正 */
-            .service-img img { object-fit: contain; } 
+            .service-img { height: auto; } 
+            .service-img img { height: auto; object-fit: cover; } 
 
             .footer-logo img { height: 80px; }
         }
@@ -168,7 +170,8 @@
 
     <footer>
         <div class="footer-logo">
-            <img src="logo.png" alt="zeroONE"> </div>
+            <img src="logo.png" alt="zeroONE">
+        </div>
         <div class="footer-links">
             <a href="index.html">Home</a>
             <a href="service.html">Service</a>
