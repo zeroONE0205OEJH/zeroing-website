@@ -9,7 +9,7 @@
         html { scroll-behavior: smooth; }
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- ヘッダー（他のページと統一：背景色と高さを調整） --- */
+        /* --- ヘッダー --- */
         header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
         
         /* ★ ロゴ画像の設定（他ページと完全に統一） */
@@ -33,7 +33,8 @@
         /* --- ヒーローセクション --- */
         .detail-hero { 
             height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; text-align: center; margin-top: 0;
-            background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.9)), url('https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            /* ★ 背景画像を apparel.jpeg に変更しました */
+            background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.9)), url('apparel.jpeg') center/cover no-repeat;
         }
         .detail-hero h1 { font-size: 48px; letter-spacing: 4px; margin-bottom: 10px; color: #fff; }
         .detail-hero p { font-size: 16px; color: #ccc; letter-spacing: 2px; }
@@ -54,7 +55,7 @@
         .back-link a { display: inline-block; padding: 15px 40px; border: 1px solid #555; color: #fff; text-decoration: none; font-size: 14px; letter-spacing: 2px; transition: 0.3s; border-radius: 4px; }
         .back-link a:hover { background: #fff; color: #000; border-color: #fff; }
 
-        /* --- フッター（他ページと統一） --- */
+        /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
         .footer-logo img { height: 120px; width: auto; filter: invert(1); mix-blend-mode: screen; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
