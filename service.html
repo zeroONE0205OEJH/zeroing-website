@@ -62,8 +62,20 @@
         .service-card.appear { opacity: 1; transform: translateY(0); }
         .service-card:nth-child(even) { flex-direction: row-reverse; }
 
-        .service-img { width: 50%; height: 400px; border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .service-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        /* ★PC版の画像サイズ統一設定 */
+        .service-img { 
+            width: 50%; 
+            height: 400px; 
+            border-radius: 8px; 
+            overflow: hidden; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+        }
+        .service-img img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* 比率を保ったまま枠いっぱいに表示 */
+            transition: 0.5s; 
+        }
         .service-card:hover .service-img img { transform: scale(1.05); }
 
         .service-info { width: 45%; }
@@ -101,8 +113,9 @@
             .service-card, .service-card:nth-child(even) { flex-direction: column; gap: 30px; }
             
             .service-img, .service-info { width: 100%; height: auto; }
+            /* ★スマホ版の画像サイズ統一設定 */
             .service-img { 
-                aspect-ratio: 3 / 2; 
+                aspect-ratio: 3 / 2; /* 常に3:2の比率で固定 */
                 height: auto; 
             } 
             .service-img img { 
@@ -164,7 +177,7 @@
                 </div>
             </div>
             <div class="service-card">
-                <div class="service-img"><img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?auto=format&fit=crop&w=800&q=80" alt="Apparel T-Shirts"></div>
+                <div class="service-img"><img src="Apparel.jpeg" alt="Apparel Design and Print"></div>
                 <div class="service-info">
                     <h2>Apparel<span>アパレル事業</span></h2>
                     <p>受注生産アパレルの展開に加え、オリジナルデザインの制作も承ります。お客様のイメージを形にし、こだわりの一着をお届けします。</p>
