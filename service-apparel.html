@@ -10,9 +10,22 @@
         body { background-color: #111111; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
         /* --- ヘッダー --- */
-        header { display: flex; justify-content: space-between; align-items: center; padding: 20px 40px; background-color: rgba(5, 5, 5, 0.95); border-bottom: 1px solid #222; position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; backdrop-filter: blur(10px); }
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 40px; 
+            background-color: rgba(5, 5, 5, 0.95); 
+            border-bottom: 1px solid #222; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            box-sizing: border-box; 
+            z-index: 10000; /* 他のページとZインデックスを統一 */
+            backdrop-filter: blur(10px); 
+        }
         
-        /* ★ ロゴ画像の設定（他ページと完全に統一） */
+        /* ★ ロゴ画像の設定 */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
             height: 120px; 
@@ -22,18 +35,30 @@
             mix-blend-mode: screen; 
         }
 
-        nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
-        nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
-        nav a:hover { color: #ffffff; }
+        /* ★PC用ナビゲーション */
+        nav.pc-nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 30px; }
+        nav.pc-nav a { color: #cccccc; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
+        nav.pc-nav a:hover { color: #ffffff; }
         
-        /* ハンバーガーボタン */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10001; }
+        /* ★ハンバーガーボタン */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10001; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
+
+        /* ★スマホ用 全画面中央メニュー（他のページと完全に統一） */
+        .mobile-menu {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #000000; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+            transition: 0.4s; z-index: 9999; opacity: 0; pointer-events: none;
+        }
+        .mobile-menu.active { opacity: 1; pointer-events: auto; }
+        .mobile-menu ul { list-style: none; padding: 0; text-align: center; margin: 0; }
+        .mobile-menu li { margin-bottom: 40px; }
+        .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s; }
 
         /* --- ヒーローセクション --- */
         .detail-hero { 
             height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; text-align: center; margin-top: 0;
-            /* ★ 背景画像を apparel.jpeg に変更しました */
             background: linear-gradient(rgba(17,17,17,0.7), rgba(17,17,17,0.9)), url('apparel.jpeg') center/cover no-repeat;
         }
         .detail-hero h1 { font-size: 48px; letter-spacing: 4px; margin-bottom: 10px; color: #fff; }
@@ -69,10 +94,10 @@
         @media (max-width: 900px) {
             header { padding: 15px 20px; }
             .logo img { height: 80px; }
-            .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
-            nav ul { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background-color: #050505; flex-direction: column; padding-top: 100px; align-items: center; transition: 0.4s; z-index: 10000; }
-            nav ul.active { right: 0; }
-            nav li { margin-bottom: 20px; }
+            
+            nav.pc-nav { display: none; }
+            .hamburger { display: flex; }
+            
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
@@ -91,8 +116,7 @@
                 <img src="logo.png" alt="株式会社zeroONE">
             </a>
         </div>
-        <div class="hamburger"><span></span><span></span><span></span></div>
-        <nav>
+        <nav class="pc-nav">
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="service.html">Service</a></li>
@@ -101,7 +125,18 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
+        <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
 
     <section class="detail-hero">
         <h1 class="fade-in">Apparel</h1>
@@ -164,9 +199,15 @@
     </footer>
 
     <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navUl = document.querySelector('nav ul');
-        hamburger.addEventListener('click', () => { hamburger.classList.toggle('active'); navUl.classList.toggle('active'); });
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            // メニューが開いている時は背景のスクロールを止める
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
 
         const faders = document.querySelectorAll('.fade-in');
         const appearOnScroll = new IntersectionObserver(function(entries, observer) {
