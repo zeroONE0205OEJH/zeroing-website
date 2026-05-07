@@ -113,8 +113,10 @@
 
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
-            /* ★修正：ロゴを左に寄せるため、左パディングを15pxに調整（ハンバーガーと対称にする） */
-            header { padding: 10px 15px; }
+            /* ★再修正：ロゴを左ギリギリに寄せるため、左パディングを0pxに設定 */
+            header { 
+                padding: 10px 15px 10px 0px; 
+            }
             .logo img { height: 80px; }
             nav.pc-nav { display: none; }
             .hamburger { display: flex; }
