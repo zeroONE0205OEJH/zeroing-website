@@ -97,13 +97,17 @@
         .copyright { color: #444; font-size: 13px; margin-top: 20px; }
 
         @media (max-width: 900px) {
-            header { padding: 15px 20px; background-color: #000000; }
+            /* ★修正：他のページと同様に、左パディングを0にし、マイナスマージンで左端ギリギリに寄せる */
+            header { padding: 10px 15px 10px 0px; background-color: #000000; }
+            .logo { margin-left: -25px; }
             .logo img { height: 80px; }
+            
             nav.pc-nav { display: none; }
             .hamburger { display: flex; }
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+            
             .container { margin-top: 100px; }
             .contact-form { padding: 30px 20px; }
             .section-title { font-size: 26px; margin-bottom: 40px; }
