@@ -101,7 +101,14 @@
 
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
-            header { padding: 15px 20px; background-color: #000000; }
+            /* ★修正：ホーム画面と完全に同じ余白設定（左ギリギリ）に変更 */
+            header { 
+                padding: 10px 15px 10px 0px; 
+                background-color: #000000; 
+            }
+            .logo {
+                margin-left: -25px; /* 画像の透明部分を打ち消すための力技 */
+            }
             .logo img { height: 80px; }
             nav.pc-nav { display: none; }
             
