@@ -6,17 +6,24 @@
     <title>Privacy Policy | 株式会社zeroONE</title>
     <style>
         /* --- 全体設定 --- */
-        body { background-color: #0a0a0a; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.8; overflow-x: hidden; }
+        body { background-color: #0a0a0a; color: #ffffff; font-family: 'Helvetica Neue', Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; overflow-x: hidden; }
         
-        /* --- ヘッダー（全ページ共通・右上固定仕様、透過をなくし、純黒 #000000 に修正） --- */
+        /* --- ヘッダー（他のページと完全に統一） --- */
         header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 20px 40px; background-color: #000000; /* ロゴの背景と完全に一致させ枠を隠す */
-            position: fixed; top: 0; width: 100%; box-sizing: border-box; z-index: 9999; 
-            border-bottom: 1px solid #222;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 20px 40px; 
+            background-color: #000000; 
+            border-bottom: 1px solid #222; 
+            position: fixed; 
+            top: 0; 
+            width: 100%; 
+            box-sizing: border-box; 
+            z-index: 9999; 
+            backdrop-filter: blur(10px); 
         }
         
-        /* ★ロゴ画像の設定 */
         .logo a { display: flex; align-items: center; text-decoration: none; }
         .logo img { 
             height: 120px; 
@@ -30,17 +37,12 @@
         nav.pc-nav a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; font-weight: bold; }
         nav.pc-nav a:hover { color: #fff; }
 
-        /* ハンバーガーボタン（右上に固定） */
-        .hamburger { 
-            display: none; cursor: pointer; flex-direction: column; gap: 6px; 
-            z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%);
-        }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 6px; z-index: 10000; position: absolute; right: 25px; top: 50%; transform: translateY(-50%); }
         .hamburger span { display: block; width: 30px; height: 2px; background-color: #ffffff; transition: 0.4s; }
 
-        /* スマホ用 全画面中央メニュー */
         .mobile-menu {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(10, 10, 10, 0.98); display: flex; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.98); display: flex; justify-content: center; align-items: center;
             z-index: 9998; opacity: 0; pointer-events: none; transition: 0.4s;
         }
         .mobile-menu.active { opacity: 1; pointer-events: auto; }
@@ -48,44 +50,42 @@
         .mobile-menu li { margin: 30px 0; }
         .mobile-menu a { color: #fff; text-decoration: none; font-size: 26px; font-weight: bold; letter-spacing: 4px; transition: 0.3s; }
 
-        /* --- コンテンツ --- */
+        /* --- プライバシーポリシー コンテンツ --- */
         .container { max-width: 800px; margin: 150px auto 100px; padding: 0 20px; }
-        h1 { font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; text-align: center; font-weight: 300; }
-        h2 { font-size: 20px; margin-top: 50px; border-bottom: 1px solid #333; padding-bottom: 10px; color: #fff; letter-spacing: 1px; }
-        p { color: #ccc; font-size: 15px; margin-bottom: 20px; }
-        ul.policy-list { color: #ccc; font-size: 15px; margin-bottom: 30px; padding-left: 20px; }
-        ul.policy-list li { margin-bottom: 10px; }
+        .section-title { text-align: center; font-size: 32px; letter-spacing: 4px; margin-bottom: 60px; font-weight: 300; }
+
+        .privacy-content { background: rgba(20, 20, 20, 0.5); padding: 50px; border-radius: 12px; border: 1px solid #222; }
+        
+        .privacy-content h2 { font-size: 20px; color: #fff; border-bottom: 1px solid #444; padding-bottom: 10px; margin-top: 40px; margin-bottom: 20px; letter-spacing: 1px; }
+        .privacy-content h2:first-child { margin-top: 0; }
+        .privacy-content p { color: #ccc; line-height: 1.8; margin-bottom: 20px; font-size: 15px; }
+        .privacy-content ul { color: #ccc; padding-left: 20px; margin-bottom: 20px; line-height: 1.8; font-size: 15px; }
+        .privacy-content li { margin-bottom: 8px; }
 
         /* --- フッター --- */
-        footer { padding: 80px 20px 40px; text-align: center; background: #000; border-top: 1px solid #111; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-        .footer-logo img { 
-            height: 120px; 
-            width: auto; 
-            filter: invert(1); 
-            mix-blend-mode: screen; 
-        } 
+        footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+        .footer-logo img { height: 120px; width: auto; filter: invert(1); mix-blend-mode: screen; } 
         .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
         .footer-links a { color: #888; text-decoration: none; font-size: 16px; transition: 0.3s; } 
         .footer-links a:hover { color: #fff; }
-        .copyright { color: #444; font-size: 13px; letter-spacing: 1px; margin-top: 20px; }
+        .copyright { color: #444; font-size: 13px; margin-top: 20px; }
 
-        /* --- レスポンシブ設定 --- */
+        /* --- スマホ対応 --- */
         @media (max-width: 900px) {
-            /* ★修正：他のページと同様に、左パディングを0にし、マイナスマージンで左端ギリギリに寄せる */
+            /* ★左端ギリギリのロゴ設定 */
             header { padding: 10px 15px 10px 0px; background-color: #000000; }
             .logo { margin-left: -25px; }
-            .logo img { height: 80px; } /* スマホ用ロゴも拡大 */
+            .logo img { height: 80px; }
             
             nav.pc-nav { display: none; }
             .hamburger { display: flex; }
-            
-            /* 三本線が「×」になるアニメーション */
             .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-            .container { margin-top: 120px; }
-            h1 { font-size: 26px; }
+            
+            .container { margin-top: 100px; }
+            .privacy-content { padding: 30px 20px; }
+            .section-title { font-size: 26px; margin-bottom: 40px; }
             .footer-logo img { height: 80px; }
         }
     </style>
@@ -107,4 +107,93 @@
 
         <nav class="pc-nav">
             <ul>
-                <li><a href="index.html">Home
+                <li><a href="index.html">Home</a></li>
+                <li><a href="service.html">Service</a></li>
+                <li><a href="company.html">Company</a></li>
+                <li><a href="recruit.html">Recruit</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="service.html">Service</a></li>
+            <li><a href="company.html">Company</a></li>
+            <li><a href="recruit.html">Recruit</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1 class="section-title">PRIVACY POLICY</h1>
+        
+        <div class="privacy-content">
+            <h2>個人情報保護方針</h2>
+            <p>株式会社zeroONE（以下、「当社」といいます。）は、本ウェブサイト上で提供するサービス（以下、「本サービス」といいます。）における、ユーザーの個人情報の取扱いについて、以下のとおりプライバシーポリシー（以下、「本ポリシー」といいます。）を定めます。</p>
+
+            <h2>第1条（個人情報）</h2>
+            <p>「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、生存する個人に関する情報であって、当該情報に含まれる氏名、生年月日、住所、電話番号、連絡先その他の記述等により特定の個人を識別できる情報（個人識別情報）を指します。</p>
+
+            <h2>第2条（個人情報の収集方法）</h2>
+            <p>当社は、ユーザーがお問い合わせやご応募をする際に、氏名、電話番号、メールアドレスなどの個人情報をお尋ねすることがあります。</p>
+
+            <h2>第3条（個人情報を収集・利用する目的）</h2>
+            <p>当社が個人情報を収集・利用する目的は、以下のとおりです。</p>
+            <ul>
+                <li>当社サービスの提供・運営のため</li>
+                <li>ユーザーからのお問い合わせに回答するため（本人確認を行うことを含む）</li>
+                <li>採用活動に関するご連絡、ご案内のため</li>
+                <li>上記の利用目的に付随する目的</li>
+            </ul>
+
+            <h2>第4条（個人情報の第三者提供）</h2>
+            <p>当社は、次に掲げる場合を除いて、あらかじめユーザーの同意を得ることなく、第三者に個人情報を提供することはありません。ただし、個人情報保護法その他の法令で認められる場合を除きます。</p>
+            <ul>
+                <li>人の生命、身体または財産の保護のために必要がある場合であって、本人の同意を得ることが困難であるとき</li>
+                <li>国の機関もしくは地方公共団体またはその委託を受けた者が法令の定める事務を遂行することに対して協力する必要がある場合</li>
+            </ul>
+
+            <h2>第5条（個人情報の開示・訂正・削除）</h2>
+            <p>当社は、本人から個人情報の開示、訂正、追加、削除、利用停止を求められたときは、本人であることを確認の上、遅滞なくこれに対応します。</p>
+
+            <h2>第6条（お問い合わせ窓口）</h2>
+            <p>本ポリシーに関するお問い合わせは、お問い合わせフォーム、または下記の窓口までお願いいたします。</p>
+            <p>
+                株式会社zeroONE<br>
+                代表取締役 中嶋 悟<br>
+                Eメールアドレス：syk.zeroone@gmail.com
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-logo">
+            <a href="index.html">
+                <img src="logo.png" alt="zeroONE">
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+    </script>
+</body>
+</html>
