@@ -80,7 +80,9 @@
         .fade-in.appear { opacity: 1; transform: translateY(0); }
 
         @media (max-width: 900px) {
-            header { padding: 15px 20px; }
+            /* ★修正：他のページと同様に、左パディングを0にし、マイナスマージンで左端ギリギリに寄せる */
+            header { padding: 10px 15px 10px 0px; background-color: #000000; }
+            .logo { margin-left: -25px; }
             .logo img { height: 80px; } /* スマホ用ロゴも拡大 */
             .hamburger { display: flex; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); }
             nav ul { display: none; }
