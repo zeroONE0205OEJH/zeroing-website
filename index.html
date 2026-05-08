@@ -6,7 +6,7 @@
     <title>株式会社zeroONE | 新時代のロジスティクス</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yuji+Syuku&family=Zen+Kaku+Gothic+New:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         /* --- 全体設定 --- */
         html { scroll-behavior: smooth; }
@@ -69,8 +69,9 @@
         
         .greeting-text { text-align: left; display: inline-block; max-width: 900px; }
         
+        /* ★ 修正：フォントを Zen Kaku Gothic New に変更 */
         .greeting-text p { 
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', sans-serif; 
+            font-family: 'Zen Kaku Gothic New', sans-serif; 
             font-weight: 300; 
             font-size: 22px; 
             color: #ffffff; 
@@ -80,11 +81,11 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
         
-        /* ★ 追加：単語の途中で不自然に改行されるのを防ぐ魔法のクラス */
         .ib { display: inline-block; }
 
+        /* ★ 修正：署名のフォントも Zen Kaku Gothic New に変更 */
         .greeting-sign { 
-            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', sans-serif; 
+            font-family: 'Zen Kaku Gothic New', sans-serif; 
             font-weight: 300;
             text-align: right; 
             margin-top: 80px; 
@@ -113,12 +114,11 @@
 
         /* --- スマホ対応 --- */
         @media (max-width: 900px) {
-            /* ★再々修正：余白を0にしつつ、さらにマイナス方向（左）へ強制的に引っ張り出す */
             header { 
                 padding: 10px 15px 10px 0px; 
             }
             .logo {
-                margin-left: -25px; /* 画像の透明部分を打ち消すための力技 */
+                margin-left: -25px;
             }
             .logo img { height: 80px; }
             
@@ -138,7 +138,6 @@
             .greeting-sign .sign-name { font-size: 34px; }
             .sign-row { gap: 8px; }
 
-            /* ★ 追加：スマホ表示時にPC用の強制改行を無効化し、画面幅に合わせて自然に折り返す */
             .sp-br-none { display: none; }
         }
     </style>
