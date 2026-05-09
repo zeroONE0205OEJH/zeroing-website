@@ -69,10 +69,10 @@
         
         .greeting-text { text-align: left; display: inline-block; max-width: 900px; }
         
-        /* ★ 修正：フォントを太文字 (500) に変更 */
+        /* ★ 修正：フォントを Zen Kaku Gothic New に変更 */
         .greeting-text p { 
             font-family: 'Zen Kaku Gothic New', sans-serif; 
-            font-weight: 500; 
+            font-weight: 300; 
             font-size: 22px; 
             color: #ffffff; 
             line-height: 2.2; 
@@ -83,10 +83,10 @@
         
         .ib { display: inline-block; }
 
-        /* ★ 修正：署名のフォントも太文字 (500) に変更 */
+        /* ★ 修正：署名のフォントも Zen Kaku Gothic New に変更 */
         .greeting-sign { 
             font-family: 'Zen Kaku Gothic New', sans-serif; 
-            font-weight: 500;
+            font-weight: 300;
             text-align: right; 
             margin-top: 80px; 
             color: #ffffff;
@@ -102,7 +102,7 @@
         }
 
         .greeting-sign .sign-title { font-size: 22px; margin-bottom: 4px; }
-        .greeting-sign .sign-name { font-size: 48px; font-weight: 500; }
+        .greeting-sign .sign-name { font-size: 48px; font-weight: 300; }
 
         /* --- フッター --- */
         footer { padding: 100px 20px 40px; text-align: center; border-top: 1px solid #222; background: #0a0a0a; display: flex; flex-direction: column; align-items: center; gap: 40px; }
@@ -201,4 +201,73 @@
 
     <section class="section fade-in" style="background: #0a0a0a; max-width: 100%; padding-top: 120px; padding-bottom: 120px;">
         <div class="greeting-box" style="max-width: 1000px; margin: 0 auto; padding: 0 20px;">
-        
+            <h2>GREETING<br><span style="font-size: 16px; color: #888;">代表挨拶</span></h2>
+            
+            <div class="greeting-text">
+                <p><span class="ib">私たちzeroONEは、</span><span class="ib">ただ荷物を運ぶ会社ではありません。</span></p>
+                
+                <p><span class="ib">一つひとつの荷物の先には、</span><span class="ib">待っているお客様がいて、</span><br class="sp-br-none">
+                <span class="ib">その配送を支える</span><span class="ib">一人ひとりのドライバーがいます。</span></p>
+                
+                <p><span class="ib">だからこそ私たちは、</span><span class="ib">「安心」「安全」「品質」を</span><span class="ib">大切にしながら、</span><br class="sp-br-none">
+                <span class="ib">現場で働く仲間が</span><span class="ib">誇りを持てる物流会社を</span><span class="ib">目指しています。</span></p>
+                
+                <p><span class="ib">配送の仕事は、</span><span class="ib">決して目立つ仕事ではありません。</span><br class="sp-br-none">
+                <span class="ib">それでも、</span><span class="ib">日々止まることのない</span><span class="ib">物流インフラを支え、</span><br class="sp-br-none">
+                <span class="ib">誰かの生活や仕事を支える</span><span class="ib">大切な役割があります。</span><br class="sp-br-none">
+                <span class="ib">私たちは、</span><span class="ib">その価値を本気で信じています。</span></p>
+                
+                <p><span class="ib">そして、</span><span class="ib">私たちは止まりません。</span></p>
+                
+                <p><span class="ib">現場の声を力に変え、</span><span class="ib">一つひとつの課題を改善し、</span><br class="sp-br-none">
+                <span class="ib">昨日よりも良い配送を</span><span class="ib">積み重ねていく。</span><br class="sp-br-none">
+                <span class="ib">仲間の成長が</span><span class="ib">会社の成長につながり、</span><br class="sp-br-none">
+                <span class="ib">その先で</span><span class="ib">お客様や社会に</span><span class="ib">より大きな価値を届ける。</span></p>
+                
+                <p><span class="ib">zeroONEは、</span><span class="ib">現場で信頼を積み重ね、</span><span class="ib">仲間とともに成長しながら、</span><br class="sp-br-none">
+                <span class="ib">新しい可能性を</span><span class="ib">形にしていく会社であり続けます。</span></p>
+            </div>
+            
+            <div class="greeting-sign">
+                <div style="margin-bottom: 10px;">株式会社zeroONE</div>
+                <div class="sign-row">
+                    <span class="sign-title">代表取締役</span>
+                    <span class="sign-name">中嶋 悟</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-logo">
+            <img src="logo.png" alt="zeroONE">
+        </div>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="service.html">Service</a>
+            <a href="company.html">Company</a>
+            <a href="recruit.html">Recruit</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy Policy</a>
+        </div>
+        <div class="copyright">&copy; 2024 zeroONE Inc. All Rights Reserved.</div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('appear');
+            });
+        }, { threshold: 0.15 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
